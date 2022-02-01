@@ -1,0 +1,145 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+
+@font-face {
+    font-family: "Product Sans";
+    src: local(Fonts\ProductSansRegular);
+}
+
+@font-face {
+    font-family: "Isidora";
+    src: local(Fonts\IsidoraLight), local(Fonts\IsidoraBold);
+}
+
+* {
+    font-family: Product Sans;
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: $white;
+}
+::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 6px;
+    border: 3px solid $white;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+::placeholder {
+    color: $darkGray;
+}
+.btn {
+    border: 0;
+    align-items: center;
+    color: $white;
+    background-color: $blue;
+    height: 40px;
+    transition: all .3s ease;
+    cursor: pointer;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+.input {
+    margin: 10px 10px 0;
+    background-color: $white;
+    border: 3px solid transparent;
+    transition: all .3s ease;
+    height: 34px;
+    &:focus {
+        border: 3px solid $darkBlue;
+    }
+}
+.btn,
+.input {
+    padding: 0 11px;
+}
+.label,
+.btn,
+.input {
+    font-size: 16px;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .brandContainer,
+    .logContainer {
+        margin: 0;
+        width: 50%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .brandContainer {
+        font-family: Arial;
+        font-size: 3rem;
+        text-align: center;
+        * {
+            margin: 0;
+        }
+        .pageTitle {
+            height: 140px;
+        }
+        .pageSlogan {
+            font-weight: 900;
+            margin: 30px 0 0 0;
+            font-size: 28px;
+        }
+    }
+    .logContainer {
+        background-color: $blue;
+        * {
+            border-radius: 10px;
+            margin: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logIn {
+            background-color: $lightGray;
+            width: 400px;
+            .separator {
+                background-color: $gray;
+                border: none;
+                height: 3px;
+                width: 92%;
+                margin: 5px auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        .brandContainer {
+            width: 100%;
+            height: 450px;
+        }
+        .logContainer {
+            width: 100%;
+            height: 85%;
+            min-height: 350px;
+        }
+    }
+};

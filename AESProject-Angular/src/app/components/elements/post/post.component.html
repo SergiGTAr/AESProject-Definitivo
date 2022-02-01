@@ -1,0 +1,18 @@
+<div class="postBox">
+    <div class="postInfo">
+        <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
+        <p class="user">{{user}}</p>
+        <p class="date">{{date}}</p>
+    </div>
+    <div class="post">
+        <div class="content">
+            <p>{{content}}</p>
+        </div>
+        <div class="options">
+            <button class="btn addLike"><p>{{likes}}</p><i data-feather="thumbs-up" class="like"></i></button>
+            <button class="btn addComment"><p>{{comments}}</p><i data-feather="message-square" class="comment"></i></button>
+            <button class="btn editPost" *ngIf="owner"><i data-feather="edit" class="edit"></i></button>
+            <button class="btn deletePost" *ngIf="owner"><i data-feather="trash"  class="delete"></i></button>
+        </div>
+    </div>
+</div>

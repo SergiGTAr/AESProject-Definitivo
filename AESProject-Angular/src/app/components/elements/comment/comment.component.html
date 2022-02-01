@@ -1,0 +1,15 @@
+<div class="commentBox">
+    <div class="commentInfo">
+        <img class="userPhoto"  src="../../../../assets/img/IMGPrueba.png" alt="">
+        <p class="user">{{user}}</p>
+        <p class="date">{{date}}</p>
+    </div>
+    <div class="comment">
+        <div class="content">
+            <p>{{content}}</p>
+        </div>
+        <div class="options">
+            <button class="btn editPost" *ngIf="owner"><i data-feather="edit" class="edit"></i></button>
+            <button class="btn deletePost" *ngIf="owner"><i data-feather="trash"  class="delete"></i></button>        </div>
+    </div>
+</div>

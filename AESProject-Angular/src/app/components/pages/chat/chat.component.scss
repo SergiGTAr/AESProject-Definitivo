@@ -1,0 +1,132 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+
+@font-face {
+    font-family: "Product Sans";
+    src: local(Fonts\ProductSansRegular);
+}
+
+@font-face {
+    font-family: "Isidora";
+    src: local(Fonts\IsidoraLight), local(Fonts\IsidoraBold);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: $white;
+}
+::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 6px;
+    border: 3px solid $white;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+::placeholder {
+    color: $darkGray;
+}
+.btn {
+    border: 0;
+    align-items: center;
+    color: $white;
+    background-color: $blue;
+    height: 40px;
+    transition: all .3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0 11px;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+.input {
+    margin: 0 10px 0 0;
+    padding: 10px;
+    background-color: $white;
+    border: 3px solid transparent;
+    transition: all .3s ease;
+    height: 34px;
+}
+.label,
+.btn,
+.input {
+    font-size: 16px;
+}
+
+.container {
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    .box {
+        margin: 30px;
+        width: 100%;
+        max-width: 600px;
+        height: 90%;
+        .conversation {
+            overflow-x: hidden;
+            height: calc(100% - 100px);
+            display: flex;
+            flex-direction: column;
+            background: $lightGray;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            .you,
+            .another {
+                display: flex;
+                margin: 0 0 4px 0;
+                p {
+                    border-radius: 10px;
+                    margin: 0;
+                    padding: 10px;
+                }
+            }
+            .you {
+                justify-content: right;
+                p {
+                    text-align: right;
+                    background: $blue;
+                    color: $white;
+                }
+            }
+            .another {
+                justify-content: left;
+                p {
+                    text-align: left;
+                    background: $white;
+                    color: $blue;
+                }
+            }
+        }
+        .messageInput {
+            height: 100px;
+            display: flex;
+            background: $gray;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            .message {
+                resize: none;
+                width: calc(100% - 50px);
+                height: auto;
+                border: none;
+                background: $white;
+                border-radius: 10px;
+                &:focus {
+                    border: 3px solid $darkBlue;
+                }
+            }
+            .send {
+                height: auto;
+            }
+        }
+    }
+}

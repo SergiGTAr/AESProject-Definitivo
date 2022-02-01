@@ -1,0 +1,133 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$red: #d00202;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+$pink: #ff0070;
+$green: #00c065;
+$orange: #ff6900;
+
+::placeholder {
+    color: $darkGray;
+}
+.btn {
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    transition: all .3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    min-width: 50px;
+}
+.input {
+    margin: 0 10px;
+    background-color: $white;
+    border: 3px solid transparent;
+    transition: all .3s ease;
+    height: 34px;
+    &:focus {
+        border: 3px solid $darkBlue;
+    }
+}
+.btn,
+.input {
+    padding: 0 11px;
+}
+.label,
+.btn,
+.input {
+    font-size: 16px;
+}
+
+.userPhoto {
+    border-radius: 50%;
+}
+
+.postBox {
+    background: $gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    .postInfo {
+        margin: 0 0 10px 0;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        width: 100%;
+        p {
+            margin: 0;
+        }
+        .userPhoto {
+            margin: 0 10px 0 0;
+            display: block;
+            width: 40px;
+            height: 40px;
+        }
+        .user {
+            display: block;
+            width: calc(100% - 170px);
+        }
+        .date {
+            text-align: right;
+            width: 130px;
+        }
+    }
+    .post {
+        display: flex;
+        flex-direction: column;
+        background: $white;
+        border-radius: 10px;
+        padding: 5px;
+        p {
+            margin: 0;
+            padding: 7px;
+            background: $white;
+            border-radius: 10px;
+        }
+        .options {
+            display: flex;
+            justify-content: right;
+            .btn {
+                display: flex;
+                margin: 0 0 0 3px;
+                background: $white;
+                &:hover {
+                    color: $white;
+                }
+                p {
+                    padding: 0;
+                    margin: 0 5px 0 0;
+                    background: none;
+                }
+                &.addLike {
+                    &.active {
+                        color: $pink;
+                    }
+                    &:hover {
+                        background: $pink;
+                    }
+                }
+                &.addComment {
+                    &:hover {
+                        background: $green;
+                    }
+                }
+                &.editPost {
+                    &:hover {
+                        background: $orange;
+                    }
+                }
+                &.deletePost {
+                    &:hover {
+                        background: $red;
+                    }
+                }
+            }
+        }
+    }
+}

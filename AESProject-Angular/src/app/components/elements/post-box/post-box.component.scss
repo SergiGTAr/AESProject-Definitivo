@@ -1,0 +1,18 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$red: #d00202;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+$pink: #ff0070;
+$green: #00c065;
+$orange: #ff6900;
+
+.box {
+    margin: 30px 0 0 0;
+    border-radius: 10px;
+    background: $lightGray;
+    max-width: 600px;
+}

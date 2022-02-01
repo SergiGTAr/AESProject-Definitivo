@@ -1,0 +1,252 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$red: #d00202;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+
+@font-face {
+    font-family: "Product Sans";
+    src: local(FontsProductSansRegular);
+}
+
+@font-face {
+    font-family: "Isidora";
+    src: local(FontsIsidoraLight), local(FontsIsidoraBold);
+}
+
+* {
+    font-family: Product Sans;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+}
+
+::placeholder {
+    color: $darkGray;
+}
+
+.userPhoto {
+    border-radius: 50%;
+}
+
+.navigator {
+    background: $blue;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    .navArea {
+        padding: 0 10px;
+        &.home {
+            width: 175px;
+            .link {
+                display: flex;
+                align-items: center;
+                margin: 0 0 0 20px;
+                height: 40px;
+                font-size: 25px;
+                color: $white;
+                .AESProject{
+                    height: 30px;
+                }
+                .AESProjectSmall {
+                    height: 30px;
+                    display: none;
+                }
+            }
+        }
+        &.search {
+            width: 500px;
+            .searchBar {
+                background: $white;
+                border-radius: 10px;
+                display: flex;
+                height: 40px;
+                padding: 0;
+                .magGlassBox {
+                    display: flex;
+                    height: 40px;
+                    .magGlass {
+                        margin: auto 10px;
+                    }
+                }
+                .searchInput {
+                    border: 0;
+                    border-radius: 10px;
+                    width: calc(100% - 40px);
+                    font-size: 16px;
+                }
+            }
+        }
+        &.userOptions {
+            width: 600px;
+            .options {
+                display: flex;
+                justify-content: right;
+                margin: 0 20px;
+                padding: 0;
+                li {
+                    cursor: pointer;
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 15px;
+                        margin: 0 0 0 2px;
+                        height: 40px;
+                        color: $white;
+                        font-size: 16px;
+                        border-radius: 10px;
+                        transition: all .3s ease;
+                        &:hover {
+                            background: $white;
+                            color: $blue;
+                        }
+                    }
+                    p {
+                        margin: 0 0 0 10px;
+                    }
+                    &:last-of-type {
+                        a .profile {
+                            display: flex;
+                            align-items: center;
+                            .userPhoto {
+                                height: 34px;
+                                width: 34px;
+                            }
+                            .username {
+                                padding: 0 15px 0 0;
+                            }
+                        }
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .profileOptions-active {
+        background: $white;
+        display: block;
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        box-shadow: 0 0 3px $darkGray;
+        border-radius: 10px;
+        padding: 5px 10px;
+        li {
+            margin: 10px 5px;
+            text-align: right;
+            a {
+                display: flex;
+                justify-content: right;
+                color: $blue;
+                cursor: pointer;
+            }
+            p {
+                margin: 0 10px 0 0;
+            }
+            &:last-of-type a {
+                color: $red;
+            }
+        }
+    }
+    .profileOptions-inactive {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    .navigator {
+        .navArea.userOptions {
+            .options {
+                li {
+                    p {
+                        display: none;
+                    }
+                    &:last-of-type p {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .navigator {
+        .navArea {
+            &.home {
+                width: 50px;
+                .link {
+                    .AESProject {
+                        display: none;
+                    }
+                    .AESProjectSmall {
+                        display: block;
+                    }
+                }
+            }
+
+            &.search {
+                width: auto;
+                .searchBar {
+                    background: transparent;
+                    width: 60px;
+                    .magGlassBox {
+                        padding: 0 15px;
+                        border-radius: 10px;
+                        transition: all .3s ease;
+                        .magGlass {
+                            margin: 0;
+                            width: 24px;
+                            height: auto;
+                            color: $white;
+                        }
+                        &:hover {
+                            background: $white;
+                            .magGlass {
+                                color: $blue;
+                            }
+                        }
+                    }
+                    .searchInput {
+                        display: none;
+                        background: $white;
+                        height: 40px;
+                        padding: 0 11px;
+                        box-shadow: 0 0 3px $darkGray;
+                        position: absolute;
+                        top: 60px;
+                        left: 50px;
+                        border: 0;
+                        border-radius: 10px;
+                        width: calc(100% - 122px);
+                        font-size: 16px;
+                        &.active {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .navigator {
+        .navArea {
+            &.userOptions {
+                .options {
+                    li:last-of-type p {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

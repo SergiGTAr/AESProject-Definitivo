@@ -1,0 +1,32 @@
+<main class="container">
+    <div class="profileHeader">
+        <img class="userPhoto" src="../IMGPrueba.png" alt="">
+        <div class="options">
+            <button class="btn edit"><i class="fas fa-edit"></i>Edit</button>
+            <button class="btn follow"><i class="fas fa-user-plus"></i>Follow</button>
+        </div>
+    </div>
+    <div class="userBar">
+        <p class="userName">Adje Reeves</p>
+        <div class="space"></div>
+        <p class="friends">696969 <i class="fas fa-users"></i></p>
+    </div>
+    <div class="userTabs">
+        <ul class="profileNav">
+            <li><a routerLink="/profile/posts" routerLinkActive="active" class="selected">Posts</a></li>
+            <li><a routerLink="/profile/bio" routerLinkActive="active">Biography</a></li>
+        </ul>
+    </div>
+    <div class="profilePosts">
+        <form class="newPost" action="">
+            <textarea class="content" name="" id="" cols="" rows="" placeholder="Write something to post"></textarea>
+            <button class="btn submit" type="submit">Send</button>
+        </form>
+
+        <div class="posts">
+            <app-post-box></app-post-box>
+            <app-post-box></app-post-box>
+            <app-post-box></app-post-box>
+        </div>
+    </div>
+</main>

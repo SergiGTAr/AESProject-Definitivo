@@ -1,0 +1,188 @@
+$lightBlue: #5bd1ff;
+$blue: #008cff;
+$darkBlue: #00599f;
+$red: #d00202;
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+
+@font-face {
+    font-family: "Product Sans";
+    src: local(Fonts\ProductSansRegular);
+}
+
+* {
+    font-family: Product Sans;
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: $white;
+}
+::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 6px;
+    border: 3px solid $white;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+::placeholder {
+    color: $darkGray;
+}
+.btn {
+    border: 0;
+    align-items: center;
+    color: $white;
+    background-color: $blue;
+    height: 40px;
+    transition: all .3s ease;
+    cursor: pointer;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+.input {
+    margin: 0 10px;
+    background-color: $white;
+    border: 3px solid transparent;
+    transition: all .3s ease;
+    height: 34px;
+    &:focus {
+        border: 3px solid $darkBlue;
+    }
+}
+.btn,
+.input {
+    padding: 0 11px;
+}
+.label,
+.btn,
+.input {
+    font-size: 16px;
+}
+
+.container {
+    background: $blue;
+    width: 100vw;
+    height: 100vh;
+    min-height: 620px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    * {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    .singUp {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 600px;
+        background-color: $lightGray;
+        .separator {
+            background-color: $gray;
+            border: none;
+            height: 3px;
+            width: 92%;
+            margin: 5px auto;
+        }
+        .signUpGroup {
+            .submitError-active {
+                line-height: 25px;
+                color: $white;
+                background: $red;
+                padding: 0 11px;
+                font-size: 14px;
+                margin: 4px 10px 10px;
+            }
+            .submitError-inactive {
+                display: none;
+            }
+            &.names,
+            &.pass,
+            &.buttons,
+            &.email {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            &.names .userName,
+            &.email .email,
+            .submitError-active {
+                grid-column: span 2;
+            }
+            &.sex {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                input[type="radio"] {
+                    display: none;
+                    &:checked + label:before {
+                        background: $white;
+                        border: 4px solid $white;
+                    }
+                    &:checked + label {
+                        color: $white;
+                        background: $blue;
+                    }
+                }
+                label {
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    line-height: 37px;
+                    padding: 3px 15px 0 40px;
+                    border-radius: 10px;
+                    color: $darkGray;
+                    background: $white;
+                    transition: all .3s ease;
+                    &:hover {
+                        background: $lightBlue;
+                    }
+                    &:before {
+                        content: "";
+                        display: inline-block;
+                        width: 14px;
+                        height: 14px;
+                        position: absolute;
+                        top: 9px;
+                        left: 11px;
+                        border-radius: 50%;
+                        background: none;
+                        border: 4px solid $darkGray;
+                        transition: all .3s ease;
+                    }
+                }
+                .submitError-active {
+                    grid-column: span 3;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .container {
+        min-height: 800px;
+        .singUp {
+            .signUpGroup {
+                &.names,
+                &.pass,
+                &.buttons {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    .submitError-active {
+                        grid-column: span 1;
+                    }
+                }
+                &.names {
+                    .userName {
+                        grid-column: span 1;
+                    }
+                }
+            }
+        }
+    }
+};

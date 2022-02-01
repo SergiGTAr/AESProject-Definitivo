@@ -1,0 +1,37 @@
+<main class="container">
+    <form class="singUp" id="signUp" action="">
+        <div class="signUpGroup names" id="signUpGroupNames">
+            <input class="input name" type="text" name="name" id="name" placeholder="Name">
+            <input class="input surname" type="text" name="surname" id="surname" placeholder="Surname">
+            <input class="input userName" type="text" name="username" id="username" placeholder="Username">
+            <p class="submitError-inactive" id="nameErr">Your name must have 1-20 digits and no special characters nor spaces</p>
+            <p class="submitError-inactive" id="surnameErr">Your surname must have 1-20 digits and no special characters nor spaces</p>
+            <p class="submitError-inactive" id="usernameErr">Your username must have 1-20 digits and no spaces</p>
+        </div>
+        <hr class="separator"/>
+        <div class="signUpGroup email" id="signUpGroupEmail">
+            <input class="input email" type="text" name="email" id="email" placeholder="Email">
+            <p class="submitError-inactive" id="emailErr">a</p>
+        </div>
+        <hr class="separator"/>
+        <div class="signUpGroup pass" id="signUpGroupPass">
+            <input class="input pass" type="password" name="pass" id="pass" placeholder="Password">
+            <input class="input repetePass" type="password" name="repetePass" id="repetePass" placeholder="Confirm password">
+            <p class="submitError-inactive" id="passErr">a</p>
+            <p class="submitError-inactive" id="repetePassErr">a</p>
+        </div>
+        <hr class="separator"/>
+        <div class="signUpGroup sex" id="signUpGroupSex">
+            <input class="radio male" type="radio" name="sex" id="Male" value="M"><label class="label" for="Male">Male</label>
+            <input class="radio female" type="radio" name="sex" id="Female" value="F"><label class="label" for="Female">Female</label>
+            <input class="radio other" type="radio" name="sex" id="Other" value="O"><label class="label" for="Other">Other</label>
+            <p class="submitError-inactive" id="sexErr">a</p>
+        </div>
+        <hr class="separator"/>
+        <div class="signUpGroup buttons" id="signUpGroupButtons">
+            <button class="btn submit" type="submit">Sign up</button>
+            <button class="btn cancel">Return back</button>
+        </div>
+    </form>
+</main>
+

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  angular:
+    build: AESProject-Angular
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./AESProject-Angular:/app
+
+
+  express:
+    build: express-server
+    ports:
+      - "3200:3200"
+    links:
+      - database
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"

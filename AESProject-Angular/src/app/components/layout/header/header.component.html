@@ -1,0 +1,33 @@
+<nav class="navigator">
+    <div class="navArea home">
+        <a class="link" routerLink="/home" routerLinkActive="active">
+            <img class="AESProject" src="../../../../assets/img/AESLogos/AESLogoBW.png" alt="">
+            <img class="AESProjectSmall" src="../../../../assets/img/AESLogos/AESLogoSmallBW.png" alt="">
+        </a>
+    </div>
+    <div class="navArea search">
+        <form class="searchBar" id="searchBar" action="">
+            <div class="magGlassBox">
+                <i data-feather="search" class="magGlass" id="magGlass"></i>
+            </div>
+            <input type="text" class="searchInput" id="searchInput" placeholder="Search a friend or someone to meet">
+        </form>
+    </div>
+    <div class="navArea userOptions">
+        <ul class="options">
+            <li><a routerLink="/notifications" routerLinkActive="active"><i data-feather="file" class="notifications"></i><p class="notifications">Notifications</p></a></li>
+            <li><a routerLink="/chat" routerLinkActive="active"><i data-feather="message-circle" class="conversations"></i><p class="conversations">Conversations</p></a></li>
+            <li id="profile"><a>
+                <div class="profile">
+                    <p class="username">Adje Reeves</p>
+                    <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
+                </div>
+            </a></li>
+        </ul>
+    </div>
+    <ul class="profileOptions-inactive" id="profileOptions">
+        <li><a routerLink="/profile/config" routerLinkActive="active"><p class="configuration">Configuration</p><i data-feather="settings" class="configuration"></i></a></li>
+        <li><a routerLink="/profile/posts" routerLinkActive="active"><p class="profile">Profile</p><i data-feather="user" class="profile"></i></a></li>
+        <li><a routerLink="/signIn" routerLinkActive="active"><p class="exit">Exit</p><i data-feather="log-out" class="exit"></i></a></li>
+    </ul>
+</nav>

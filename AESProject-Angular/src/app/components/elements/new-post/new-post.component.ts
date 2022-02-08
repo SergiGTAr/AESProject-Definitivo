@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit {
-
+  owner: boolean;
   constructor() { }
 
   ngOnInit(): void {
+    this.owner = true;
   }
 
 }

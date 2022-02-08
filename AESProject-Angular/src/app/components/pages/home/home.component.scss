@@ -43,7 +43,7 @@ $orange: #ff6900;
         .box {
             margin: 30px 0 0 0;
             border-radius: 10px;
-            background: #efefef;
+            background: $lightGray;
             padding: 20px;
             width: 300px;
             .userPhoto {

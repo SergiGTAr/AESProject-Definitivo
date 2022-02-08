@@ -41,7 +41,7 @@ $darkGray: #666666;
     .navArea {
         padding: 0 10px;
         &.home {
-            width: 175px;
+            width: 120px;
             .link {
                 display: flex;
                 align-items: center;
@@ -82,7 +82,7 @@ $darkGray: #666666;
             }
         }
         &.userOptions {
-            width: 600px;
+            width: 700px;
             .options {
                 display: flex;
                 justify-content: right;
@@ -129,7 +129,7 @@ $darkGray: #666666;
             }
         }
     }
-    .profileOptions-active {
+    .profileOptionsActive {
         background: $white;
         display: block;
         position: absolute;
@@ -150,12 +150,14 @@ $darkGray: #666666;
             p {
                 margin: 0 10px 0 0;
             }
-            &:last-of-type a {
-                color: $red;
+            &:last-of-type {
+                a {
+                    color: $red;
+                }
             }
         }
     }
-    .profileOptions-inactive {
+    .profileOptionsInactive {
         display: none;
     }
 }
@@ -191,9 +193,8 @@ $darkGray: #666666;
                     }
                 }
             }
-
             &.search {
-                width: auto;
+                width: 50px;
                 .searchBar {
                     background: transparent;
                     width: 60px;

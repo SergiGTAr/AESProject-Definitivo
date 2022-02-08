@@ -11,11 +11,6 @@ $darkGray: #666666;
     src: local(Fonts\ProductSansRegular);
 }
 
-@font-face {
-    font-family: "Isidora";
-    src: local(Fonts\IsidoraLight), local(Fonts\IsidoraBold);
-}
-
 * {
     font-family: Product Sans;
     outline: none;
@@ -72,7 +67,7 @@ $darkGray: #666666;
 .container {
     width: 100vw;
     height: 100vh;
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +83,7 @@ $darkGray: #666666;
         align-items: center;
     }
     .brandContainer {
+        min-height: 300px;
         font-family: Arial;
         font-size: 3rem;
         text-align: center;
@@ -104,6 +100,7 @@ $darkGray: #666666;
         }
     }
     .logContainer {
+        min-height: 300px;
         background-color: $blue;
         * {
             border-radius: 10px;

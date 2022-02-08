@@ -29,7 +29,7 @@ const routes: Routes = [
     {path: 'utiles', component: SalesComponent},
 
     {
-        path: 'profile', component: PostsComponent,
+        path: 'profile', component: ProfileComponent,
         children: [
             {
                 path: 'posts',

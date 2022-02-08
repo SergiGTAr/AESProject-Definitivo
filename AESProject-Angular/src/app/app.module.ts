@@ -26,6 +26,7 @@ import { GalleryComponent } from './components/dashboards/others/gallery/gallery
 
 import { ProfileSettingsComponent } from './components/dashboards/others/profile-settings/profile-settings.component';
 import { ErrorComponent } from './components/dashboards/others/error/error.component';
+import { HeaderProfileComponent } from './components/layout/header-profile/header-profile.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { ErrorComponent } from './components/dashboards/others/error/error.compo
         ErrorComponent,
         PostsComponent,
         BioComponent,
-        ConfigComponent
+        ConfigComponent,
+        HeaderProfileComponent
     ],
     imports: [
         BrowserModule,

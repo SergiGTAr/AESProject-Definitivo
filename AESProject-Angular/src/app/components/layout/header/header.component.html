@@ -7,17 +7,17 @@
     </div>
     <div class="navArea search">
         <form class="searchBar" id="searchBar" action="">
-            <div class="magGlassBox">
+            <div class="magGlassBox" (click)="showSearchBar()">
                 <i data-feather="search" class="magGlass" id="magGlass"></i>
             </div>
-            <input type="text" class="searchInput" id="searchInput" placeholder="Search a friend or someone to meet">
+            <input type="text" class="searchInput" [ngClass]="{'active': enableSearchBar}" #searchInput placeholder="Search">
         </form>
     </div>
     <div class="navArea userOptions">
         <ul class="options">
             <li><a routerLink="/notifications" routerLinkActive="active"><i data-feather="file" class="notifications"></i><p class="notifications">Notifications</p></a></li>
             <li><a routerLink="/chat" routerLinkActive="active"><i data-feather="message-circle" class="conversations"></i><p class="conversations">Conversations</p></a></li>
-            <li id="profile"><a>
+            <li id="profile" (click)="showProfileOptions()"><a>
                 <div class="profile">
                     <p class="username">Adje Reeves</p>
                     <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
@@ -25,7 +25,7 @@
             </a></li>
         </ul>
     </div>
-    <ul class="profileOptions-inactive" id="profileOptions">
+    <ul [ngClass]="{'profileOptionsActive': enableProfileOptions, 'profileOptionsInactive': !enableProfileOptions}" id="profileOptions">
         <li><a routerLink="/profile/config" routerLinkActive="active"><p class="configuration">Configuration</p><i data-feather="settings" class="configuration"></i></a></li>
         <li><a routerLink="/profile/posts" routerLinkActive="active"><p class="profile">Profile</p><i data-feather="user" class="profile"></i></a></li>
         <li><a routerLink="/signIn" routerLinkActive="active"><p class="exit">Exit</p><i data-feather="log-out" class="exit"></i></a></li>

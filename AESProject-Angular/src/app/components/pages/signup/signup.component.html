@@ -1,31 +1,56 @@
 <main class="container">
-    <form class="singUp" id="signUp" action="">
-        <div class="signUpGroup names" id="signUpGroupNames">
-            <input class="input name" type="text" name="name" id="name" placeholder="Name">
-            <input class="input surname" type="text" name="surname" id="surname" placeholder="Surname">
-            <input class="input userName" type="text" name="username" id="username" placeholder="Username">
-            <p class="submitError-inactive" id="nameErr">Your name must have 1-20 digits and no special characters nor spaces</p>
-            <p class="submitError-inactive" id="surnameErr">Your surname must have 1-20 digits and no special characters nor spaces</p>
-            <p class="submitError-inactive" id="usernameErr">Your username must have 1-20 digits and no spaces</p>
+    <form class="singUp" action="" [formGroup]="signUpForm">
+        <div class="signUpGroup names" [formGroup]="signUpForm.get('groupNames')">
+            <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
+            <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
+            <input class="input userName" type="text" name="username" placeholder="Username" formControlName="username">
+
+            <div class="submitError" *ngIf="(name.invalid && (name.dirty || name.touched)) || (surname.invalid && (surname.dirty || surname.touched)) || (username.invalid && (username.dirty || username.touched))">
+                <p>There are some empty fields to fill</p>
+                <ul>
+                    <li *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <p>Your name must have 1-20 digits and no special characters nor spaces</p>
+                    </li>
+                    <li *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                        <p>Your surname must have 1-20 digits and no special characters nor spaces</p>
+                    </li>
+                    <li *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <p>Your username must have 1-20 digits and no spaces</p>
+                    </li>
+                </ul>
+            </div>
         </div>
         <hr class="separator"/>
-        <div class="signUpGroup email" id="signUpGroupEmail">
-            <input class="input email" type="text" name="email" id="email" placeholder="Email">
-            <p class="submitError-inactive" id="emailErr">a</p>
+        <div class="signUpGroup email">
+            <input class="input email" type="text" name="email" placeholder="Email" formControlName="email">
+            <div class="submitError" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <p>You have to add an email</p>
+            </div>
         </div>
         <hr class="separator"/>
-        <div class="signUpGroup pass" id="signUpGroupPass">
-            <input class="input pass" type="password" name="pass" id="pass" placeholder="Password">
-            <input class="input repetePass" type="password" name="repetePass" id="repetePass" placeholder="Confirm password">
-            <p class="submitError-inactive" id="passErr">a</p>
-            <p class="submitError-inactive" id="repetePassErr">a</p>
+        <div class="signUpGroup pass" [formGroup]="signUpForm.get('groupPasswords')">
+            <input class="input pass" type="password" name="pass" placeholder="Password" formControlName="password">
+            <input class="input repetePass" type="password" name="repetePass" placeholder="Confirm password" formControlName="repeatedPassword">
+            <div class="submitError" *ngIf="(password.invalid && (password.dirty || password.touched)) || (repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched))">
+                <p>There are some empty fields to fill</p>
+                <ul>
+                    <li *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <p>Your have to write a password</p>
+                    </li>
+                    <li *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)">
+                        <p>Both passwors are different</p>
+                    </li>
+                </ul>
+            </div>
         </div>
         <hr class="separator"/>
         <div class="signUpGroup sex" id="signUpGroupSex">
-            <input class="radio male" type="radio" name="sex" id="Male" value="M"><label class="label" for="Male">Male</label>
-            <input class="radio female" type="radio" name="sex" id="Female" value="F"><label class="label" for="Female">Female</label>
-            <input class="radio other" type="radio" name="sex" id="Other" value="O"><label class="label" for="Other">Other</label>
-            <p class="submitError-inactive" id="sexErr">a</p>
+            <input class="radio male" type="radio" name="sex" value="M" formControlName="sex"><label class="label" for="Male">Male</label>
+            <input class="radio female" type="radio" name="sex" value="F" formControlName="sex"><label class="label" for="Female">Female</label>
+            <input class="radio other" type="radio" name="sex" value="O" formControlName="sex"><label class="label" for="Other">Other</label>
+            <div class="submitError" *ngIf="sex.invalid && (sex.dirty || sex.touched)">
+                <p>You have to add an email</p>
+            </div>
         </div>
         <hr class="separator"/>
         <div class="signUpGroup buttons" id="signUpGroupButtons">

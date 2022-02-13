@@ -91,16 +91,16 @@ $darkGray: #666666;
             margin: 5px auto;
         }
         .signUpGroup {
-            .submitError-active {
+            .submitError {
                 line-height: 25px;
                 color: $white;
                 background: $red;
                 padding: 0 11px;
                 font-size: 14px;
                 margin: 4px 10px 10px;
-            }
-            .submitError-inactive {
-                display: none;
+                ul {
+                    padding: 0 0 0 20px;
+                }
             }
             &.names,
             &.pass,
@@ -111,7 +111,7 @@ $darkGray: #666666;
             }
             &.names .userName,
             &.email .email,
-            .submitError-active {
+            .submitError {
                 grid-column: span 2;
             }
             &.sex {
@@ -173,7 +173,7 @@ $darkGray: #666666;
                 &.buttons {
                     display: grid;
                     grid-template-columns: 1fr;
-                    .submitError-active {
+                    .submitError {
                         grid-column: span 1;
                     }
                 }

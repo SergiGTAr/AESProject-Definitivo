@@ -12,5 +12,4 @@ export class NewPostComponent implements OnInit {
   ngOnInit(): void {
     this.owner = true;
   }
-
 }

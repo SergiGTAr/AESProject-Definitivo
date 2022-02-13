@@ -1,10 +1,10 @@
 <main class="container">
     <app-header-profile></app-header-profile>
     <div class="profilePosts">
-        <app-new-post></app-new-post>
+        <app-new-post *ngIf="owner"></app-new-post>
 
         <div class="posts">
-            <app-post-box></app-post-box>
+            <app-post-box [owner]="owner"></app-post-box>
             <app-post-box></app-post-box>
             <app-post-box></app-post-box>
         </div>

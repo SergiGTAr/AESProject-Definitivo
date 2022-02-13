@@ -4,14 +4,14 @@
         <p class="pageSlogan">Making a huge community! 😉</p>
     </div>
     <div class="logContainer">
-        <form action="" class="logIn">
+        <form action="" class="logIn" [formGroup]="signInForm"> 
             <div class="inputs">
-                <input class="input email" type="text" name="email" id="email" placeholder="Email">
-                <input class="input pass" type="password" name="pass" id="pass" placeholder="Password">
+                <input class="input email" type="text" name="email" placeholder="Email" formControlName="email">
+                <input class="input pass" type="password" name="pass" placeholder="Password" formControlName="password">
             </div>
             <hr class="separator"/>
             <div class="buttons">
-                <button type="submit" class="btn">Log in</button>
+                <button type="submit" (click)="login()" class="btn">Log in</button>
                 <button routerLink="/signUp" routerLinkActive="active" class="btn">Create an account</button>
             </div>
         </form>

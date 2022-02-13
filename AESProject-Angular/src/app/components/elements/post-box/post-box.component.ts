@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-post-box',
@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostBoxComponent implements OnInit {
     comments: string[];
+    @Input() owner: boolean = false;
+
     constructor() {
     }
+    
     ngOnInit(): void {
         this.comments = ['a', 'b'];
     }

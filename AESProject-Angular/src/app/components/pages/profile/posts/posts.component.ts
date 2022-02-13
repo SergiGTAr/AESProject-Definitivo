@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+  owner: boolean
   constructor() { }
 
   ngOnInit(): void {
+    this.owner = true;
   }
-
 }

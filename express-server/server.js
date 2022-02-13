@@ -25,3 +25,17 @@ const server = http.createServer(app);
 
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => console.log(`API en:${port}`));
+
+app.get('/pruebas', (req, res) => 
+{
+    res.status(200).send({
+        message: 'Accion de pruebas en el servidor de NodeJS'
+    })
+})
+
+app.get('/pruebana', (req, res) => 
+{
+    res.status(200).send({
+        message: 'Accion de pruebas en el servidor de NodeJS'
+    })
+})

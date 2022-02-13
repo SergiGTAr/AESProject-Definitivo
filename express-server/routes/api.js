@@ -15,4 +15,7 @@ router.get('/', (req, res) => {
     res.send('La API está okilish *_*');
 });
 
+// middlewares
+
+
 module.exports = router;

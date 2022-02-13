@@ -20,16 +20,16 @@ export class SigninComponent implements OnInit {
   constructor(loginService:LoginService) {
     this.loginService = loginService
   }
-    
+
   ngOnInit() {
-    
+
   }
 
   login() {
-    console.log(this.loginService.login("",""));
+    console.log(this.loginService.login());
     console.log("Login");
   }
-  
+
   get email() { return this.signInForm.get('email'); }
   get password() { return this.signInForm.get('password'); }
 }

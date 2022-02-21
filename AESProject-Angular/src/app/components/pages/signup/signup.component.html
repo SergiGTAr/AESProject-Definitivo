@@ -45,9 +45,9 @@
         </div>
         <hr class="separator"/>
         <div class="signUpGroup sex" id="signUpGroupSex">
-            <input class="radio male" type="radio" name="sex" value="M" formControlName="sex"><label class="label" for="Male">Male</label>
-            <input class="radio female" type="radio" name="sex" value="F" formControlName="sex"><label class="label" for="Female">Female</label>
-            <input class="radio other" type="radio" name="sex" value="O" formControlName="sex"><label class="label" for="Other">Other</label>
+            <input class="radio male" type="radio" name="sex" id="Male" value="M" formControlName="sex"><label class="label" for="Male">Male</label>
+            <input class="radio female" type="radio" name="sex" id="Female" value="F" formControlName="sex"><label class="label" for="Female">Female</label>
+            <input class="radio other" type="radio" name="sex" id="Other" value="O" formControlName="sex"><label class="label" for="Other">Other</label>
             <div class="submitError" *ngIf="sex.invalid && (sex.dirty || sex.touched)">
                 <p>You have to add an email</p>
             </div>

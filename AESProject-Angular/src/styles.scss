@@ -1,4 +1,23 @@
+$blue: #008cff;
+$darkBlue: #00599f;
+$white: #ffffff;
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: $white;
+}
+::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 6px;
+    border: 3px solid $white;
+    &:hover {
+        background: $darkBlue;
+    }
+}
+
 body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }

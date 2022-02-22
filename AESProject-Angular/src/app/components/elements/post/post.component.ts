@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
     owner: boolean;
+    liked: boolean;
     userphoto;
     user: string;
     date: string;
@@ -15,6 +16,10 @@ export class PostComponent implements OnInit {
     comments: string;
 
     constructor() { }
+
+    clickLiked(): void {
+      this.liked = !this.liked;
+    }
 
     ngOnInit(): void {
         const date: Date = new Date();

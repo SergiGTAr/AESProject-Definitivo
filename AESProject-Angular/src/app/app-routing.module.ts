@@ -10,13 +10,6 @@ import { ConfigComponent } from './components/pages/profile/config/config.compon
 import { SearchComponent } from './components/pages/search/search.component';
 import { ChatComponent } from './components/pages/chat/chat.component';
 
-import { SalesComponent } from './components/dashboards/sales/sales.component';
-import { OthersComponent } from './components/dashboards/others/others/others.component';
-import { NotificationsComponent } from './components/dashboards/others/notifications/notifications.component';
-import { GalleryComponent } from './components/dashboards/others/gallery/gallery.component';
-import { ProfileSettingsComponent } from './components/dashboards/others/profile-settings/profile-settings.component';
-import { ErrorComponent } from './components/dashboards/others/error/error.component';
-
 const routes: Routes = [
     {path: '', component: SigninComponent},
 
@@ -25,9 +18,6 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'search', component: SearchComponent},
-
-    {path: 'utiles', component: SalesComponent},
-
     {
         path: 'profile', component: ProfileComponent,
         children: [
@@ -47,37 +37,6 @@ const routes: Routes = [
                 component: ConfigComponent
             },
             {path: '**', redirectTo: 'posts'}
-        ]
-    },
-
-    {
-        path: 'others', component: OthersComponent,
-        children: [
-            {
-                path: 'notifications',
-                data: { breadcrumb: 'Notifications' },
-                component: NotificationsComponent
-            },
-            {
-                path: 'gallery',
-                data: { breadcrumb: 'Gallery' },
-                component: GalleryComponent
-            },
-            {
-                path: 'profile',
-                data: { breadcrumb: 'Profile' },
-                component: ProfileComponent
-            },
-            {
-                path: 'profile-settings',
-                data: { breadcrumb: 'Profile Settings' },
-                component: ProfileSettingsComponent
-            },
-            {
-                path: 'error-404',
-                data: { breadcrumb: 'Error' },
-                component: ErrorComponent
-            }
         ]
     },
     {path: '**', redirectTo: ''}

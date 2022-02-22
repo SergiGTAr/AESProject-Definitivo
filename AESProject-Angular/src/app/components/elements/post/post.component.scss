@@ -105,11 +105,14 @@ $orange: #ff6900;
                     background: none;
                 }
                 &.addLike {
-                    &.active {
-                        color: $pink;
-                    }
                     &:hover {
                         background: $pink;
+                    }
+                    &.active {
+                        color: $pink;
+                        &:hover {
+                            color: $white;
+                        }
                     }
                 }
                 &.addComment {

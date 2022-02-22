@@ -130,6 +130,7 @@ $darkGray: #666666;
         }
     }
     .profileOptionsActive {
+        z-index: 1;
         background: $white;
         display: block;
         position: absolute;

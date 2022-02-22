@@ -21,13 +21,6 @@ import { CommentComponent } from './components/elements/comment/comment.componen
 import { NewPostComponent } from './components/elements/new-post/new-post.component';
 import { PostBoxComponent } from './components/elements/post-box/post-box.component';
 
-import { SalesComponent } from './components/dashboards/sales/sales.component';
-import { OthersComponent } from './components/dashboards/others/others/others.component';
-import { NotificationsComponent } from './components/dashboards/others/notifications/notifications.component';
-import { GalleryComponent } from './components/dashboards/others/gallery/gallery.component';
-
-import { ProfileSettingsComponent } from './components/dashboards/others/profile-settings/profile-settings.component';
-import { ErrorComponent } from './components/dashboards/others/error/error.component';
 import { HeaderProfileComponent } from './components/layout/header-profile/header-profile.component';
 
 @NgModule({
@@ -44,12 +37,6 @@ import { HeaderProfileComponent } from './components/layout/header-profile/heade
         CommentComponent,
         NewPostComponent,
         PostBoxComponent,
-        SalesComponent,
-        OthersComponent,
-        NotificationsComponent,
-        GalleryComponent,
-        ProfileSettingsComponent,
-        ErrorComponent,
         PostsComponent,
         BioComponent,
         ConfigComponent,

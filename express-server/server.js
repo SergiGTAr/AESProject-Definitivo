@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 // Get our API routes
 const api = require('./routes/api');
+const user_routers = require('./routes/user')
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set our api routes
 app.use('/', api);
+app.use('/api', user_routers);
 
 // Get port from environment and store in Express.
 const port = process.env.PORT || '3200';
@@ -25,17 +27,3 @@ const server = http.createServer(app);
 
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => console.log(`API en:${port}`));
-
-app.get('/pruebas', (req, res) => 
-{
-    res.status(200).send({
-        message: 'Accion de pruebas en el servidor de NodeJS'
-    })
-})
-
-app.get('/pruebana', (req, res) => 
-{
-    res.status(200).send({
-        message: 'Accion de pruebas en el servidor de NodeJS'
-    })
-})

@@ -11,4 +11,6 @@ api.get('/proves', UserController.proves);
 
 api.post('/register', UserController.saveUser)
 
+api.post('/login', UserController.loginUser)
+
 module.exports = api;

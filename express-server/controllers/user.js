@@ -71,8 +71,33 @@ function saveUser(req, res) {
   }
 }
 
+function loginUser(req, res){
+  var params = req.body;
+
+  var email = params.email;
+  var password = params.password;
+
+
+  User.findOne({ email: email, password: password }, (err, user) => {
+    if(err) return res.status(500).send({ message: "Error en la petició"})
+
+    if (user) {
+      bcrypt.compare(password, user.password, (err, check) => {
+        if(check){
+          return res.status(200).send({user})
+        }else{
+          return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD'})
+        }
+      })
+    }else{
+      return res.status(404).send(404).send({ message: "Aquest usuari no existeix a la BBDD"})
+    }
+  })
+}
+
 module.exports = {
   home,
   proves,
   saveUser,
+  loginUser
 };

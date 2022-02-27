@@ -1,6 +1,6 @@
 <main class="container">
     <form class="singUp" action="" [formGroup]="signUpForm">
-        <div class="signUpGroup names" [formGroup]="signUpForm.get('groupNames')">
+        <div class="signUpGroup names" [formGroup]="signUpForm.get('groupNames')" (ngSubmit)="onSubmit()">
             <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
             <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
             <input class="input userName" type="text" name="username" placeholder="Username" formControlName="username">

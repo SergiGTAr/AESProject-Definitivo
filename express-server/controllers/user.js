@@ -17,8 +17,8 @@ function proves(req, res) {
 }
 
 function saveUser(req, res) {
-  var params = req.body;
-  var user = new User();
+  const params = req.body;
+  const user = new User();
 
   if (
     params.name &&
@@ -72,10 +72,10 @@ function saveUser(req, res) {
 }
 
 function loginUser(req, res){
-  var params = req.body;
+  const params = req.body;
 
-  var email = params.email;
-  var password = params.password;
+  const email = params.email;
+  const password = params.password;
 
 
   User.findOne({ email: email, password: password }, (err, user) => {

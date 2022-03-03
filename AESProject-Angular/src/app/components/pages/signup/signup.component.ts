@@ -4,7 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.scss']
+    styleUrls: ['./signup.component.scss'],
+    providers: []
 })
 export class SignupComponent implements OnInit {
     signUpForm = new FormGroup({
@@ -25,6 +26,26 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
         
+    }
+
+    signup() {
+        this.httpService.createUser({
+            name: "morpheus",
+            job: "leader"
+        }).subscribe(
+            data => {
+              console.log("User Login: " + data.login);
+              console.log("Bio: " + data.bio);
+              console.log("Company: " + data.company);
+            },
+            (err: HttpErrorResponse) => {
+              if (err.error instanceof Error) {
+                console.log("Client-side error");
+              } else {
+                console.log("Server-side error");
+              }
+            }
+          );;
     }
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }

@@ -10,10 +10,10 @@ export class HttpService {
 
   }
 
-  createUser(name: String, password: String): Observable<any>{
+  /*createUser(name: String, password: String): Observable<any>{
     const data : any = {name: name, password: password}
     return this.http.post('http://172.26.160.1:3020/api/register', data);
-  }
+  }*/
 
   public login(nom: string, password: string): boolean {
     if (nom == "" || password == "") {

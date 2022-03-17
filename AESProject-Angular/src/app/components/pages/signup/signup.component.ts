@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    providers: []
+    providers: [HttpService]
 })
 export class SignupComponent implements OnInit {
     signUpForm = new FormGroup({
@@ -22,13 +23,15 @@ export class SignupComponent implements OnInit {
         sex: new FormControl('', [Validators.required])
     });
     
-    constructor() { }
+    constructor(private httpService: HttpService) { 
+      
+    }
 
     ngOnInit() {
         
     }
 
-    signup() {
+    /*signup() {
         this.httpService.createUser({
             name: "morpheus",
             job: "leader"
@@ -46,7 +49,7 @@ export class SignupComponent implements OnInit {
               }
             }
           );;
-    }
+    }*/
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }
     get surname() { return this.signUpForm.get('groupNames').get('surname'); }

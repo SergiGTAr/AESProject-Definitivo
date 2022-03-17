@@ -15,10 +15,8 @@ export class SigninComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
-  loginService: LoginService
+  constructor(private loginService: LoginService) {
 
-  constructor(loginService:LoginService) {
-    this.loginService = loginService
   }
     
   ngOnInit() {

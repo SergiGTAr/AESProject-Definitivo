@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './services/http.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,9 +60,10 @@ import { HeaderProfileComponent } from './components/layout/header-profile/heade
     imports: [
         BrowserModule,
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
-    providers: [LoginService],
+    providers: [LoginService, HttpService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

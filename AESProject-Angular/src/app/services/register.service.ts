@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable} from 'rxjs';
 import {GLOBAL} from './global';
-import {User} from '../../../../express-server/models/user';
 
 
 @Injectable({
@@ -16,10 +15,10 @@ export class RegisterService {
   }
 
     // tslint:disable-next-line:variable-name
-  register(user_to_register: User): Observable<any> {
+  /*register(user_to_register: User): Observable<any> {
     const params = JSON.stringify(user_to_register);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     return this.http.post(this.url + 'register', params, {headers});
-  }
+  }*/
 }

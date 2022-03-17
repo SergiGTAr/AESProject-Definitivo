@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Get our API routes
@@ -9,6 +10,7 @@ const api = require('./routes/api');
 const user_routers = require('./routes/user')
 
 const app = express();
+app.use(cors());
 
 // Parsers for POST data
 app.use(bodyParser.json());

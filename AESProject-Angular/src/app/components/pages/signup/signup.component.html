@@ -45,16 +45,17 @@
         </div>
         <hr class="separator"/>
         <div class="signUpGroup sex" id="signUpGroupSex">
-            <input class="radio male" type="radio" name="sex" value="M" formControlName="sex"><label class="label" for="Male">Male</label>
-            <input class="radio female" type="radio" name="sex" value="F" formControlName="sex"><label class="label" for="Female">Female</label>
-            <input class="radio other" type="radio" name="sex" value="O" formControlName="sex"><label class="label" for="Other">Other</label>
+            <input class="radio male" type="radio" name="sex" value="M" id="Male" formControlName="sex"><label class="label" for="Male">Male</label>
+            <input class="radio female" type="radio" name="sex" value="F" id="Female" formControlName="sex"><label class="label" for="Female">Female</label>
+            <input class="radio other" type="radio" name="sex" value="O" id="Other" formControlName="sex"><label class="label" for="Other">Other</label>
             <div class="submitError" *ngIf="sex.invalid && (sex.dirty || sex.touched)">
                 <p>You have to add an email</p>
             </div>
         </div>
+        <p></p>
         <hr class="separator"/>
         <div class="signUpGroup buttons" id="signUpGroupButtons">
-            <button class="btn submit" type="submit">Sign up</button>
+            <button class="btn submit" type="submit" (click)="onSubmit()">Sign up</button>
             <button routerLink="/signIn" routerLinkActive="active" class="btn cancel">Return back</button>
         </div>
     </form>

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {RegisterService} from '../../../services/register.service';
-import {User} from '../../../../../../express-server/models/user.js';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    providers: [RegisterService]
+    providers: [RegisterService, HttpService]
 })
 export class SignupComponent implements OnInit {
-    public user: User;
+    private message;
     signUpForm = new FormGroup({
         groupNames: new FormGroup({
             name: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -25,8 +25,8 @@ export class SignupComponent implements OnInit {
         sex: new FormControl('', [Validators.required])
     });
 
-    constructor(private registerService: RegisterService) {
-        this.user = new User();
+    constructor(private registerService: RegisterService, private httpService: HttpService) {
+        
     }
 
     ngOnInit() {
@@ -34,14 +34,21 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        this.registerService.register(this.user).subscribe(
+        /*this.registerService.register(this.user).subscribe(
             response => {
                 if (response.user && response.user.id) {
                 console.log(response.user);
                 }
             },
             error => console.log(error)
-        );
+        );*/
+
+        this.httpService.prova().subscribe(
+            response => {
+                this.message = response.message;
+            },
+            error => console.log(error)
+        )
     }
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }

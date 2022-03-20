@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { HttpService } from 'src/app/services/http.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {RegisterService} from '../../../services/register.service';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    providers: [HttpService]
+    providers: [RegisterService, HttpService]
 })
 export class SignupComponent implements OnInit {
+    private message;
     signUpForm = new FormGroup({
         groupNames: new FormGroup({
             name: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -22,34 +24,32 @@ export class SignupComponent implements OnInit {
         }),
         sex: new FormControl('', [Validators.required])
     });
-    
-    constructor(private httpService: HttpService) { 
-      
-    }
 
-    ngOnInit() {
+    constructor(private registerService: RegisterService, private httpService: HttpService) {
         
     }
 
-    /*signup() {
-        this.httpService.createUser({
-            name: "morpheus",
-            job: "leader"
-        }).subscribe(
-            data => {
-              console.log("User Login: " + data.login);
-              console.log("Bio: " + data.bio);
-              console.log("Company: " + data.company);
+    ngOnInit() {
+
+    }
+
+    onSubmit() {
+        /*this.registerService.register(this.user).subscribe(
+            response => {
+                if (response.user && response.user.id) {
+                console.log(response.user);
+                }
             },
-            (err: HttpErrorResponse) => {
-              if (err.error instanceof Error) {
-                console.log("Client-side error");
-              } else {
-                console.log("Server-side error");
-              }
-            }
-          );;
-    }*/
+            error => console.log(error)
+        );*/
+
+        this.httpService.prova().subscribe(
+            response => {
+                this.message = response.message;
+            },
+            error => console.log(error)
+        )
+    }
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }
     get surname() { return this.signUpForm.get('groupNames').get('surname'); }

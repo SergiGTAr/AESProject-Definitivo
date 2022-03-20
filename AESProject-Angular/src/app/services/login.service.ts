@@ -9,11 +9,7 @@ export class LoginService {
 
   }
 
-  public login(nom: string, password: string): boolean {
-    if (nom == "" || password == "") {
-        return false;
-    } else {
-        return true;
-    }
+  public login(){
+  
   }
 }

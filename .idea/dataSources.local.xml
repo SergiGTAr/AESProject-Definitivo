@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="WS-213.7172.31">
+    <data-source name="@localhost" uuid="2538737d-fbae-4933-b037-6229c8eb5b9b">
+      <database-info product="Mongo DB" version="5.0.6" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.13" dbms="MONGO" exact-version="5.0.6" exact-driver-version="1.13" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="AESProjectDB" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

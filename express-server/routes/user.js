@@ -9,8 +9,10 @@ api.get('/home', UserController.home);
 
 api.get('/proves', UserController.proves);
 
-api.post('/register', UserController.saveUser)
+api.get('/usuariperid',UserController.getUserById);
 
-api.post('/login', UserController.loginUser)
+api.post('/register', UserController.saveUser);
+
+api.post('/login', UserController.loginUser);
 
 module.exports = api;

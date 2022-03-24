@@ -46,7 +46,7 @@ function saveUser(req, res) {
                 //* Encriptem la contrasenya i guardem les dades
             bcrypt.hash(params.password, null, null, (err, hash) => {
                 user.password = hash;
-          
+
                 user.save((err, userStored) => {
                   if (err) {
                     return res.status(500).send({ message: "Error al guardar l'usuari" });
@@ -95,9 +95,90 @@ function loginUser(req, res){
   })
 }
 
+
+function getAllUsers(req, res){
+  User.find({}, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+}
+
+
+function getUserById(req, res){
+  const params = req.body;
+  const userId = params._id;
+
+  User.findOne({_id: userId}, (err, user) => {
+    if(err) return res.status(500).send({ message: "Error en la petició"})
+
+    if (user) {
+      return res.status(200).send({user})
+    }else{
+      return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD'})
+    }
+  })
+}
+
+function getUserByUsername(req, res){
+  const params = req.body;
+  const userName = params.surname;
+
+  User.findOne({id: userId}, (err, user) => {
+    if(err) return res.status(500).send({ message: "Error en la petició"})
+
+    if (user) {
+      return res.status(200).send({user})
+    }else{
+      return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD'})
+    }
+  })
+}
+
+function updateUser(req, res){
+  const params = req.body;
+  const userId = params.id;
+
+  const userName = params.name;
+  const userSurname = params.surname;
+  const userNick = params.nick;
+  const userEmail = params.email;
+  const userRole = params.role;
+  const userImage = params.image;
+  const update = { name: userName, surname: userSurname, nick: userNick, email: userEmail, role: userRole, image: userImage };
+
+  User.findOneAndUpdate({id: userId},update,"",function(err, user){
+    if(err){
+      console.log("No s'ha pogut actualitzar!");
+    }else{
+      console.log(user);
+    }
+  });
+}
+
+function deleteUser(req, res){
+  const params = req.body;
+  const userId = params.id;
+
+  User.findOneAndDelete({id: userId});
+  User.findById(userId, function (err, user) {
+    if (err) {
+      console.log("El usuari s'ha eliminat correctament!");
+    }else{
+      console.log("No s'ha pogut eliminar l'usuari!")
+      console.log(user);
+    }
+  });
+
+}
+
+
 module.exports = {
   home,
   proves,
   saveUser,
-  loginUser
+  loginUser,
+  getUserById
 };

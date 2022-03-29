@@ -2,9 +2,9 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import {User} from "./user.model";
-import {Conversation} from "./conversation.model";
-import {Team} from "./team.model";
+import {User} from "./user";
+import {Conversation} from "./conversation";
+import {Team} from "./team";
 
 const MessageSchema = Schema({
     content: String,

@@ -2,8 +2,8 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import {User} from "./user.model";
-import {Post} from "./post.model";
+import {User} from "./user";
+import {Post} from "./post";
 
 const CommentSchema = Schema({
     post: Post,

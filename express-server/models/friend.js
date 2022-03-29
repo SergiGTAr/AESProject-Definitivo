@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import {User} from "./user.model";
+import {User} from "./user";
 
 const FriendSchema = Schema({
     sender: User,

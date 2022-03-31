@@ -16,4 +16,12 @@ api.post('/register', UserController.saveUser);
 
 api.post('/login', UserController.loginUser);
 
+api.post('/usuaris', UserController.getAllUsers);
+
+api.post('/usuariperusername', UserController.getUserByUsername);
+
+api.post('/eliminarusuari', UserController.deleteUser);
+
+api.post('/actualitzarusuari', UserController.updateUser);
+
 module.exports = api;

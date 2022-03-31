@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt-nodejs");
 
 const User = require("../models/user");
 
+const jwt = require("../services/jwt");
+
 function home(req, res) {
   res.status(200).send({
     message: "Servidor de NodeJS diu: hola",
@@ -84,7 +86,16 @@ function loginUser(req, res){
     if (user) {
       bcrypt.compare(password, user.password, (err, check) => {
         if(check){
-          return res.status(200).send({user})
+          if(params.gettoken){
+           //Generem i retornem el token si al body de la petició ens envien "gettoken = true"
+            return res.status(200).send({
+              token: jwt.createToken(user)
+            })
+          }else {
+            //Retornem les dades de l'usuari si no està el gettoken a true
+            user.password = undefined;
+            return res.status(200).send({user})
+          }
         }else{
           return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD'})
         }

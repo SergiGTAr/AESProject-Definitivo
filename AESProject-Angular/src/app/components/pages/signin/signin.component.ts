@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -20,12 +20,11 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   login() {
     console.log(this.loginService.login());
-    console.log("Login");
+    console.log('Login');
   }
 
   get email() { return this.signInForm.get('email'); }

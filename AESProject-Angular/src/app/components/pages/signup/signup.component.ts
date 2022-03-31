@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     });
 
     constructor(private registerService: RegisterService, private httpService: HttpService) {
-        
+        //
     }
 
     ngOnInit() {
@@ -34,21 +34,21 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        /*this.registerService.register(this.user).subscribe(
+        this.registerService.register({name: this.name.value, surname: this.surname.value,
+            nick: this.username.value, email: this.email.value, password: this.password.value}).subscribe(
             response => {
-                if (response.user && response.user.id) {
-                console.log(response.user);
-                }
+                this.message = response.user;
+                console.log(this.message._id);
             },
             error => console.log(error)
-        );*/
+        );
 
-        this.httpService.prova().subscribe(
+        /*this.httpService.prova().subscribe(
             response => {
                 this.message = response.message;
             },
             error => console.log(error)
-        )
+        );*/
     }
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }

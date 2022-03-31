@@ -19,6 +19,6 @@ export class HttpService {
   }*/
 
   public prova(){
-    return this.http.get<any>("http://localhost:3200/api/proves");
+    return this.http.get<any>('http://localhost:3200/api/proves');
   }
 }

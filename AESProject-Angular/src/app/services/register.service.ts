@@ -14,7 +14,10 @@ export class RegisterService {
       this.url = GLOBAL.url;
   }
 
-    // tslint:disable-next-line:variable-name
+  register(user: any) {
+      return this.http.post<any>('http://localhost:3200/api/register', user);
+  }
+  // tslint:disable-next-line:variable-name
   /*register(user_to_register: User): Observable<any> {
     const params = JSON.stringify(user_to_register);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});

@@ -98,7 +98,7 @@ function loginUser(req, res){
 
 function getAllUsers(req, res){
   User.find({}, function (err, users) {
-    res.send(users);
+    return res.status(200).send({users})
   });
 }
 

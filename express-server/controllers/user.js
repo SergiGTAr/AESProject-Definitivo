@@ -12,7 +12,7 @@ function home(req, res) {
 function proves(req, res) {
   console.log(req.body);
   res.status(200).send({
-    message: "Servidor de NodeJS proves",
+    message: "Servidor de NodeJS proves 1",
   });
 }
 
@@ -66,7 +66,7 @@ function saveUser(req, res) {
 
   } else {
     res.status(200).send({
-      message: "Has d'emplenar les dades requerides",
+      message: "Has d'emplenar les dades requerides: " + params.name + params.surname + params.nick + params.email + params.password ,
     });
   }
 }
@@ -97,12 +97,8 @@ function loginUser(req, res){
 
 
 function getAllUsers(req, res){
-  User.find({}, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
-    }
+  User.find({}, function (err, users) {
+    res.send(users);
   });
 }
 
@@ -180,5 +176,9 @@ module.exports = {
   proves,
   saveUser,
   loginUser,
-  getUserById
+  getAllUsers,
+  getUserById,
+  getUserByUsername,
+  deleteUser,
+  updateUser
 };

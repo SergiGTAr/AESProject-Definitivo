@@ -164,7 +164,7 @@ $darkGray: #666666;
 
 @media screen and (max-width: 650px) {
     .container {
-        min-height: 800px;
+        min-height: 100vh;
         .singUp {
             .signUpGroup {
                 &.names,

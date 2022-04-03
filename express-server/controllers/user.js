@@ -103,7 +103,7 @@ function loginUser(req, res) {
                 }
             })
         } else {
-            return res.status(404).send(404).send({message: "Aquest usuari no existeix a la BBDD"})
+            return res.status(404).send({message: "Aquest usuari no existeix a la BBDD"})
         }
     })
 }

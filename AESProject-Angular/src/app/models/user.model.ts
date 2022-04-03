@@ -5,6 +5,7 @@ export class UserModel {
     username: string;
     email: string;
     password: string;
+    gettoken: any;
 
     constructor(name: string, surname: string, sex: string, username: string, email: string, password: string) {
         this.name = name;

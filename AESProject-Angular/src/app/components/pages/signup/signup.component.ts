@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { UserModel } from 'src/app/models/user.model';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UserService} from 'src/app/services/user.service';
+import {UserModel} from 'src/app/models/user.model';
 
 @Component({
     selector: 'app-signup',
@@ -35,7 +35,8 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        this.user = new UserModel(this.name.value, this.surname.value, this.username.value, this.email.value, this.password.value);
+        this.user = new UserModel(this.name.value, this.surname.value, this.sex.value, this.username.value,
+            this.email.value, this.password.value);
 
         this.userService.register(this.user).subscribe(
             response => {
@@ -46,11 +47,31 @@ export class SignupComponent implements OnInit {
         );
     }
 
-    get name() { return this.signUpForm.get('groupNames').get('name'); }
-    get surname() { return this.signUpForm.get('groupNames').get('surname'); }
-    get username() { return this.signUpForm.get('groupNames').get('username'); }
-    get email() { return this.signUpForm.get('email'); }
-    get password() { return this.signUpForm.get('groupPasswords').get('password'); }
-    get repeatedPassword() { return this.signUpForm.get('groupPasswords').get('repeatedPassword'); }
-    get sex() { return this.signUpForm.get('sex'); }
+    get name() {
+        return this.signUpForm.get('groupNames').get('name');
+    }
+
+    get surname() {
+        return this.signUpForm.get('groupNames').get('surname');
+    }
+
+    get username() {
+        return this.signUpForm.get('groupNames').get('username');
+    }
+
+    get email() {
+        return this.signUpForm.get('email');
+    }
+
+    get password() {
+        return this.signUpForm.get('groupPasswords').get('password');
+    }
+
+    get repeatedPassword() {
+        return this.signUpForm.get('groupPasswords').get('repeatedPassword');
+    }
+
+    get sex() {
+        return this.signUpForm.get('sex');
+    }
 }

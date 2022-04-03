@@ -76,7 +76,7 @@ $darkGray: #666666;
         margin: 10px;
         border-radius: 10px;
     }
-    .singUp {
+    .signUp {
         display: grid;
         grid-template-columns: 1fr;
         width: 100%;
@@ -165,7 +165,7 @@ $darkGray: #666666;
 @media screen and (max-width: 650px) {
     .container {
         min-height: 100vh;
-        .singUp {
+        .signUp {
             .signUpGroup {
                 &.names,
                 &.pass,

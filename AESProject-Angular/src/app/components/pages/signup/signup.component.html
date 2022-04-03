@@ -1,11 +1,15 @@
 <main class="container">
-    <form class="singUp" action="" [formGroup]="signUpForm">
+    <form class="signUp" action="" [formGroup]="signUpForm">
+        <div class="alert alert-danger" *ngIf="status == 'error'">El registre no s'ha pogut completar, intenta-ho de
+            nou
+        </div>
         <div class="signUpGroup names" [formGroup]="signUpForm.get('groupNames')" (ngSubmit)="onSubmit()">
             <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
             <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
             <input class="input userName" type="text" name="username" placeholder="Username" formControlName="username">
 
-            <div class="submitError" *ngIf="(name.invalid && (name.dirty || name.touched)) || (surname.invalid && (surname.dirty || surname.touched)) || (username.invalid && (username.dirty || username.touched))">
+            <div class="submitError"
+                 *ngIf="(name.invalid && (name.dirty || name.touched)) || (surname.invalid && (surname.dirty || surname.touched)) || (username.invalid && (username.dirty || username.touched))">
                 <p>There are some fields to check:</p>
                 <ul>
                     <li *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -30,12 +34,15 @@
         <hr class="separator"/>
         <div class="signUpGroup pass" [formGroup]="signUpForm.get('groupPasswords')">
             <input class="input pass" type="password" name="pass" placeholder="Password" formControlName="password">
-            <input class="input repetePass" type="password" name="repetePass" placeholder="Confirm password" formControlName="repeatedPassword">
-            <div class="submitError" *ngIf="(password.invalid && (password.dirty || password.touched)) || (repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched))">
+            <input class="input repetePass" type="password" name="repetePass" placeholder="Confirm password"
+                   formControlName="repeatedPassword">
+            <div class="submitError"
+                 *ngIf="(password.invalid && (password.dirty || password.touched)) || (repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched))">
                 <p>There are some fields to check:</p>
                 <ul>
                     <li *ngIf="password.invalid && (password.dirty || password.touched)">
-                        <p>You have to write a password that must have at least 6 charaters, special characters and numbers</p>
+                        <p>You have to write a password that must have at least 6 charaters, special characters and
+                            numbers</p>
                     </li>
                     <li *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)">
                         <p>Both passwords are different</p>
@@ -45,9 +52,12 @@
         </div>
         <hr class="separator"/>
         <div class="signUpGroup sex" id="signUpGroupSex">
-            <input class="radio male" type="radio" name="sex" value="M" id="Male" formControlName="sex"><label class="label" for="Male">Male</label>
-            <input class="radio female" type="radio" name="sex" value="F" id="Female" formControlName="sex"><label class="label" for="Female">Female</label>
-            <input class="radio other" type="radio" name="sex" value="O" id="Other" formControlName="sex"><label class="label" for="Other">Other</label>
+            <input class="radio male" type="radio" name="sex" value="M" id="Male" formControlName="sex"><label
+            class="label" for="Male">Male</label>
+            <input class="radio female" type="radio" name="sex" value="F" id="Female" formControlName="sex"><label
+            class="label" for="Female">Female</label>
+            <input class="radio other" type="radio" name="sex" value="O" id="Other" formControlName="sex"><label
+            class="label" for="Other">Other</label>
             <div class="submitError" *ngIf="sex.invalid && sex.touched">
                 <p>You have to select your sex</p>
             </div>

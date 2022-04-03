@@ -14,8 +14,10 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
-    register(user: UserModel) {
-        return this.httpClient.post<any>(this.url + 'register', user);
+    register(user: UserModel): Observable<any> {
+        const userToJson = JSON.stringify(user);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.httpClient.post<any>(this.url + 'register', userToJson, {headers});
     }
 
     login() {

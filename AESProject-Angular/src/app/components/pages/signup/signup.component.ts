@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {UserModel} from 'src/app/models/user.model';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-signup',
@@ -12,6 +13,7 @@ import {UserModel} from 'src/app/models/user.model';
 export class SignupComponent implements OnInit {
     private message: any;
     private user: UserModel;
+    status: string;
 
     signUpForm = new FormGroup({
         groupNames: new FormGroup({
@@ -27,7 +29,7 @@ export class SignupComponent implements OnInit {
         sex: new FormControl('', [Validators.required])
     });
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
     }
 
     ngOnInit() {
@@ -40,10 +42,18 @@ export class SignupComponent implements OnInit {
 
         this.userService.register(this.user).subscribe(
             response => {
-                this.message = response.user;
-                console.log(this.message._id);
+                if (response.user && response.user._id){
+                    this.message = response.user;
+                    this.status = 'success';
+                    console.log(this.message._id);
+                    this.router.navigate(['/signIn']);
+                } else {
+                    this.status = 'error';
+                }
             },
-            error => console.log(error)
+            error => {
+                console.log(error);
+    }
         );
     }
 

@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {RegisterService} from '../../../services/register.service';
-import {HttpService} from '../../../services/http.service';
+import { UserService } from 'src/app/services/user.service';
+import { UserModel } from 'src/app/models/user.model'
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    providers: [RegisterService, HttpService]
+    providers: [UserService]
 })
 export class SignupComponent implements OnInit {
-    private message;
+    private message: any;
+    private user: UserModel;
+
     signUpForm = new FormGroup({
         groupNames: new FormGroup({
-            name: new FormControl('', [Validators.required, Validators.minLength(10)]),
-            surname: new FormControl('', [Validators.required, Validators.minLength(10)]),
-            username: new FormControl('', [Validators.required, Validators.minLength(10)]),
+            name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)]),
+            surname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)]),
+            username: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,50}$/)]),
         }),
-        email: new FormControl('', [Validators.required, Validators.minLength(10)]),
+        email: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)]),
         groupPasswords: new FormGroup({
-            password: new FormControl('', [Validators.required, Validators.minLength(10)]),
-            repeatedPassword: new FormControl('', [Validators.required, Validators.minLength(10)])
+            password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)]),
+            repeatedPassword: new FormControl('', [Validators.required])
         }),
         sex: new FormControl('', [Validators.required])
     });
 
-    constructor(private registerService: RegisterService, private httpService: HttpService) {
-        
+    constructor(private userService: UserService) {
     }
 
     ngOnInit() {
@@ -34,31 +35,22 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        /*this.registerService.register(this.user).subscribe(
-            response => {
-                if (response.user && response.user.id) {
-                console.log(response.user);
-                }
-            },
-            error => console.log(error)
-        );*/
+        this.user = new UserModel(this.name.value, this.surname.value, this.username.value, this.email.value, this.password.value);
 
-        this.httpService.prova().subscribe(
+        this.userService.register(this.user).subscribe(
             response => {
-                this.message = response.message;
+                this.message = response.user;
+                console.log(this.message._id);
             },
             error => console.log(error)
-        )
+        );
     }
 
     get name() { return this.signUpForm.get('groupNames').get('name'); }
     get surname() { return this.signUpForm.get('groupNames').get('surname'); }
     get username() { return this.signUpForm.get('groupNames').get('username'); }
-
     get email() { return this.signUpForm.get('email'); }
-
     get password() { return this.signUpForm.get('groupPasswords').get('password'); }
     get repeatedPassword() { return this.signUpForm.get('groupPasswords').get('repeatedPassword'); }
-
     get sex() { return this.signUpForm.get('sex'); }
 }

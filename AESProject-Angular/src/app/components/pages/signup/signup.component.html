@@ -6,16 +6,16 @@
             <input class="input userName" type="text" name="username" placeholder="Username" formControlName="username">
 
             <div class="submitError" *ngIf="(name.invalid && (name.dirty || name.touched)) || (surname.invalid && (surname.dirty || surname.touched)) || (username.invalid && (username.dirty || username.touched))">
-                <p>There are some empty fields to fill</p>
+                <p>There are some fields to check:</p>
                 <ul>
                     <li *ngIf="name.invalid && (name.dirty || name.touched)">
-                        <p>Your name must have 1-20 digits and no special characters nor spaces</p>
+                        <p>Your name must have 1-30 characters</p>
                     </li>
                     <li *ngIf="surname.invalid && (surname.dirty || surname.touched)">
-                        <p>Your surname must have 1-20 digits and no special characters nor spaces</p>
+                        <p>Your surname must have 1-30 characters</p>
                     </li>
                     <li *ngIf="username.invalid && (username.dirty || username.touched)">
-                        <p>Your username must have 1-20 digits and no spaces</p>
+                        <p>Your username must have 1-50 characters or numbers</p>
                     </li>
                 </ul>
             </div>
@@ -32,13 +32,13 @@
             <input class="input pass" type="password" name="pass" placeholder="Password" formControlName="password">
             <input class="input repetePass" type="password" name="repetePass" placeholder="Confirm password" formControlName="repeatedPassword">
             <div class="submitError" *ngIf="(password.invalid && (password.dirty || password.touched)) || (repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched))">
-                <p>There are some empty fields to fill</p>
+                <p>There are some fields to check:</p>
                 <ul>
                     <li *ngIf="password.invalid && (password.dirty || password.touched)">
-                        <p>Your have to write a password</p>
+                        <p>You have to write a password that must have at least 6 charaters, special characters and numbers</p>
                     </li>
                     <li *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)">
-                        <p>Both passwors are different</p>
+                        <p>Both passwords are different</p>
                     </li>
                 </ul>
             </div>
@@ -48,11 +48,10 @@
             <input class="radio male" type="radio" name="sex" value="M" id="Male" formControlName="sex"><label class="label" for="Male">Male</label>
             <input class="radio female" type="radio" name="sex" value="F" id="Female" formControlName="sex"><label class="label" for="Female">Female</label>
             <input class="radio other" type="radio" name="sex" value="O" id="Other" formControlName="sex"><label class="label" for="Other">Other</label>
-            <div class="submitError" *ngIf="sex.invalid && (sex.dirty || sex.touched)">
-                <p>You have to add an email</p>
+            <div class="submitError" *ngIf="sex.invalid && sex.touched">
+                <p>You have to select your sex</p>
             </div>
         </div>
-        <p></p>
         <hr class="separator"/>
         <div class="signUpGroup buttons" id="signUpGroupButtons">
             <button class="btn submit" type="submit" (click)="onSubmit()">Sign up</button>
@@ -60,4 +59,3 @@
         </div>
     </form>
 </main>
-

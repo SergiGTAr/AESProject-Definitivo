@@ -1,9 +1,9 @@
 <main class="container">
     <form class="signUp" action="" [formGroup]="signUpForm">
-        <div class="alert alert-danger" *ngIf="status == 'error'">El registre no s'ha pogut completar, intenta-ho de
-            nou
-        </div>
         <div class="signUpGroup names" [formGroup]="signUpForm.get('groupNames')" (ngSubmit)="onSubmit()">
+            <div class="submitError" *ngIf="status == 'error'"><p>El registre no s'ha pogut completar, intenta-ho de
+                nou</p>
+            </div>
             <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
             <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
             <input class="input userName" type="text" name="username" placeholder="Username" formControlName="username">

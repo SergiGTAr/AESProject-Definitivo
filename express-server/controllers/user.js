@@ -25,13 +25,13 @@ function saveUser(req, res) {
   if (
     params.name &&
     params.surname &&
-    params.nick &&
+    params.username &&
     params.email &&
     params.password
   ) {
     user.name = params.name;
     user.surname = params.surname;
-    user.nick = params.nick;
+    user.username = params.username;
     user.email = params.email;
     user.role = "ROL_USUARI";
     user.image = null;
@@ -39,7 +39,7 @@ function saveUser(req, res) {
     //* Controlem usuaris duplicats
 
     User.find({ $or: [
-        { email: user.email.toLowerCase() }, {nick: user.nick.toLowerCase()}
+        { email: user.email.toLowerCase() }, {username: user.username.toLowerCase()}
     ]}).exec((err, users) => {
         if (err) return res.status(500).send({ message: "Error al buscar usuaris existents" });
         if (users && users.length > 0){
@@ -68,7 +68,7 @@ function saveUser(req, res) {
 
   } else {
     res.status(200).send({
-      message: "Has d'emplenar les dades requerides: " + params.name + params.surname + params.nick + params.email + params.password ,
+      message: "Has d'emplenar les dades requerides: " + params.name + params.surname + params.username + params.email + params.password ,
     });
   }
 }
@@ -150,11 +150,11 @@ function updateUser(req, res){
 
   const userName = params.name;
   const userSurname = params.surname;
-  const userNick = params.nick;
+  const userUsername = params.username;
   const userEmail = params.email;
   const userRole = params.role;
   const userImage = params.image;
-  const update = { name: userName, surname: userSurname, nick: userNick, email: userEmail, role: userRole, image: userImage };
+  const update = { name: userName, surname: userSurname, username: userUsername, email: userEmail, role: userRole, image: userImage };
 
   User.findOneAndUpdate({id: userId},update,"",function(err, user){
     if(err){

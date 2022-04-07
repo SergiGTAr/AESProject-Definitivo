@@ -20,8 +20,15 @@ export class UserService {
         return this.httpClient.post<any>(this.url + 'register', userToJson, {headers});
     }
 
-    login() {
-        return this.httpClient.get<any>(this.url + 'proves');
+    login(user: UserModel, gettoken = null): Observable<any> {
+        if (gettoken != null){
+            user.gettoken = gettoken;
+        }
+
+        const params = JSON.stringify(user);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        return this.httpClient.post(this.url + 'login', params, {headers});
     }
 
     /*createUser(name: String, password: String): Observable<any>{

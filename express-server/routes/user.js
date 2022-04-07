@@ -16,7 +16,7 @@ api.post('/register', UserController.saveUser);
 
 api.post('/login', UserController.loginUser);
 
-api.post('/usuaris', UserController.getAllUsers);
+api.get('/usuaris', UserController.getAllUsers);
 
 api.post('/usuariperusername', UserController.getUserByUsername);
 

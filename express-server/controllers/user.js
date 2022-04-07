@@ -14,7 +14,7 @@ function home(req, res) {
 function proves(req, res) {
     console.log(req.body);
     res.status(200).send({
-        message: "Servidor de NodeJS proves 1",
+        message: "Servidor de NodeJS proves 2",
     });
 }
 

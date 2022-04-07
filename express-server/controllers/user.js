@@ -82,7 +82,7 @@ function loginUser(req, res) {
     const password = params.password;
 
 
-    User.findOne({email: email, password: password}, (err, user) => {
+    User.findOne({email: email}, (err, user) => {
         if (err) return res.status(500).send({message: "Error en la petició"})
 
         if (user) {
@@ -99,11 +99,11 @@ function loginUser(req, res) {
                         return res.status(200).send({user})
                     }
                 } else {
-                    return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD'})
+                    return res.status(404).send({message: 'Aquest usuari no existeix a la BBDD 1'})
                 }
             })
         } else {
-            return res.status(404).send({message: "Aquest usuari no existeix a la BBDD"})
+            return res.status(404).send({message: "Aquest usuari no existeix a la BBDD 2"})
         }
     })
 }

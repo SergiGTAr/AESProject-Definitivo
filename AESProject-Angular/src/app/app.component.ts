@@ -30,10 +30,20 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
     ngOnInit(){
         this.recallJsFuntions();
         this.identity = this.userService.identifyUser();
+
+        if (this.identity === null) {
+            if (this.location !== '/' && this.location !== '/signUp' && this.location !== '/signIn')
+               this.router.navigate(['/signIn']);
+        }
     }
 
     ngDoCheck() {
         this.identity = this.userService.identifyUser();
+
+        if (this.identity === null) {
+            if (this.location !== '/' && this.location !== '/signUp' && this.location !== '/signIn')
+               this.router.navigate(['/signIn']);
+        }
     }
 
     recallJsFuntions() {

@@ -5,13 +5,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  identity;
+
   enableProfileOptions: boolean;
   enableSearchBar: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.identity = JSON.parse(localStorage.getItem('identity'))
   }
 
   showSearchBar(): void {

@@ -19,7 +19,7 @@
             <li><a routerLink="/chat" routerLinkActive="active"><i data-feather="message-circle" class="conversations"></i><p class="conversations">Conversations</p></a></li>
             <li id="profile" (click)="showProfileOptions()"><a>
                 <div class="profile">
-                    <p class="username">Adje Reeves</p>
+                    <p class="username">{{identity?.username}}</p>
                     <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
                 </div>
             </a></li>

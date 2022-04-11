@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GLOBAL} from './global';
 import {UserModel} from '../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
     public identity;
     public token;
 
-    constructor(public httpClient: HttpClient) {
+    constructor(public httpClient: HttpClient, private router: Router) {
         this.url = GLOBAL.url;
     }
 

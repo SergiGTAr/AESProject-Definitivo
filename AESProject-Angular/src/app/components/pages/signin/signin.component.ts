@@ -14,6 +14,7 @@ export class SigninComponent implements OnInit {
     public user: UserModel;
     public status: string;
     private token: string;
+    private identity: string;
     signInForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.minLength(10)]),
         password: new FormControl('', [Validators.required, Validators.minLength(10)])
@@ -32,8 +33,10 @@ export class SigninComponent implements OnInit {
             this.email.value, this.password.value);
         this.userService.login(this.user).subscribe(
             response => {
-                console.log(response.user);
+                this.identity = response.user;
+                console.log(this.identity);
                 this.status = 'success';
+                localStorage.setItem('identity', JSON.stringify(this.identity));
                 this.getToken();
             },
             error => {

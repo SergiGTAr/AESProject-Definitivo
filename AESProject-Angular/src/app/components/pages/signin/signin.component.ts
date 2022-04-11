@@ -1,49 +1,82 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'src/app/services/user.service';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {UserModel} from '../../../models/user.model';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
-  providers: [UserService]
+    selector: 'app-signin',
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.scss'],
+    providers: [UserService]
 })
 
 export class SigninComponent implements OnInit {
     public user: UserModel;
     public status: string;
-  signInForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(10)])
-  });
+    private token: string;
+    signInForm = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.minLength(10)]),
+        password: new FormControl('', [Validators.required, Validators.minLength(10)])
+    });
 
-  constructor(private userService: UserService) {
-      this.user = new UserModel('', '', '', '', '', '');
-  }
+    constructor(private userService: UserService) {
+        this.user = new UserModel('', '', '', '', '', '');
+    }
 
-  ngOnInit() {
+    ngOnInit() {
         console.log('Component de login inicialitzat');
-  }
+    }
 
-  onSubmit() {
-    this.user = new UserModel("", "", "", "",
-      this.email.value, this.password.value);
-    this.userService.login(this.user).subscribe(
-        response => {
-            console.log(response.user);
-            this.status = 'success';
-        },
-        error => {
-            const errorMessage = error as any;
-            console.log(errorMessage);
-            if (errorMessage != null){
-                this.status = 'error';
+    onSubmit() {
+        this.user = new UserModel('', '', '', '',
+            this.email.value, this.password.value);
+        this.userService.login(this.user).subscribe(
+            response => {
+                console.log(response.user);
+                this.status = 'success';
+                this.getToken();
+            },
+            error => {
+                const errorMessage = error as any;
+                console.log(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
             }
-        }
-    );
-  }
+        );
+    }
 
-  get email() { return this.signInForm.get('email'); }
-  get password() { return this.signInForm.get('password'); }
+    getToken() {
+        this.userService.login(this.user, 'true').subscribe(
+            response => {
+                this.token = response.token;
+
+                console.log(this.token);
+
+                if (this.token.length <= 0) {
+                    this.status = 'error';
+                } else {
+                    this.status = 'success';
+                    // Guardem el token al localstorage
+                    localStorage.setItem('token', this.token);
+                }
+            },
+            error => {
+                const errorMessage = error as any;
+                console.log(errorMessage);
+
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
+            }
+        );
+    }
+
+    get email() {
+        return this.signInForm.get('email');
+    }
+
+    get password() {
+        return this.signInForm.get('password');
+    }
 }

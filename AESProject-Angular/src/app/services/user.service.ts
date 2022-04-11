@@ -9,6 +9,8 @@ import {UserModel} from '../models/user.model';
 })
 export class UserService {
     public url: string;
+    public identity;
+    public token;
 
     constructor(public httpClient: HttpClient) {
         this.url = GLOBAL.url;
@@ -21,7 +23,7 @@ export class UserService {
     }
 
     login(user: UserModel, gettoken = null): Observable<any> {
-        if (gettoken != null){
+        if (gettoken != null) {
             user.gettoken = gettoken;
         }
 
@@ -29,6 +31,30 @@ export class UserService {
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         return this.httpClient.post(this.url + 'login', params, {headers});
+    }
+
+    identifyUser() {
+        const identity = JSON.parse(localStorage.getItem('identity'));
+
+        if (identity !== 'undefined') {
+            this.identity = identity;
+        } else {
+            this.identity = null;
+        }
+
+        return this.identity;
+    }
+
+    getToken() {
+        const token = localStorage.getItem('token');
+
+        if (token !== 'undefined') {
+            this.token = token;
+        } else {
+            this.token = null;
+        }
+
+        return this.token;
     }
 
     /*createUser(name: String, password: String): Observable<any>{

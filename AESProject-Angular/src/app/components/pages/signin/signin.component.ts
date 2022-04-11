@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from 'src/app/services/user.service';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {UserModel} from '../../../models/user.model';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-signin',
@@ -19,7 +20,7 @@ export class SigninComponent implements OnInit {
         password: new FormControl('', [Validators.required, Validators.minLength(10)])
     });
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
         this.user = new UserModel('', '', '', '', '', '');
     }
 
@@ -35,6 +36,7 @@ export class SigninComponent implements OnInit {
                 console.log(response.user);
                 this.status = 'success';
                 this.getToken();
+                this.router.navigate(['/home']);
             },
             error => {
                 const errorMessage = error as any;

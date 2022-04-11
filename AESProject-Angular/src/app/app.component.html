@@ -1,3 +1,4 @@
+<p *ngIf="true">{{identity}}</p>
 <ng-container *ngIf="!(location == '/' || location == '/signUp' || location == '/signIn' || location == '/others/error-404')">
     <app-header></app-header>
     <router-outlet></router-outlet>

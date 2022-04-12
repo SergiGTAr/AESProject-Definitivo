@@ -22,6 +22,7 @@ import { PostBoxComponent } from './components/elements/post-box/post-box.compon
 
 import { HeaderComponent } from './components/layout/header/header.component';
 import { HeaderProfileComponent } from './components/layout/header-profile/header-profile.component';
+
 import { UserService } from './services/user.service';
 
 @NgModule({

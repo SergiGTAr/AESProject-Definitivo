@@ -1,7 +1,8 @@
-import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
-import {NavigationCancel, NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {filter} from 'rxjs/operators';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { GLOBAL } from './global';
+import { filter } from 'rxjs/operators';
 import { UserService } from './services/user.service';
 
 declare let $: any;
@@ -19,12 +20,12 @@ declare let $: any;
     ]
 })
 export class AppComponent implements OnInit, OnDestroy, DoCheck {
-    public identity;
+    identity: any
     location: any;
     routerSubscription: any;
-    API = 'http://localhost:3200';
 
     constructor(private router: Router, private userService: UserService) {
+
     }
 
     ngOnInit(){

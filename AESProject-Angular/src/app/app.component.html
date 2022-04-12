@@ -1,9 +1,8 @@
-<ng-container *ngIf="!(location == '/' || location == '/signUp' || location == '/signIn' || location == '/others/error-404')">
+<ng-container *ngIf="!(location == '/' || location == '/signUp' || location == '/signIn')">
     <app-header></app-header>
     <router-outlet></router-outlet>
-    
 </ng-container>
 
-<ng-container *ngIf="(location == '/' || location == '/signUp' || location == '/signIn' || location == '/others/error-404')">
+<ng-container *ngIf="(location == '/' || location == '/signUp' || location == '/signIn')">
     <router-outlet></router-outlet>
 </ng-container>

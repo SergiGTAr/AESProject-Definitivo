@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GLOBAL } from '../global';
+import { GLOBAL } from './global';
 import { UserModel } from '../models/user.model';
 import { Router } from '@angular/router';
 
@@ -58,17 +58,10 @@ export class UserService {
         return this.token;
     }
 
-    /*createUser(name: String, password: String): Observable<any>{
-      K
-      const data : any = {name: name, password: password}
-      return this.http.post('http://172.26.160.1:3020/api/register', data);
-    }*/
+    getUser(user: UserModel): Observable<any> {
+        const params = JSON.stringify(user);
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // tslint:disable-next-line:variable-name
-    /*register(user_to_register: User): Observable<any> {
-      const params = JSON.stringify(user_to_register);
-      const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
-      return this.http.post(this.url + 'register', params, {headers});
-    }*/
+        return this.httpClient.post(this.url + 'usuariperusername',  params, {headers});
+    }
 }

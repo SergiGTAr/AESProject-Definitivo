@@ -1,7 +1,6 @@
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { GLOBAL } from './global';
 import { filter } from 'rxjs/operators';
 import { UserService } from './services/user.service';
 

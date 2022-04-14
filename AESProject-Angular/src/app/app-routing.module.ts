@@ -19,7 +19,7 @@ const routes: Routes = [
     {path: 'chat', component: ChatComponent},
     {path: 'search', component: SearchComponent},
     {
-        path: 'profile/:*', component: ProfileComponent,
+        path: 'profile/:id', component: ProfileComponent,
         children: [
             {
                 path: 'posts',

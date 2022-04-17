@@ -1,12 +1,10 @@
 "use strict";
-
-const path = require("path");
-const fs = require("fs");
+require("path");
+require("fs");
 const moment = require("moment");
-const mongoosePaginate = require("mongoose-pagination");
-
+require("mongoose-paginate-v2");
 const Post = require("../models/post");
-const User = require("../models/user");
+require("../models/user");
 const Follow = require("../models/follow");
 
 function provesPost(req, res){
@@ -109,17 +107,6 @@ function deletePost(req, res){
         }
     });
 }
-
-
-
-function uploadImage(req, res){
-    const publicationId = req.params.id;
-
-    if(req.files){
-        const file_path = req.files.image.path;
-    }
-}
-
 module.exports = {
     provesPost,
     savePost,

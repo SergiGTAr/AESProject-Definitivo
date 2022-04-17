@@ -24,4 +24,6 @@ api.post('/eliminarusuari', UserController.deleteUser);
 
 api.post('/actualitzarusuari', UserController.updateUser);
 
+api.get('/counters', UserController.getCounters);
+
 module.exports = api;

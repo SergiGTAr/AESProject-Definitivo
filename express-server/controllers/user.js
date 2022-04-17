@@ -5,6 +5,10 @@ const User = require("../models/user");
 
 const jwt = require("../services/jwt");
 
+const Post = require("../models/post");
+
+const Follow = require("../models/follow");
+
 function home(req, res) {
     res.status(200).send({
         message: "Servidor de NodeJS diu: hola",
@@ -190,6 +194,42 @@ function deleteUser(req, res) {
 
 }
 
+function getCounters(req, res) {
+    let userId = req.user.sub;
+
+    if (req.params.id){
+        userId = req.params.id;
+    }
+
+    getCountFollow(userId).then((value) => {
+        return res.status(200).send({value})
+    })
+
+    async function getCountFollow(userId) {
+        const following = await Follow.count({"user": userId}).exec((err, count) => {
+            if (err) return res.status(500).send({message: "Error en la petició"})
+            return count
+        })
+
+        const followed = await Follow.count({"followed": userId}).exec((err, count) => {
+            if (err) return res.status(500).send({message: "Error en la petició"})
+            return count
+        })
+
+
+        const posts = await Post.count({"user": userId}).exec((err, count) => {
+            if (err) return res.status(500).send({message: "Error en la petició"})
+            return count
+        })
+
+        return {
+            following: following,
+            followed: followed,
+            posts: posts
+        }
+    }
+}
+
 
 module.exports = {
     home,
@@ -200,5 +240,6 @@ module.exports = {
     getUserById,
     getUserByUsername,
     deleteUser,
-    updateUser
+    updateUser,
+    getCounters
 };

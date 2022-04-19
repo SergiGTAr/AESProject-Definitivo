@@ -109,7 +109,7 @@ function deletePost(req, res){
 }
 
 function getOwnPosts(req, res){
-    const userId = req.user.sub;
+    const userId = req.params.id;
 
     Post.find({'user': userId}).sort('-created_at').populate('user').exec((err, posts) => {
         if(err){

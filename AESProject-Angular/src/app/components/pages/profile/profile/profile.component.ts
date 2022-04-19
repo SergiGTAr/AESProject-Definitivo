@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,14 +16,12 @@ export class ProfileComponent implements OnInit {
   public owner: any
   public isOwner: boolean
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private activatedRoute : ActivatedRoute) {
   }
 
   ngOnInit() {
-    const url = this.router.url;
-    const username = (url.split("/")[2]);
-
-    this.user = new UserModel ("","","",username,"","");
+    const username = this.activatedRoute.snapshot.paramMap.get('id');
+    this.user = new UserModel ('','','','',username,'','');
 
     this.userService.getUser(this.user).subscribe(
       response => {

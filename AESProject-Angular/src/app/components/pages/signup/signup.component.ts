@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        this.user = new UserModel(this.name.value, this.surname.value, this.sex.value, this.username.value,
+        this.user = new UserModel('',this.name.value, this.surname.value, this.sex.value, this.username.value,
             this.email.value, this.password.value);
 
         this.userService.register(this.user).subscribe(

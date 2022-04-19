@@ -18,8 +18,6 @@
         </div>
     </div>
     <div class="profilePosts">
-        <app-post-box></app-post-box>
-        <app-post-box></app-post-box>
-        <app-post-box></app-post-box>
+        <app-post-box *ngFor="let post of posts" [post]="post"></app-post-box>
     </div>
 </main>

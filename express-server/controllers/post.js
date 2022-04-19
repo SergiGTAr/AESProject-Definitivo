@@ -45,7 +45,7 @@ function getPosts(req, res){
         page = req.params.page;
     }
 
-    const itemsPerPage = 4;
+    const itemsPerPage = 10;
 
     Follow.find({user: req.user.sub}).populate('followed').exec((err, follows) => {
         if(err) {

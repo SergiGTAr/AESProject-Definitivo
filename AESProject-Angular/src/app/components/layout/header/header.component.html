@@ -19,15 +19,15 @@
             <li><a routerLink="/chat" routerLinkActive="active"><i data-feather="message-circle" class="conversations"></i><p class="conversations">Conversations</p></a></li>
             <li id="profile" (click)="showProfileOptions()"><a>
                 <div class="profile">
-                    <p class="username">{{identity?.username}}</p>
+                    <p class="username">{{identity.username}}</p>
                     <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
                 </div>
             </a></li>
         </ul>
     </div>
     <ul [ngClass]="{'profileOptionsActive': enableProfileOptions, 'profileOptionsInactive': !enableProfileOptions}" id="profileOptions">
-        <li><a routerLink="/profile/config" routerLinkActive="active"><p class="configuration">Configuration</p><i data-feather="settings" class="configuration"></i></a></li>
-        <li><a routerLink="/profile/posts" routerLinkActive="active"><p class="profile">Profile</p><i data-feather="user" class="profile"></i></a></li>
+        <li><a routerLink="/profile/{{identity.username}}/config" routerLinkActive="active"><p class="configuration">Configuration</p><i data-feather="settings" class="configuration"></i></a></li>
+        <li><a routerLink="/profile/{{identity.username}}/posts" routerLinkActive="active"><p class="profile">Profile</p><i data-feather="user" class="profile"></i></a></li>
         <li><a routerLink="/signIn" routerLinkActive="active"><p class="exit">Exit</p><i data-feather="log-out" class="exit"></i></a></li>
     </ul>
 </nav>

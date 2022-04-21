@@ -15,12 +15,9 @@ export class PostService {
         this.url = GLOBAL.url;
     }
 
-    getPostsHome(page: number): Observable<any> {
-        const token = localStorage.getItem('token')
-
-        const headers = new HttpHeaders().set('Authorization', token.toString());
-
-        return this.httpClient.get<any>(this.url + 'postsPropis/625eec94c516a016ec779e18', {headers});
+    getPostsHome(page: number, token): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+        return this.httpClient.get<any>(this.url + 'allposts', {headers});
     }
 
     getPostsProfile(user: UserModel): Observable<any> {

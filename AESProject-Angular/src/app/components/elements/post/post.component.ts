@@ -3,9 +3,9 @@ import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
     @Input() post: any;
@@ -15,7 +15,8 @@ export class PostComponent implements OnInit {
     isOwner: boolean;
     isLiked: boolean;
 
-    constructor() { }
+    constructor() {
+    }
 
     clickLiked(): void {
       this.isLiked = !this.isLiked;

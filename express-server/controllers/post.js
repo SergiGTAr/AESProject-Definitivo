@@ -124,6 +124,20 @@ function getOwnPosts(req, res){
     });
 }
 
+function getAllPosts(req, res){
+    Post.find().sort('-created_at').populate('user').exec((err, posts) => {
+        if(err){
+            res.status(500).send({message: "Error al carregar les publicacions"});
+        }else{
+            if(!posts){
+                res.status(404).send({message: "No s'han trobat les publicacions"});
+            }else{
+                res.status(200).send({posts});
+            }
+        }
+    });
+}
+
 
 module.exports = {
     provesPost,
@@ -131,5 +145,6 @@ module.exports = {
     getPosts,
     getPost,
     deletePost,
-    getOwnPosts
+    getOwnPosts,
+    getAllPosts
 };

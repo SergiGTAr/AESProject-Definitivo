@@ -10,6 +10,6 @@ api.post('/post', md_auth.ensureAuth, PostController.savePost);
 api.get('/postsFollows/:page?', md_auth.ensureAuth, PostController.getPosts);
 api.get('/post/:id', md_auth.ensureAuth, PostController.getPost);
 api.delete('/post/:id', md_auth.ensureAuth, PostController.deletePost);
-api.get('postsPropis/:id', md_auth.ensureAuth, PostController.getOwnPosts);
+api.get('/postsPropis/:id', md_auth.ensureAuth, PostController.getOwnPosts);
 
 module.exports = api;

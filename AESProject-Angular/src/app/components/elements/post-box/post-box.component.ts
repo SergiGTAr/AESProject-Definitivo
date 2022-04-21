@@ -8,9 +8,10 @@ import { PostModel } from 'src/app/models/post.model';
 })
 export class PostBoxComponent implements OnInit {
     comments: string[];
-    @Input() post: PostModel;
+    @Input() post: any;
 
     constructor() {
+      
     }
     
     ngOnInit(): void {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
 import { PostService } from 'src/app/services/post.service';
 
@@ -10,7 +9,7 @@ import { PostService } from 'src/app/services/post.service';
   providers: [PostService]
 })
 export class HomeComponent implements OnInit {
-  posts: PostModel[];
+  posts: any[];
   user: UserModel;
   status: string;
   page: number = 1;
@@ -20,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.postService.getPostsHome(this.page).subscribe(
       response => {
           //this.identity = response.user;
-          this.posts = response.posts;
+          this.posts = response.posts as any[];
           this.status = 'success';
       },
       error => {

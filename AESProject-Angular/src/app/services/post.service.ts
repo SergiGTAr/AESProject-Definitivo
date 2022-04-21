@@ -16,13 +16,18 @@ export class PostService {
     }
 
     getPostsHome(page: number): Observable<any> {
-        return this.httpClient.get<any>(this.url + 'posts/' + page);
+        const token = localStorage.getItem('token')
+
+        const headers = new HttpHeaders().set('Authorization', token.toString());
+
+        return this.httpClient.get<any>(this.url + 'postsPropis/625eec94c516a016ec779e18', {headers});
     }
 
     getPostsProfile(user: UserModel): Observable<any> {
         const params = JSON.stringify(user);
-        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders().set('Authorization', token.toString());
 
-        return this.httpClient.post(this.url + 'getOwnPosts',  params, {headers});
+        return this.httpClient.get(this.url + 'postsPropis/625eec94c516a016ec779e18', {headers});
     }
 }

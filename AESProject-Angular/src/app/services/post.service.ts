@@ -21,7 +21,7 @@ export class PostService {
     }
 
     getPostsProfile(user: UserModel): Observable<any> {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
         return this.httpClient.get(this.url + 'postsPropis/' + user.id, {headers});

@@ -21,11 +21,11 @@ export class PostService {
     }
 
     getPostsProfile(user: UserModel): Observable<any> {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
-        console.log(user.id + "aaaaa");
+        console.log(user.userId + "aaaaa");
 
-        return this.httpClient.get(this.url + 'postsPropis/' + user.id, {headers});
+        return this.httpClient.get(this.url + 'postsPropis/' + user.userId, {headers});
     }
 }

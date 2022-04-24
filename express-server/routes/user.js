@@ -12,7 +12,7 @@ api.get('/usuariperid',UserController.getUserById);
 api.post('/register', UserController.saveUser);
 api.post('/login', UserController.loginUser);
 api.get('/usuaris', UserController.getAllUsers);
-api.post('/usuariperusername', UserController.getUserByUsername);
+api.get('/usuariperusername/:username', UserController.getUserByUsername);
 api.post('/eliminarusuari', UserController.deleteUser);
 api.post('/actualitzarusuari', UserController.updateUser);
 api.get('/counters', UserController.getCounters);

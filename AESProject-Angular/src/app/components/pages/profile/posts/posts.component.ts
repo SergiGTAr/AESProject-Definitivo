@@ -1,59 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PostModel } from 'src/app/models/post.model';
-import { UserModel } from 'src/app/models/user.model';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PostModel} from 'src/app/models/post.model';
+import {UserModel} from 'src/app/models/user.model';
+import {PostService} from 'src/app/services/post.service';
+import {UserService} from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
-  providers: [PostService]
+    selector: 'app-posts',
+    templateUrl: './posts.component.html',
+    styleUrls: ['./posts.component.scss'],
+    providers: [PostService]
 })
 export class PostsComponent implements OnInit {
-  posts: PostModel[];
-  userModel: UserModel;
-  isOwner: boolean;
-  pages: number;
-  total: number;
-  status: string;
-  constructor(private postService: PostService, private userService: UserService, private activatedRoute : ActivatedRoute) { }
+    posts: PostModel[];
+    userModel: UserModel;
+    isOwner: boolean;
+    pages: number;
+    total: number;
+    status: string;
 
-  ngOnInit(): void {
-    const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
-    this.userModel = new UserModel ('','','','',username,'','');
 
-    this.userService.getUser(this.userModel).subscribe(
-      response => {
-          this.userModel.id = response.user._id;
-          this.status = 'success';
-      },
-      error => {
-          const errorMessage = error as any;
-          console.log(errorMessage);
-          if (errorMessage != null) {
-              this.status = 'error';
-          }
-        }
-    );
+    constructor(private postService: PostService, private userService: UserService, private activatedRoute: ActivatedRoute) {
 
-    console.log(this.userModel)
+    }
 
-    this.postService.getPostsProfile(this.userModel).subscribe(
-      response => {
-          this.posts = response.posts;
-          this.status = 'success';
-      },
-      error => {
-          const errorMessage = error as any;
-          console.log(errorMessage);
-          if (errorMessage != null) {
-              this.status = 'error';
-        }
-      }
-    );
+    ngOnInit(): void {
+        const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
+        this.userModel = new UserModel("", "", "", "", username, "", "");
+        this.trobarIDUsuari();
+        this.isOwner = true;
+    }
 
-    this.isOwner = true;
-  }
+    trobarIDUsuari(){
+        this.userService.getUser(this.userModel).subscribe(
+            response => {
+                this.userModel.userId = response.user._id;
+                this.status = 'success';
+                this.trobarPostsUsuari();
+            },
+            error => {
+                const errorMessage = error as any;
+                console.log(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
+            }
+        );
+    }
+
+    trobarPostsUsuari(){
+        this.postService.getPostsProfile(this.userModel).subscribe(
+            response => {
+                this.posts = response.posts;
+                this.status = 'success';
+            },
+            error => {
+                const errorMessage = error as any;
+                console.log(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
+            }
+        );
+    }
 }

@@ -62,6 +62,6 @@ export class UserService {
         const params = JSON.stringify(user);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this.httpClient.post(this.url + 'usuariperusername',  params, {headers});
+        return this.httpClient.get(this.url + 'usuariperusername/' + user.username, {headers});
     }
 }

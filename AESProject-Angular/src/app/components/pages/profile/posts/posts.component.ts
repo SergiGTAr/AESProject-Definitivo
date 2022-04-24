@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,16 +13,34 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostsComponent implements OnInit {
   posts: PostModel[];
-  user: UserModel;
+  userModel: UserModel;
   isOwner: boolean;
   pages: number;
   total: number;
   status: string;
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private userService: UserService, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-    
-    this.postService.getPostsProfile(this.user).subscribe(
+    const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
+    this.userModel = new UserModel ('','','','',username,'','');
+
+    this.userService.getUser(this.userModel).subscribe(
+      response => {
+          this.userModel.id = response.user._id;
+          this.status = 'success';
+      },
+      error => {
+          const errorMessage = error as any;
+          console.log(errorMessage);
+          if (errorMessage != null) {
+              this.status = 'error';
+          }
+        }
+    );
+
+    console.log(this.userModel)
+
+    this.postService.getPostsProfile(this.userModel).subscribe(
       response => {
           this.posts = response.posts;
           this.status = 'success';
@@ -30,7 +50,7 @@ export class PostsComponent implements OnInit {
           console.log(errorMessage);
           if (errorMessage != null) {
               this.status = 'error';
-          }
+        }
       }
     );
 

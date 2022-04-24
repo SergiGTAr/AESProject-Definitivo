@@ -137,9 +137,9 @@ function getUserById(req, res) {
 
 function getUserByUsername(req, res) {
     const params = req.body;
-    const userName = params.surname;
+    const userName = params.username;
 
-    User.findOne({id: userName}, (err, user) => {
+    User.findOne({username: userName}, (err, user) => {
         if (err) return res.status(500).send({message: "Error en la petició"})
 
         if (user) {

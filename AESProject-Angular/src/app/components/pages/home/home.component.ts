@@ -37,6 +37,10 @@ export class HomeComponent implements OnInit {
                     this.posts = response.posts;
                     this.totalPosts = this.posts.length;
                     this.pages = this.totalPosts / 10;
+                    
+                    if (this.posts.length === this.totalPosts) {
+                        this.noMorePosts = true;
+                    }
 
                     if (!adding) {
                         this.posts = response.posts;
@@ -45,7 +49,6 @@ export class HomeComponent implements OnInit {
                         const postsNous = response.posts;
                         this.posts = postsJaMostrats.concat(postsNous);
                     }
-
 
                     this.status = 'success';
                 } else {
@@ -67,7 +70,7 @@ export class HomeComponent implements OnInit {
             this.noMorePosts = true;
         } else {
             this.page += 1;
+            this.getPosts(this.page, true);
         }
-        this.getPosts(this.page, true);
     }
 }

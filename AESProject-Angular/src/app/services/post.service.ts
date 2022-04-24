@@ -21,10 +21,11 @@ export class PostService {
     }
 
     getPostsProfile(user: UserModel): Observable<any> {
-        const params = JSON.stringify(user);
         const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
-        return this.httpClient.get(this.url + 'postsPropis/625eec94c516a016ec779e18', {headers});
+        console.log(user.id + "aaaaa");
+
+        return this.httpClient.get(this.url + 'postsPropis/' + user.id, {headers});
     }
 }

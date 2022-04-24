@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PostModel } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-post-box',

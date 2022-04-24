@@ -62,6 +62,10 @@ export class UserService {
         const params = JSON.stringify(user);
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this.httpClient.post(this.url + 'usuariperusername',  params, {headers});
+        if (user.id) {
+            return this.httpClient.post(this.url + 'usuariperid',  params, {headers});
+        } else if (user.username) {
+            return this.httpClient.post(this.url + 'usuariperusername',  params, {headers});
+        }
     }
 }

@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class PostsComponent implements OnInit {
   posts: PostModel[];
   userModel: UserModel;
+  userId;
   isOwner: boolean;
   pages: number;
   total: number;
@@ -27,7 +28,19 @@ export class PostsComponent implements OnInit {
     this.userService.getUser(this.userModel).subscribe(
       response => {
           this.userModel.id = response.user._id;
-          this.status = 'success';
+          this.postService.getPostsProfile(this.userModel).subscribe(
+            response => {
+                this.posts = response.posts;
+                this.status = 'success';
+            },
+            error => {
+                const errorMessage = error as any;
+                console.log(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+              }
+            }
+          );
       },
       error => {
           const errorMessage = error as any;
@@ -38,21 +51,7 @@ export class PostsComponent implements OnInit {
         }
     );
 
-    console.log(this.userModel)
-
-    this.postService.getPostsProfile(this.userModel).subscribe(
-      response => {
-          this.posts = response.posts;
-          this.status = 'success';
-      },
-      error => {
-          const errorMessage = error as any;
-          console.log(errorMessage);
-          if (errorMessage != null) {
-              this.status = 'error';
-        }
-      }
-    );
+   
 
     this.isOwner = true;
   }

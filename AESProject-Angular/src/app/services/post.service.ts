@@ -24,8 +24,6 @@ export class PostService {
         const token = localStorage.getItem('token')
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
-        console.log(user.id + "aaaaa");
-
         return this.httpClient.get(this.url + 'postsPropis/' + user.id, {headers});
     }
 }

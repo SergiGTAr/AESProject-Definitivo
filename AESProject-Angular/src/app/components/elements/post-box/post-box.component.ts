@@ -14,6 +14,6 @@ export class PostBoxComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.comments = ['a', 'b'];
+        this.comments = ['a', 'b', 'A'];
     }
 }

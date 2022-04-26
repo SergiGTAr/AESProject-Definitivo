@@ -10,7 +10,7 @@
         </div>
         <div class="options">
             <button class="btn addLike" (click)="clickLiked()" [ngClass]="{'active': isLiked}"><p>{{postModel.likes}}</p><i data-feather="thumbs-up" class="like"></i></button>
-            <button class="btn addComment"><p>{{postModel.comments}}</p><i data-feather="message-square" class="comment"></i></button>
+            <button class="btn addComment" ><p>{{postModel.comments}}</p><i data-feather="message-square" class="comment"></i></button>
             <button class="btn editPost" *ngIf="isOwner"><i data-feather="edit" class="edit"></i></button>
             <button class="btn deletePost" *ngIf="isOwner"><i data-feather="trash"  class="delete"></i></button>
         </div>

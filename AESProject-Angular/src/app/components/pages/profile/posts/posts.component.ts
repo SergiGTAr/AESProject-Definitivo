@@ -14,6 +14,7 @@ import {UserService} from 'src/app/services/user.service';
 export class PostsComponent implements OnInit {
   posts: PostModel[];
   userModel: UserModel;
+  identity: any;
   isOwner: boolean;
   pages: number;
   total: number;
@@ -22,17 +23,21 @@ export class PostsComponent implements OnInit {
 
     ngOnInit(): void {
         const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
+        this.identity = JSON.parse(localStorage.getItem('identity'));
+        if (username === this.identity.username) {
+            this.isOwner = true;
+        }
+
         this.userModel = new UserModel("", "", "", "", username, "", "");
         this.trobarIDUsuari();
-        this.isOwner = true;
     }
 
     trobarIDUsuari(){
         this.userService.getUser(this.userModel).subscribe(
             response => {
                 this.userModel.id = response.user._id;
-                this.status = 'success';
                 this.trobarPostsUsuari();
+                this.status = 'success';
             },
             error => {
                 const errorMessage = error as any;
@@ -48,6 +53,8 @@ export class PostsComponent implements OnInit {
         this.postService.getPostsProfile(this.userModel).subscribe(
             response => {
                 this.posts = response.posts;
+                console.log(this.posts);
+                console.log(response.posts);
                 this.status = 'success';
             },
             error => {

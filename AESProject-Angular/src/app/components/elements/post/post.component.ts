@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PostComponent implements OnInit {
     @Input() post: any;
+    identity: any
     postModel: PostModel;
     userModel: UserModel;
     status: string;
@@ -25,11 +26,27 @@ export class PostComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      const identity = JSON.parse(localStorage.getItem('identity'));
-      this.userModel = new UserModel (this.post.user,'','','','','','');
+      this.identity = JSON.parse(localStorage.getItem('identity'));
+      this.userModel = new UserModel (this.post.post.user,'','','','','','');
+
+      if (this.identity._id == this.userModel.id) {
+        this.isOwner = true;
+      }
+
       this.userService.getUser(this.userModel).subscribe(
         response => {
             this.userModel.username = response.user.username;
+
+            const date: Date = new Date(this.post.post.created_at);
+            const dateString: string = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+      
+            this.postModel = new PostModel();
+            this.postModel.user = this.userModel;
+            this.postModel.content = this.post.post.content;
+            this.postModel.created_at = dateString;
+            this.postModel.likes = String(204124).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            this.postModel.comments = String(4562).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            
             this.status = 'success';
         },
         error => {
@@ -40,15 +57,5 @@ export class PostComponent implements OnInit {
             }
           }
       );
-
-      const date: Date = new Date(this.post.created_at);
-      const dateString: string = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-
-      this.postModel = new PostModel();
-      this.postModel.user = this.userModel;
-      this.postModel.content = this.post.content;
-      this.postModel.created_at = dateString;
-      this.postModel.likes = String(204124).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      this.postModel.comments = String(4562).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 }

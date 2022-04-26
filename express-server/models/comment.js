@@ -1,11 +1,11 @@
 "use strict";
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-import {User} from "./user";
-import {Post} from "./post";
+const mongoose = require('mongoose');
+const {Schema} = mongoose;
+const User = require('./user');
+const Post = require('./post');
 
-const CommentSchema = Schema({
+const CommentSchema = new Schema({
     post: Post,
     user: User,
     content: String,

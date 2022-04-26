@@ -45,7 +45,6 @@ export class SignupComponent implements OnInit {
                 if (response.user && response.user._id){
                     this.message = response.user;
                     this.status = 'success';
-                    console.log(this.message._id);
                     this.router.navigate(['/signIn']);
                 } else {
                     this.status = 'error';

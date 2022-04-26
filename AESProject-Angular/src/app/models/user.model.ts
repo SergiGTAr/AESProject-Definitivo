@@ -1,5 +1,5 @@
 export class UserModel {
-    userId: string;
+    id: string;
     name: string;
     surname: string;
     sex: string;
@@ -8,8 +8,8 @@ export class UserModel {
     password: string;
     gettoken: any;
 
-    constructor(userId: string, name: string, surname: string, sex: string, username: string, email: string, password: string) {
-        this.userId = userId;
+    constructor(id: string, name: string, surname: string, sex: string, username: string, email: string, password: string) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.sex = sex;

@@ -10,8 +10,8 @@ api.get('/proves', md_auth.ensureAuth, UserController.proves);
 
 
 api.post('/userbyid', md_auth.ensureAuth, UserController.getUserById);
-api.post('/register', md_auth.ensureAuth, UserController.saveUser);
-api.post('/login', md_auth.ensureAuth, UserController.loginUser);
+api.post('/register', UserController.saveUser);
+api.post('/login', UserController.loginUser);
 api.get('/users', md_auth.ensureAuth, UserController.getAllUsers);
 api.get('/userbyusername/:username', md_auth.ensureAuth, UserController.getUserByUsername);
 api.delete('/deleteuser', md_auth.ensureAuth, UserController.deleteUser);

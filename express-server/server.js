@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const api = require('./routes/api');
 const user_routers = require('./routes/user');
 const post_routes = require('./routes/post');
-//const comment_routes = require('./routes/comment');
+const comment_routes = require('./routes/comment');
 
 const app = express();
 app.use(cors());
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', api);
 app.use('/api', user_routers);
 app.use('/api', post_routes);
-//app.use('/api', comment_routes);
+app.use('/api', comment_routes);
 // Get port from environment and store in Express.
 const port = process.env.PORT || '3200';
 app.set('port', port);

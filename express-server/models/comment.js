@@ -1,15 +1,21 @@
-"use strict";
+'use strict'
 
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
-const User = require('./user');
-const Post = require('./post');
+
+
+
+
+
+
+
+
+
 
 const CommentSchema = new Schema({
-    post: Post,
-    user: User,
+    post: Schema.Types.ObjectId,
     content: String,
-    created_at: Date,
-});
+    created_at: Date
+})
 
 module.exports = mongoose.model("Comment", CommentSchema);

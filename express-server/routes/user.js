@@ -9,7 +9,7 @@ api.get('/home', md_auth.ensureAuth, UserController.home);
 api.get('/proves', md_auth.ensureAuth, UserController.proves);
 
 
-api.post('/userbyid', md_auth.ensureAuth, UserController.getUserById);
+api.get('/userbyid', md_auth.ensureAuth, UserController.getUserById);
 api.post('/register', UserController.saveUser);
 api.post('/login', UserController.loginUser);
 api.get('/users', md_auth.ensureAuth, UserController.getAllUsers);

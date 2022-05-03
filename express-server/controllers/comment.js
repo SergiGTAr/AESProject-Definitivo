@@ -62,8 +62,15 @@ function saveComment(req, res){
     const params = req.body;
     const comment = new Comment();
 
-    if(params.content){
+    if(
+        params.content &&
+        params.user &&
+        params.post
+    ){
         comment.content = params.content;
+        comment.user = params.user;
+        comment.post = params.post;
+        comment.created_at = moment().unix();
 
         comment.save((err, commentStored) => {
             if (err) {

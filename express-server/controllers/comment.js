@@ -9,7 +9,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt-nodejs");
 
 function provesComment(req, res){
-    res.status(200).send({message: "Controlador de posts diu: Hola"});
+    res.status(200).send({message: "Controlador de comentaris diu: Hola"});
 }
 
 function getAllComments(req, res){
@@ -70,14 +70,13 @@ function saveComment(req, res){
         comment.content = params.content;
         comment.user = params.user;
         comment.post = params.post;
-        comment.created_at = moment().unix();
 
         comment.save((err, commentStored) => {
             if (err) {
                 return res.status(500).send({message: "Error al guardar el comentari."});
             }
             if (commentStored) {
-                res.status(200).send({user: commentStored});
+                res.status(200).send({comment: commentStored});
             } else {
                 res.status(404).send({message: "El comentari no s'ha pogut guardar."});
             }

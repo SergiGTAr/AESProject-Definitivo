@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -11,12 +11,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PostComponent implements OnInit {
     @Input() post: any;
-    identity: any
+    @Output() commentEmitter: EventEmitter<boolean> = new EventEmitter();
+
+    identity: any;
     postModel: PostModel;
     userModel: UserModel;
     status: string;
     isOwner: boolean;
     isLiked: boolean;
+    isCommenting: boolean;
 
     constructor(private userService : UserService) {
     }
@@ -25,9 +28,14 @@ export class PostComponent implements OnInit {
       this.isLiked = !this.isLiked;
     }
 
+    clickComment(): void {
+      this.isCommenting = !this.isCommenting;
+      this.commentEmitter.emit(this.isCommenting);
+    }
+
     ngOnInit(): void {
       this.identity = JSON.parse(localStorage.getItem('identity'));
-      this.userModel = new UserModel (this.post.post.user,'','','','','','');
+      this.userModel = new UserModel (this.post.user,'','','','','','');
 
       if (this.identity._id == this.userModel.id) {
         this.isOwner = true;
@@ -37,12 +45,12 @@ export class PostComponent implements OnInit {
         response => {
             this.userModel.username = response.user.username;
 
-            const date: Date = new Date(this.post.post.created_at);
+            const date: Date = new Date(this.post.created_at);
             const dateString: string = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
       
             this.postModel = new PostModel();
             this.postModel.user = this.userModel;
-            this.postModel.content = this.post.post.content;
+            this.postModel.content = this.post.content;
             this.postModel.created_at = dateString;
             this.postModel.likes = String(204124).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             this.postModel.comments = String(4562).replace(/\B(?=(\d{3})+(?!\d))/g, '.');

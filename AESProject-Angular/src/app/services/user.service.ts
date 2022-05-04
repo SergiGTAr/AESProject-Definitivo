@@ -60,7 +60,8 @@ export class UserService {
 
     getUser(user: UserModel): Observable<any> {
         const params = JSON.stringify(user);
-        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
         if (user.id) {
             return this.httpClient.post(this.url + 'userbyid', params, {headers});

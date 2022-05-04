@@ -1,4 +1,5 @@
 <div class="box">
-    <app-post [post]="post"></app-post>
+    <app-post [post]="post" (commentEmitter)="clickComment($event)"></app-post>
+    <app-new-comment *ngIf="isCommenting"></app-new-comment>
     <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
 </div>

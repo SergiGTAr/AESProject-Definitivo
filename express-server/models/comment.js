@@ -2,12 +2,10 @@
 
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
-import {User} from "./user";
-import {Post} from "./post";
 
 const CommentSchema = new Schema({
-    post: Post,
-    user: User,
+    post: Schema.Types.ObjectId,
+    user: Schema.Types.ObjectId,
     content: String,
     created_at: Date
 })

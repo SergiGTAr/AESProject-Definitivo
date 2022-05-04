@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
     providers: [UserService]
 })
 export class SignupComponent implements OnInit {
-    private message: any;
     private user: UserModel;
     status: string;
 
@@ -43,7 +42,6 @@ export class SignupComponent implements OnInit {
         this.userService.register(this.user).subscribe(
             response => {
                 if (response.user && response.user._id){
-                    this.message = response.user;
                     this.status = 'success';
                     this.router.navigate(['/signIn']);
                 } else {

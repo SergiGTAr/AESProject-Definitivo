@@ -10,6 +10,17 @@ $pink: #ff0070;
 $green: #00c065;
 $orange: #ff6900;
 
+@font-face {
+    font-family: "Product Sans";
+    src: local(Fonts\ProductSansRegular);
+}
+
+* {
+    font-family: Product Sans;
+    outline: none;
+    text-decoration: none;
+}
+
 ::placeholder {
     color: $darkGray;
 }
@@ -101,7 +112,7 @@ $orange: #ff6900;
                 }
                 p {
                     padding: 0;
-                    margin: 0 5px 0 0;
+                    margin: 0;
                     background: none;
                 }
                 &.addLike {
@@ -118,11 +129,6 @@ $orange: #ff6900;
                 &.addComment {
                     &:hover {
                         background: $green;
-                    }
-                }
-                &.editPost {
-                    &:hover {
-                        background: $orange;
                     }
                 }
                 &.deletePost {

@@ -1,18 +1,17 @@
 <div class="postBox">
     <div class="postInfo">
         <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
-        <p class="user">{{postModel.user.username}}</p>
-        <p class="date">{{postModel.created_at}}</p>
+        <p class="user">{{postModel?.user.username}}</p>
+        <p class="date">{{postModel?.created_at}}</p>
     </div>
     <div class="post">
         <div class="content">
-            <p>{{postModel.content}}</p>
+            <p>{{postModel?.content}}</p>
         </div>
         <div class="options">
-            <button class="btn addLike" (click)="clickLiked()" [ngClass]="{'active': isLiked}"><p>{{postModel.likes}}</p><i data-feather="thumbs-up" class="like"></i></button>
-            <button class="btn addComment" ><p>{{postModel.comments}}</p><i data-feather="message-square" class="comment"></i></button>
-            <button class="btn editPost" *ngIf="isOwner"><i data-feather="edit" class="edit"></i></button>
-            <button class="btn deletePost" *ngIf="isOwner"><i data-feather="trash"  class="delete"></i></button>
+            <button class="btn addLike" (click)="clickLiked()" [ngClass]="{'active': isLiked}"><p>{{postModel?.likes}} likes</p></button>
+            <button class="btn addComment" (click)="clickComment()"><p>{{postModel?.comments}} comments</p></button>
+            <button class="btn deletePost" *ngIf="isOwner"><p>Delete</p></button>
         </div>
     </div>
 </div>

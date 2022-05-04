@@ -1,25 +1,55 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommentModel } from 'src/app/models/comment.model';
+import { UserModel } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss']
+  styleUrls: ['./comment.component.scss'],
+  providers: [UserService]
 })
 export class CommentComponent implements OnInit {
     @Input() comment: any;
-    owner: boolean;
-    userphoto;
-    user: string;
-    date: string;
-    content: string;
 
-    constructor() {
+    identity: any;
+    commentModel: CommentModel;
+    userModel: UserModel;
+    status: string;
+    isOwner: boolean;
+
+    constructor(private userService : UserService) {
     }
 
     ngOnInit(): void {
-        const date: Date = new Date();
-        this.user = 'Adje Reeves';
-        this.date = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-        this.content = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex eañ';
+      this.identity = JSON.parse(localStorage.getItem('identity'));
+      this.userModel = new UserModel (this.comment.user,'','','','','','');
+
+      if (this.identity._id == this.userModel.id) {
+        this.isOwner = true;
+      }
+
+      this.userService.getUser(this.userModel).subscribe(
+        response => {
+            this.userModel.username = response.user.username;
+
+            const date: Date = new Date(this.comment.created_at);
+            const dateString: string = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+      
+            this.commentModel = new CommentModel();
+            this.commentModel.user = this.userModel;
+            this.commentModel.content = this.comment.content;
+            this.commentModel.created_at = dateString;
+            
+            this.status = 'success';
+        },
+        error => {
+            const errorMessage = error as any;
+            console.log(errorMessage);
+            if (errorMessage != null) {
+                this.status = 'error';
+            }
+          }
+      );
     }
 }

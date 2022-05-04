@@ -1,6 +1,7 @@
 $lightBlue: #5bd1ff;
 $blue: #008cff;
 $darkBlue: #00599f;
+$red: #d00202;
 $white: #ffffff;
 $lightGray: #efefef;
 $gray: #e0e0e0;
@@ -119,6 +120,14 @@ $darkGray: #666666;
                 height: 3px;
                 width: 92%;
                 margin: 5px auto;
+            }
+            .submitError {
+                line-height: 25px;
+                color: $white;
+                background: $red;
+                padding: 0 11px;
+                font-size: 14px;
+                margin: 4px 10px 10px;
             }
         }
     }

@@ -30,6 +30,34 @@ $orange: #ff6900;
     }
 }
 
+.btn {
+    border: 0;
+    align-items: center;
+    color: $white;
+    background-color: $blue;
+    height: 40px;
+    transition: all .3s ease;
+    font-size: 16px;
+    padding: 0 11px;
+    cursor: pointer;
+    &:hover {
+        background: $darkBlue;
+    }
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 0 11px;
+}
+.input {
+    margin: 10px 10px 0;
+    background-color: $white;
+    border: 3px solid transparent;
+    transition: all .3s ease;
+    height: 34px;
+    &:focus {
+        border: 3px solid $darkBlue;
+    }
+}
+
 .userPhoto {
     border-radius: 50%;
 }

@@ -53,8 +53,7 @@ export class PostsComponent implements OnInit {
         this.postService.getPostsProfile(this.userModel).subscribe(
             response => {
                 this.posts = response.posts;
-                console.log(this.posts);
-                console.log(response.posts);
+                console.log(response)
                 this.status = 'success';
             },
             error => {

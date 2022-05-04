@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PostBoxComponent implements OnInit {
     comments: string[];
+    isCommenting: boolean;
     @Input() post: any;
 
     constructor() {
@@ -15,5 +16,16 @@ export class PostBoxComponent implements OnInit {
     
     ngOnInit(): void {
         this.comments = ['a', 'b', 'A'];
+    }
+ 
+    clickComment(isCommenting: boolean) {
+      this.isCommenting = isCommenting;
+    }
+
+    getCommentsByPost(){
+      /*commentService(idPost){
+        Response
+        error
+      }*/
     }
 }

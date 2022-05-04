@@ -26,6 +26,7 @@ import { HeaderProfileComponent } from './components/layout/header-profile/heade
 import { UserService } from './services/user.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NewCommentComponent } from './components/elements/new-comment/new-comment.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { environment } from '../environments/environment';
         BioComponent,
         ConfigComponent,
         HeaderComponent,
-        HeaderProfileComponent
+        HeaderProfileComponent,
+        NewCommentComponent
     ],
     imports: [
         BrowserModule,

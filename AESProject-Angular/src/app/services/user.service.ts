@@ -59,12 +59,11 @@ export class UserService {
     }
 
     getUser(user: UserModel): Observable<any> {
-        const params = JSON.stringify(user);
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
         if (user.id) {
-            return this.httpClient.post(this.url + 'userbyid', params, {headers});
+            return this.httpClient.get(this.url + 'userbyid/' + user.id, {headers});
         } else if (user.username) {
             return this.httpClient.get(this.url + 'userbyusername/' + user.username, {headers});
         }

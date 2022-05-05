@@ -19,7 +19,7 @@ function savePost(req, res){
     post.content = params.content;
     post.file = "null";
     post.user = req.user.sub;
-    post.created_at = moment().unix();
+    post.created_at = Date.now();
 
     if (!params.content) {
         return res.status(200).send({message: "El contingut és necessari"});

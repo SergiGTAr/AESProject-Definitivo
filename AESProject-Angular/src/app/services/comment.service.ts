@@ -15,12 +15,12 @@ export class CommentService {
         this.url = GLOBAL.url;
     }
 
-    /*getCommentsPost(user: UserModel): Observable<any> {
+    getCommentsPost(post_id: string): Observable<any> {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
-        return this.httpClient.get(this.url + 'postsPropis/' + user.id, {headers});
-    }*/
+        return this.httpClient.get(this.url + 'getCommentsByPost/' + post_id, {headers});
+    }
 
     saveComment(content: string) {
         const params = {content: content};

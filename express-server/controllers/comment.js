@@ -27,8 +27,7 @@ function getAllComments(req, res){
 }
 
 function getCommentsByPost(req, res){
-    const params = req.body;
-    const postId = params.post;
+    const postId = req.params.id;
 
     Comment.find({'post': postId}).sort({'created_at': -1}).exec(function (err, comments){
         if(err){
@@ -70,6 +69,7 @@ function saveComment(req, res){
         comment.content = params.content;
         comment.user = params.user;
         comment.post = params.post;
+        comment.created_at = Date.now();
 
         comment.save((err, commentStored) => {
             if (err) {

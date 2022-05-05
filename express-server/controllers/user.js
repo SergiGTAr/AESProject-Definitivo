@@ -121,8 +121,7 @@ function getAllUsers(req, res) {
 
 
 function getUserById(req, res) {
-    const params = req.body;
-    const userId = params.id;
+    const userId = req.params.id;
 
     User.findOne({_id: userId}, (err, user) => {
         if (err) return res.status(500).send({message: "Error en la petició"})

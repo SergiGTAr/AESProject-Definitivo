@@ -41,7 +41,7 @@
                         <p>You have to write a password that must have at least 6 charaters, special characters and
                             numbers</p>
                     </li>
-                    <li *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)">
+                    <li *ngIf="repeatedPassword.errors.mustMatch && (repeatedPassword.dirty || repeatedPassword.touched)">
                         <p>Both passwords are different</p>
                     </li>
                 </ul>

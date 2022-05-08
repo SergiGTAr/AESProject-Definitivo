@@ -1,18 +1,16 @@
-"use strict";
+'use strict'
 
-const mongoose = require("mongoose");
+
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-import {User} from "./user";
-import {Conversation} from "./conversation";
-import {Team} from "./team";
 
 const MessageSchema = Schema({
-    content: String,
-    user: User,
-    conversation: Conversation,
-    created_at: Date,
-    image: String,
-    team: Team,
+    text: String,
+    viewed: String,
+    created_at: String,
+    sender: {type: Schema.ObjectId, ref: 'User'},
+    recipient: {type: Schema.ObjectId, ref: 'User'}
 });
 
-module.exports = mongoose.model("Message", MessageSchema);
+
+module.exports=mongoose.model('Message', MessageSchema);

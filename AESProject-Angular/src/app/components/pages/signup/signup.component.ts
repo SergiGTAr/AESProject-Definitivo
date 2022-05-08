@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
         groupPasswords: new FormGroup({
             password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)]),
             repeatedPassword: new FormControl('', [Validators.required])
-        }),
+        }, CustomValidators.mustMatch('password','repeatedPassword')),
         sex: new FormControl('', [Validators.required])
     });
 
@@ -82,3 +82,25 @@ export class SignupComponent implements OnInit {
         return this.signUpForm.get('sex');
     }
 }
+
+class CustomValidators {
+    constructor() {}
+
+    static mustMatch(password: string, repeatedPassword: string) {
+      return (formGroup: FormGroup) => {
+        const control = formGroup.controls[password];
+        const matchingControl = formGroup.controls[repeatedPassword];
+  
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+          return;
+        }
+
+        if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({mustMatch: true});
+        } else {
+          matchingControl.setErrors(null);
+        }
+        return null;
+      };
+    }
+  }

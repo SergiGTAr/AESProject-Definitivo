@@ -1,1 +1,52 @@
-<p>config works!</p>
+<main class="container">
+    <app-header-profile></app-header-profile>
+    <div class="profileConfig">
+        <form class="form names" action="" [formGroup]="namesForm">
+            <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
+            <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
+
+            <div class="submitError" *ngIf="(name.invalid && (name.dirty || name.touched) || (surname.invalid && (surname.dirty || surname.touched)))">
+                <p>There are some fields to check:</p>
+                <ul>
+                    <li *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <p>Your name must have 1-30 characters</p>
+                    </li>
+                    <li *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                        <p>Your surname must have 1-30 characters</p>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn submit" type="submit" (click)="saveNames()">Save</button>
+        </form>
+        <hr class="separator"/>
+        <form class="form password" action="" [formGroup]="passwordForm">
+            <input class="input password" type="password" name="password" placeholder="Password" formControlName="password">
+            <input class="input repeatedPassword" type="password" name="repeatedPassword" placeholder="Confirm password" formControlName="repeatedPassword">
+
+            <div class="submitError" *ngIf="(password.invalid && (password.dirty || password.touched) || (repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)))">
+                <p>There are some fields to check:</p>
+                <ul>
+                    <li *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <p>You have to write a password that must have at least 6 charaters, special characters and numbers</p>
+                    </li>
+                    <li *ngIf="repeatedPassword.errors.mustMatch && (repeatedPassword.dirty || repeatedPassword.touched)">
+                        <p>Both passwords are different</p>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn submit" type="submit" (click)="savePassword()">Save</button>
+        </form>
+        <hr class="separator"/>
+        <form class="form info" action="" [formGroup]="infoForm">
+            <textarea class="textarea biography" maxlength="254" placeholder="Write your biography (optional)" formControlName="biography"></textarea>
+            <input class="input day" type="text" name="day" placeholder="dd" formControlName="day">
+            <input class="input month" type="text" name="month" placeholder="mm" formControlName="month">
+            <input class="input year" type="text" name="year" placeholder="yyyy" formControlName="year">
+
+            <div class="submitError" *ngIf="(false)">
+                <p>The date is not valid</p>
+            </div>
+            <button class="btn submit" type="submit" (click)="saveInfo()">Save</button>
+        </form>
+    </div>
+</main>

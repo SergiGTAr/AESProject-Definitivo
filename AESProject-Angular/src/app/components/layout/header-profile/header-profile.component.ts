@@ -8,6 +8,7 @@ import { UserModel } from 'src/app/models/user.model';
   styleUrls: ['./header-profile.component.scss']
 })
 export class HeaderProfileComponent implements OnInit {
+  profilePage: string
   status: string
   identity: any
   userModel: UserModel
@@ -17,6 +18,7 @@ export class HeaderProfileComponent implements OnInit {
 
     ngOnInit(): void {
         const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
+        this.profilePage = this.activatedRoute.snapshot.url[0].path;
         this.identity = JSON.parse(localStorage.getItem('identity'));
 
         if (username === this.identity.username) {

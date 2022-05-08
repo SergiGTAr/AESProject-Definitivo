@@ -63,11 +63,10 @@ function saveComment(req, res){
 
     if(
         params.content &&
-        params.user &&
         params.post
     ){
         comment.content = params.content;
-        comment.user = params.user;
+        comment.user = req.user.sub;
         comment.post = params.post;
         comment.created_at = Date.now();
 

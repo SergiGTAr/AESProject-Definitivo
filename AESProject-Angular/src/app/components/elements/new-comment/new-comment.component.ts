@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
@@ -9,14 +9,15 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class NewCommentComponent implements OnInit {
   status: string;
-  
+  @Input() post;
+
   constructor(private commentService : CommentService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(content: string) {
-    this.commentService.saveComment(content).subscribe(
+    this.commentService.saveComment(content, this.post._id).subscribe(
         response => {
             if (response) {
                 this.status = 'success';

@@ -22,8 +22,8 @@ export class CommentService {
         return this.httpClient.get(this.url + 'getCommentsByPost/' + post_id, {headers});
     }
 
-    saveComment(content: string) {
-        const params = {content: content};
+    saveComment(content: string, post: string) {
+        const params = {content: content, post};
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 

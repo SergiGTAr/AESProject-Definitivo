@@ -95,12 +95,8 @@ $orange: #ff6900;
         }
     }
     .profilePosts {
-        width: 100vh;
         margin: 0 auto 0 15px;
-        .posts {
-            margin: 0 auto 30px auto;
-            max-width: 600px;
-        }
+        min-width: 600px;
     }
 }
 
@@ -110,7 +106,13 @@ $orange: #ff6900;
             display: none;
         }
         .profilePosts {
-            margin: 0 auto 0 auto;
+            width: 100%;
+            min-width: 0;
+            margin: 0 auto;
+            .posts {
+                margin: 0 auto;
+                max-width: 600px;
+            }
         }
     }
 };

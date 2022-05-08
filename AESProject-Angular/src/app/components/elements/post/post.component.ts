@@ -1,13 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
+import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'app-post',
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
-    providers: [UserService]
+    providers: [UserService, PostService]
 })
 export class PostComponent implements OnInit {
     @Input() post: any;
@@ -21,16 +22,7 @@ export class PostComponent implements OnInit {
     isLiked: boolean;
     isCommenting: boolean;
 
-    constructor(private userService : UserService) {
-    }
-
-    clickLiked(): void {
-      this.isLiked = !this.isLiked;
-    }
-
-    clickComment(): void {
-      this.isCommenting = !this.isCommenting;
-      this.commentEmitter.emit(this.isCommenting);
+    constructor(private userService : UserService, private postService : PostService) {
     }
 
     ngOnInit(): void {
@@ -64,6 +56,26 @@ export class PostComponent implements OnInit {
                 this.status = 'error';
             }
           }
+      );
+    }
+
+    clickLiked(): void {
+      this.isLiked = !this.isLiked;
+    }
+
+    clickComment(): void {
+      this.isCommenting = !this.isCommenting;
+      this.commentEmitter.emit(this.isCommenting);
+    }
+
+    clickDelete(): void {
+      this.postService.deletePost(this.post._id).subscribe(
+        response => {
+            this.status = 'success';
+        },
+        error => {
+            this.status = 'error'; 
+        }
       );
     }
 }

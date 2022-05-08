@@ -11,7 +11,7 @@
         <div class="options">
             <button class="btn addLike" (click)="clickLiked()" [ngClass]="{'active': isLiked}"><p>{{postModel?.likes}} likes</p></button>
             <button class="btn addComment" (click)="clickComment()"><p>{{postModel?.comments}} comments</p></button>
-            <button class="btn deletePost" *ngIf="isOwner"><p>Delete</p></button>
+            <button class="btn deletePost" (click)="clickDelete()" *ngIf="isOwner"><p>Delete</p></button>
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Router } from '@angular/router';
 import { UserModel } from '../models/user.model';
+import { PostModel } from '../models/post.model';
 
 @Injectable({
     providedIn: 'root'
@@ -33,5 +34,12 @@ export class PostService {
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
         return this.httpClient.post(this.url + 'post', params, {headers});
+    }
+
+    deletePost(post: string) {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.delete(this.url + 'post/' + post, {headers});
     }
 }

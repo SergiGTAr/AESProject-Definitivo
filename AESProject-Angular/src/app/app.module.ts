@@ -27,6 +27,7 @@ import { UserService } from './services/user.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NewCommentComponent } from './components/elements/new-comment/new-comment.component';
+import { UserListComponent } from './components/elements/user-list/user-list.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { NewCommentComponent } from './components/elements/new-comment/new-comme
         ConfigComponent,
         HeaderComponent,
         HeaderProfileComponent,
-        NewCommentComponent
+        NewCommentComponent,
+        UserListComponent
     ],
     imports: [
         BrowserModule,

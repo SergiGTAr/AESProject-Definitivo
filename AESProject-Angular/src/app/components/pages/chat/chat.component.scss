@@ -6,14 +6,10 @@ $lightGray: #efefef;
 $gray: #e0e0e0;
 $darkGray: #666666;
 
-@font-face {
-    font-family: "Product Sans";
-    src: local(Fonts\ProductSansRegular);
-}
-
-@font-face {
-    font-family: "Isidora";
-    src: local(Fonts\IsidoraLight), local(Fonts\IsidoraBold);
+* {
+    font-family: Product Sans;
+    outline: none;
+    text-decoration: none;
 }
 
 ::-webkit-scrollbar {
@@ -33,6 +29,7 @@ $darkGray: #666666;
 ::placeholder {
     color: $darkGray;
 }
+
 .btn {
     border: 0;
     align-items: center;
@@ -62,17 +59,27 @@ $darkGray: #666666;
 }
 
 .container {
+    overflow: hidden;
     height: calc(100vh - 50px);
     display: flex;
     justify-content: center;
+    .list {
+        margin: 30px 15px;
+        width: 100%;
+        max-width: 300px;
+        height: calc(100% - 60px);
+        background: $lightGray;
+        border-radius: 10px;
+        overflow-x: hidden;
+    }
     .box {
-        margin: 30px;
+        margin: 30px 15px;
         width: 100%;
         max-width: 600px;
-        height: 90%;
+        height: calc(100% - 60px);
         .conversation {
             overflow-x: hidden;
-            height: calc(100% - 100px);
+            height: calc(100% - 140px);
             display: flex;
             flex-direction: column;
             background: $lightGray;
@@ -130,3 +137,23 @@ $darkGray: #666666;
         }
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .container {
+        align-items: center;
+        overflow-y: scroll;
+        flex-direction: column;
+        .list {
+            margin: 15px;
+            height: 25%;
+            width: 80%;
+            max-width: 600px;
+        }
+        .box {
+            margin: 15px;
+            height: 65%;
+            width: 80%;
+            max-width: 600px;
+        }
+    }
+};

@@ -1,12 +1,14 @@
 <main class="container">
+    <div class="list">
+        <app-user-list *ngFor="let user of users" [user]="user" (userListEmitter)="clickUser()"></app-user-list>
+    </div>
     <div class="box">
         <div class="conversation">
-            <div class="you"><p>Hola</p></div>
-            <div class="another"><p>Hola</p></div>
+            <div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>
         </div>
         <div class="messageInput">
             <textarea class="input message" name="" id=""></textarea>
-            <button class="btn send"><i class="fas fa-paper-plane"></i></button>
+            <button class="btn send">Send</button>
         </div>
     </div>
 </main>

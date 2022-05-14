@@ -1,0 +1,32 @@
+$white: #ffffff;
+$lightGray: #efefef;
+$gray: #e0e0e0;
+$darkGray: #666666;
+
+* {
+    font-family: Product Sans;
+    outline: none;
+    text-decoration: none;
+}
+
+.container {
+    border-radius: 10px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    overflow-x: hidden;
+    &.selected{
+        background: $gray;
+    }
+    .userPhoto {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+    .user {
+        margin: 0 0 0 10px;
+        display: block;
+    }
+}

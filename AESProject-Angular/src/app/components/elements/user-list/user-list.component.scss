@@ -17,8 +17,9 @@ $darkGray: #666666;
     justify-content: left;
     align-items: center;
     overflow-x: hidden;
-    &.selected{
+    &:hover{
         background: $gray;
+        cursor: pointer;
     }
     .userPhoto {
         border-radius: 50%;

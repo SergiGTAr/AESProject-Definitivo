@@ -9,7 +9,7 @@ import { UserModel } from 'src/app/models/user.model';
 export class UserListComponent implements OnInit {
   @Input() user: any;
   @Input() isSelected: boolean;
-  @Output() userListEmitter: EventEmitter<void> = new EventEmitter();
+  @Output() userListEmitter: EventEmitter<UserModel> = new EventEmitter();
   
   userModel: UserModel;
 
@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit {
   }
 
   clickUser(): void {
-    this.userListEmitter.emit();
+    this.userListEmitter.emit(this.userModel);
     this.isSelected = true;
   }
 

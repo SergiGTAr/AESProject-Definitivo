@@ -1,8 +1,12 @@
 <main class="container">
     <div class="list">
-        <app-user-list *ngFor="let user of users" [user]="user" (userListEmitter)="clickUser()"></app-user-list>
+        <app-user-list *ngFor="let user of users" [user]="user" [isSelected]="isSelected" (userListEmitter)="clickUser($event)"></app-user-list>
     </div>
     <div class="box">
+        <div class="user">
+            <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
+            <p class="username">Adri PG</p>
+        </div>
         <div class="conversation">
             <div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>
         </div>

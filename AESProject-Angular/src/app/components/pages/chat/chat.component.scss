@@ -71,21 +71,53 @@ $darkGray: #666666;
         background: $lightGray;
         border-radius: 10px;
         overflow-x: hidden;
+        &::-webkit-scrollbar-track {
+            background: $lightGray;
+            border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border: 3px solid $lightGray;
+        }
     }
     .box {
         margin: 30px 15px;
         width: 100%;
         max-width: 600px;
         height: calc(100% - 60px);
-        .conversation {
-            overflow-x: hidden;
-            height: calc(100% - 140px);
-            display: flex;
-            flex-direction: column;
+        .user {
             background: $lightGray;
             padding: 10px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+            height: 40px;
+            padding: 10px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            .userPhoto {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+            }
+            .username {
+                margin: 0 0 0 10px;
+                display: block;
+            }
+        }
+        .conversation {
+            &::-webkit-scrollbar-track {
+                background: $lightGray;
+            }
+            &::-webkit-scrollbar-thumb {
+                border: 3px solid $lightGray;
+            }
+
+            overflow-x: hidden;
+            height: calc(100% - 200px);
+            display: flex;
+            flex-direction: column;
+            background: $lightGray;
+            padding: 10px;
             .you,
             .another {
                 display: flex;

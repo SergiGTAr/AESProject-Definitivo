@@ -176,6 +176,23 @@ function updateUser(req, res) {
     });
 }
 
+function updateName(req, res){
+    const params = req.params;
+    const userId = req.user.sub;
+
+    const userName = params.name;
+    const update = {
+        name: userName
+    };
+    User.findOneAndUpdate({_id: userId}, update, "", function (err, user) {
+        if (err) {
+            console.log("No s'ha pogut actualitzar!");
+        } else {
+            console.log(user);
+        }
+    });
+}
+
 function deleteUser(req, res) {
     const params = req.body;
     const userId = params.id;
@@ -228,6 +245,63 @@ function getCounters(req, res) {
     }
 }
 
+function newfollow(req, res){
+    let user_id = req.user.sub;
+    let following_id = req.body.id;
+
+    User.updateOne(
+        { _id: user_id },
+        { $addToSet: { following: [following_id] } },
+        function(err, user) {
+            if (err) {
+                res.status(404).send({message: "No s'ha actualitzat"});
+            } else {
+                res.status(200).send({user: user});
+            }
+        }
+    );
+}
+
+function followers_count(req, res){
+    let user_id = req.user.sub;
+
+    var mapFunction1 = function(){
+        emit(this.following, 1);
+    };
+
+    var reduceFunction1 = function(k,following) {
+        var count = 0;
+        for(var i in following){
+            if(following[i] == user_id) count += 1;
+        }
+        return count;
+    };
+
+    db.users.mapReduce(
+        mapFunction1,
+        reduceFunction1,
+        { out: "number_of_followers" }
+    );
+}
+
+function following_count(req, res){
+    let user_id = req.user.sub;
+    const db = client.db("AESProjectDB");
+    const coll = db.collection("users");
+
+    const pipeline = [
+        { $match : { _id : user_id } },
+        { $project : { count : { $size : "$following" } } }
+    ];
+    const aggCursor = coll.aggregate(pipeline);
+    for(const doc of aggCursor) {
+        console.log(doc);
+        res.status(200).send(doc);
+    }
+}
+
+
+
 
 module.exports = {
     home,
@@ -239,5 +313,10 @@ module.exports = {
     getUserByUsername,
     deleteUser,
     updateUser,
-    getCounters
+    getCounters,
+    updateName,
+
+    newfollow,
+    followers_count,
+    following_count
 };

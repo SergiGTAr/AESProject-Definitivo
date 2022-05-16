@@ -12,6 +12,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: String,
   image: String,
+  following: [String]
+
 });
 
 module.exports = mongoose.model("User", UserSchema);
@@ -19,4 +21,3 @@ module.exports = mongoose.model("User", UserSchema);
 
 
 
-//function

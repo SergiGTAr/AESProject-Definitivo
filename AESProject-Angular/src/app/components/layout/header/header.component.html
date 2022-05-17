@@ -28,6 +28,6 @@
     <ul [ngClass]="{'profileOptionsActive': enableProfileOptions, 'profileOptionsInactive': !enableProfileOptions}" id="profileOptions">
         <li><a routerLink="/profile/{{identity.username}}/config" routerLinkActive="active"><p class="configuration">Configuration</p><i data-feather="settings" class="configuration"></i></a></li>
         <li><a routerLink="/profile/{{identity.username}}/posts" routerLinkActive="active"><p class="profile">Profile</p><i data-feather="user" class="profile"></i></a></li>
-        <li><a routerLink="/signIn" routerLinkActive="active"><p class="exit">Exit</p><i data-feather="log-out" class="exit"></i></a></li>
+        <li><a routerLink="/signIn" routerLinkActive="active" (click)="logOut()"><p class="exit">Exit</p><i data-feather="log-out" class="exit"></i></a></li>
     </ul>
 </nav>

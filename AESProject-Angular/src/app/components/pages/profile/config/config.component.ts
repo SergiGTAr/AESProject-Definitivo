@@ -9,8 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ConfigComponent implements OnInit {
 
   namesForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)]),
-    surname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)])
+    name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)]),
+    surname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)])
   });
   passwordForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)]),
@@ -18,9 +18,9 @@ export class ConfigComponent implements OnInit {
   }, CustomValidators.mustMatch('password','repeatedPassword'));
   infoForm = new FormGroup({
     biography: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)]),
-    day: new FormControl('', [Validators.required]),
-    month: new FormControl('', [Validators.required]),
-    year: new FormControl('', [Validators.required])
+    day: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/)]),
+    month: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/)]),
+    year: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]$/)])
   });
   
 

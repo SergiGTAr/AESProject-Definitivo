@@ -39,9 +39,9 @@
         <hr class="separator"/>
         <form class="form info" action="" [formGroup]="infoForm">
             <textarea class="textarea biography" maxlength="254" placeholder="Write your biography (optional)" formControlName="biography"></textarea>
-            <input class="input day" type="text" name="day" placeholder="dd" formControlName="day">
-            <input class="input month" type="text" name="month" placeholder="mm" formControlName="month">
-            <input class="input year" type="text" name="year" placeholder="yyyy" formControlName="year">
+            <input class="input day" maxlength="2" type="text" name="day" placeholder="dd" formControlName="day">
+            <input class="input month" maxlength="2" type="text" name="month" placeholder="mm" formControlName="month">
+            <input class="input year" maxlength="4" type="text" name="year" placeholder="yyyy" formControlName="year">
 
             <div class="submitError" *ngIf="(false)">
                 <p>The date is not valid</p>

@@ -30,4 +30,9 @@ export class HeaderComponent implements OnInit {
 
     this.enableProfileOptions = !this.enableProfileOptions;
   }
+
+  logOut(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('identity');
+  }
 }

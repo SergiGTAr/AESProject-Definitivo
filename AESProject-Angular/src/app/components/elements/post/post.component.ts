@@ -21,6 +21,8 @@ export class PostComponent implements OnInit {
     isOwner: boolean;
     isLiked: boolean;
     isCommenting: boolean;
+    likes: number;
+    comments: number
 
     constructor(private userService : UserService, private postService : PostService) {
     }
@@ -28,6 +30,8 @@ export class PostComponent implements OnInit {
     ngOnInit(): void {
       this.identity = JSON.parse(localStorage.getItem('identity'));
       this.userModel = new UserModel (this.post.user,'','','','','','');
+      this.likes = 0;
+      this.comments = 0;
 
       if (this.identity._id == this.userModel.id) {
         this.isOwner = true;
@@ -44,8 +48,8 @@ export class PostComponent implements OnInit {
             this.postModel.user = this.userModel;
             this.postModel.content = this.post.content;
             this.postModel.created_at = dateString;
-            this.postModel.likes = String(204124).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            this.postModel.comments = String(4562).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            this.postModel.comments = String(this.comments).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             
             this.status = 'success';
         },

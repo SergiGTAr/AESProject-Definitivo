@@ -151,7 +151,6 @@ function getUserByUsername(req, res){
 function updateUser(req, res) {
     const params = req.body;
     const userId = params.id;
-
     const userName = params.name;
     const userSurname = params.surname;
     const userUsername = params.username;
@@ -177,7 +176,7 @@ function updateUser(req, res) {
 }
 
 function updateName(req, res){
-    const params = req.params;
+    const params = req.body;
     const userId = req.user.sub;
 
     const userName = params.name;
@@ -188,7 +187,7 @@ function updateName(req, res){
         if (err) {
             console.log("No s'ha pogut actualitzar!");
         } else {
-            console.log(user);
+            res.status(200).send({user: user});
         }
     });
 }
@@ -264,13 +263,14 @@ function newfollow(req, res){
 
 function followers_count(req, res){
     let user_id = req.user.sub;
+    const db = client.db("AESProjectDB");
 
-    var mapFunction1 = function(){
+    let mapFunction = function(){
         emit(this.following, 1);
     };
 
-    var reduceFunction1 = function(k,following) {
-        var count = 0;
+    let reduceFunction = function(k,following) {
+        let count = 0;
         for(var i in following){
             if(following[i] == user_id) count += 1;
         }
@@ -278,8 +278,8 @@ function followers_count(req, res){
     };
 
     db.users.mapReduce(
-        mapFunction1,
-        reduceFunction1,
+        mapFunction,
+        reduceFunction,
         { out: "number_of_followers" }
     );
 }

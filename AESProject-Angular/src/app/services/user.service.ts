@@ -68,4 +68,12 @@ export class UserService {
             return this.httpClient.get(this.url + 'userbyusername/' + user.username, {headers});
         }
     }
+
+    newFollow(user_id: string): Observable<any> {
+        const params = {id:user_id};
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.post(this.url + 'newfollow', params, {headers});
+    }
 }

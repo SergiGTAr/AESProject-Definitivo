@@ -76,4 +76,28 @@ export class UserService {
 
         return this.httpClient.post(this.url + 'newfollow', params, {headers});
     }
+
+
+
+    updateNameSurname(userName: string, userSurname: string): Observable<any> {
+        const params = {name:userName, surname:userSurname};
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.post(this.url + 'updatenamesurname', params, {headers});
+    }
+    updatePassword(userPassword: string): Observable<any> {
+        const params = {password:userPassword};
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.post(this.url + 'updatepassword', params, {headers});
+    }
+    updateBioBirth(userBio: string, userBirth: string): Observable<any> {
+        const params = {bio:userBio, birth:userBirth};
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.post(this.url + 'updatebiobirth', params, {headers});
+    }
 }

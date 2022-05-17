@@ -12,7 +12,9 @@ const UserSchema = new mongoose.Schema({
   password: String,
   role: String,
   image: String,
-  following: [String]
+  following: [String],
+  bio: String,
+  birth: String
 
 });
 

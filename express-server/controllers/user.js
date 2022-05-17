@@ -175,21 +175,76 @@ function updateUser(req, res) {
     });
 }
 
-function updateName(req, res){
+function updateNameSurname(req, res){
     const params = req.body;
     const userId = req.user.sub;
 
     const userName = params.name;
-    const update = {
-        name: userName
-    };
-    User.findOneAndUpdate({_id: userId}, update, "", function (err, user) {
-        if (err) {
-            console.log("No s'ha pogut actualitzar!");
-        } else {
-            res.status(200).send({user: user});
+    const userSurname = params.surname;
+
+    const filter = { _id : userId };
+    //const update = { name : userName}{ surname : userSurname };
+
+    User.updateOne(
+        filter,
+        { $set: { name: userName, surname: userSurname } },
+        function(err, user) {
+            if (err) {
+                res.status(404).send({message: "No s'ha actualitzat"});
+            } else {
+                res.status(200).send(user);
+            }
         }
+    );
+}
+
+function updatePassword(req, res){
+    const params = req.body;
+    const userId = req.user.sub;
+
+    let userPassword = params.password;
+
+    bcrypt.hash(params.password, null, null, (err, hash) => {
+        userPassword = hash;
     });
+
+    const filter = { _id : userId };
+    const update = { password : userPassword};
+
+    User.updateOne(
+        filter,
+        update,
+        function(err, user) {
+            if (err) {
+                res.status(404).send({message: "No s'ha actualitzat"});
+            } else {
+                res.status(200).send(user);
+            }
+        }
+    );
+}
+
+function updateBioBirth(req, res){
+    const params = req.body;
+    const userId = req.user.sub;
+
+    const userBio = params.bio;
+    const userBirth = params.birth;
+
+    const filter = { _id : userId };
+    //const update = { name : userName}{ surname : userSurname };
+
+    User.updateOne(
+        filter,
+        { $set: { bio: userBio, birth: userBirth } },
+        function(err, user) {
+            if (err) {
+                res.status(404).send({message: "No s'ha actualitzat"});
+            } else {
+                res.status(200).send(user);
+            }
+        }
+    );
 }
 
 function deleteUser(req, res) {
@@ -255,7 +310,7 @@ function newfollow(req, res){
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});
             } else {
-                res.status(200).send({user: user});
+                res.status(200).send(user);
             }
         }
     );
@@ -314,7 +369,9 @@ module.exports = {
     deleteUser,
     updateUser,
     getCounters,
-    updateName,
+    updateNameSurname,
+    updatePassword,
+    updateBioBirth,
 
     newfollow,
     followers_count,

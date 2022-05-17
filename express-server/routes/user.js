@@ -17,9 +17,11 @@ api.get('/userbyusername/:username', md_auth.ensureAuth, UserController.getUserB
 api.delete('/deleteuser', md_auth.ensureAuth, UserController.deleteUser);
 api.post('/updateuser', md_auth.ensureAuth, UserController.updateUser);
 api.get('/counters', md_auth.ensureAuth, UserController.getCounters);
-api.post('/updatename', md_auth.ensureAuth, UserController.updateName);
-api.post('/newfollow', md_auth.ensureAuth, UserController.newfollow);
+api.post('/updatenamesurname', md_auth.ensureAuth, UserController.updateNameSurname);
+api.post('/updatepassword', md_auth.ensureAuth, UserController.updatePassword);
+api.post('/updatebiobirth', md_auth.ensureAuth, UserController.updateBioBirth);
 
+api.post('/newfollow', md_auth.ensureAuth, UserController.newfollow);
 api.get('/followerscount', md_auth.ensureAuth, UserController.followers_count);
 api.get('/followingcount', md_auth.ensureAuth, UserController.following_count);
 

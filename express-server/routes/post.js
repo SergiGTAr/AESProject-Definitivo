@@ -12,5 +12,6 @@ api.get('/post/:id', md_auth.ensureAuth, PostController.getPost);
 api.delete('/post/:id', md_auth.ensureAuth, PostController.deletePost);
 api.get('/postsPropis/:id', md_auth.ensureAuth, PostController.getOwnPosts);
 api.get('/allposts', md_auth.ensureAuth, PostController.getAllPosts);
+api.post('/addlike', md_auth.ensureAuth, PostController.addLike);
 
 module.exports = api;

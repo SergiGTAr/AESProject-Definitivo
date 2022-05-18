@@ -8,6 +8,7 @@ const md_auth = require('../middlewares/checkAuth')
 api.get('/provesComment', md_auth.ensureAuth, CommentController.provesComment);
 api.get('/getAllComments', md_auth.ensureAuth, CommentController.getAllComments);
 api.get('/getCommentsByPost/:id', md_auth.ensureAuth, CommentController.getCommentsByPost);
+api.get('/getCountCommentbyPost', md_auth.ensureAuth, CommentController.getCountCommentbyPost);
 api.delete('/deleteComment', md_auth.ensureAuth, CommentController.deleteComment);
 api.post('/saveComment', md_auth.ensureAuth, CommentController.saveComment);
 

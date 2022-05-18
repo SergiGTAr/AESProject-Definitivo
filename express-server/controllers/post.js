@@ -6,6 +6,7 @@ require("mongoose-paginate-v2");
 const Post = require("../models/post");
 require("../models/user");
 const Follow = require("../models/follow");
+const User = require("../models/user");
 
 function provesPost(req, res){
     res.status(200).send({message: "Controlador de posts diu: Hola"});
@@ -138,6 +139,26 @@ function getAllPosts(req, res){
     });
 }
 
+function addLike(req, res){
+    const postId = req.body.id;
+
+    const filter = { _id : postId };
+    //const update = { name : userName}{ surname : userSurname };
+
+    User.updateOne(
+        filter,
+        {$inc : {likes : 1}},
+        function(err, post) {
+            if (err) {
+                res.status(404).send({message: "No s'ha actualitzat"});
+            } else {
+                res.status(200).send(post);
+            }
+        }
+    );
+
+}
+
 
 module.exports = {
     provesPost,
@@ -146,5 +167,6 @@ module.exports = {
     getPost,
     deletePost,
     getOwnPosts,
-    getAllPosts
+    getAllPosts,
+    addLike
 };

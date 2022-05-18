@@ -79,8 +79,8 @@ export class UserService {
 
 
 
-    updateNameSurname(userName: string, userSurname: string): Observable<any> {
-        const params = {name:userName, surname:userSurname};
+    updateNameSurname(userModel: UserModel): Observable<any> {
+        const params = {user : userModel};
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
@@ -93,8 +93,8 @@ export class UserService {
 
         return this.httpClient.post(this.url + 'updatepassword', params, {headers});
     }
-    updateBioBirth(userBio: string, userBirth: string): Observable<any> {
-        const params = {bio:userBio, birth:userBirth};
+    updateBioBirth(userModel: UserModel): Observable<any> {
+        const params = {user : userModel};
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 

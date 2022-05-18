@@ -90,7 +90,7 @@ function saveComment(req, res){
 function getCountCommentbyPost(req, res){
     const postId = req.body.id;
 
-    Comment.count({'post': postId}).exec(function (err, count){
+    Comment.count({ post : postId }).exec(function (err, count){
         if(err){
             res.status(500).send({message: "Error."});
         }else{

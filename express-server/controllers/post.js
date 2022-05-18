@@ -147,7 +147,8 @@ function addLike(req, res){
 
     User.updateOne(
         filter,
-        {$inc : {likes : 1}},
+        {$inc : { likes : 1}},
+        {new: true },
         function(err, post) {
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});

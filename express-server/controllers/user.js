@@ -179,8 +179,8 @@ function updateNameSurname(req, res){
     const params = req.body;
     const userId = req.user.sub;
 
-    const userName = params.name;
-    const userSurname = params.surname;
+    const userName = params.user.name;
+    const userSurname = params.user.surname;
 
     const filter = { _id : userId };
     //const update = { name : userName}{ surname : userSurname };
@@ -228,8 +228,8 @@ function updateBioBirth(req, res){
     const params = req.body;
     const userId = req.user.sub;
 
-    const userBio = params.bio;
-    const userBirth = params.birth;
+    const userBio = params.user.bio;
+    const userBirth = params.user.birth;
 
     const filter = { _id : userId };
     //const update = { name : userName}{ surname : userSurname };

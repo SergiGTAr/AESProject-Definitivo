@@ -10,6 +10,8 @@ const Post = require("../models/post");
 
 const Follow = require("../models/follow");
 
+const nodemailer = require ('nodemailer');
+
 
 
 function home(req, res) {
@@ -23,6 +25,32 @@ function proves(req, res) {
     res.status(200).send({
         message: "Servidor de NodeJS proves 2",
     });
+}
+
+function sendVerificationMail(user) {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'aesprojectrrss@gmail.com',
+            pass: 'AESProject200522'
+        }
+    });
+
+    const mailOptions = {
+        from: 'aesprojectrrss@gmail.com',
+        to: user.email,
+        subject: 'Verificació de correu AESProject',
+        text: 'Hola ' + user.name + ' ' + user.surname + '\n\n' + "benvingut a la nostra web."
+    }
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    }
+    );
 }
 
 function saveUser(req, res) {
@@ -65,6 +93,7 @@ function saveUser(req, res) {
                             return res.status(500).send({message: "Error al guardar l'usuari"});
                         }
                         if (userStored) {
+                            sendVerificationMail(userStored);
                             res.status(200).send({user: userStored});
                         } else {
                             res.status(404).send({message: "L'usuari no s'ha pogut registrar"});

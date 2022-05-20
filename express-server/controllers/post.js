@@ -142,12 +142,12 @@ function getAllPosts(req, res){
 function addLike(req, res){
     const postId = req.body.id;
 
-    const filter = { _id : postId };
+    //const filter = { "_id" : postId };
     //const update = { name : userName}{ surname : userSurname };
 
     User.updateOne(
-        filter,
-        {$inc : { likes : 1}},
+        { "_id" : postId },
+        {$inc : { "likes" : 1}},
         {new: true },
         function(err, post) {
             if (err) {

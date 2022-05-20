@@ -46,7 +46,7 @@ function deleteComment(req, res){
     const params = req.body;
     const commentId = params._id;
 
-    Comment.findOneAndDelete({'_id': commentId});
+    Comment.findOneAndDelete({_id: commentId});
     Comment.findById(commentId, function (err, comment) {
         if (err) {
             console.log("El usuari s'ha eliminat correctament!");
@@ -90,11 +90,18 @@ function saveComment(req, res){
 function getCountCommentbyPost(req, res){
     const postId = req.body.id;
 
-    Comment.count({ post : postId }).exec(function (err, count){
-        if(err){
-            res.status(500).send({message: "Error."});
+
+    /*var query = Comment.find();
+    query.count(function (err, count) {
+        if (err) console.log(err)
+        else console.log("Count is", count)
+    });*/
+
+    Comment.count({ "post" : postId }, function (err, comments) {
+        if (err){
+            console.log(err);
         }else{
-            res.status(200).send(count);
+            res.status(200).send({comments: comments});
         }
     });
 }

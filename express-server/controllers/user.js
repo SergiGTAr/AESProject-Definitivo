@@ -1,4 +1,5 @@
 "use strict";
+
 const bcrypt = require("bcrypt-nodejs");
 
 const User = require("../models/user");
@@ -8,6 +9,8 @@ const jwt = require("../services/jwt");
 const Post = require("../models/post");
 
 const Follow = require("../models/follow");
+
+
 
 function home(req, res) {
     res.status(200).send({
@@ -251,7 +254,7 @@ function deleteUser(req, res) {
     const params = req.body;
     const userId = params.id;
 
-    User.findOneAndDelete({id: userId});
+    User.deleteOne({ "_id" : userId});
     User.findById(userId, function (err, user) {
         if (err) {
             console.log("El usuari s'ha eliminat correctament!");
@@ -318,9 +321,16 @@ function newfollow(req, res){
 
 function followers_count(req, res){
     let user_id = req.user.sub;
-    const db = client.db("AESProjectDB");
 
-    let mapFunction = function(){
+    //const db = MongoClient.db("AESProjectDB");
+
+    /*var o = {};
+    o.map = function () {emit(this.following, 1)};*/
+
+
+
+
+    /*let mapFunction = function(){
         emit(this.following, 1);
     };
 
@@ -332,27 +342,50 @@ function followers_count(req, res){
         return count;
     };
 
-    db.users.mapReduce(
+    mongoose.connection.getClient().db().mapReduce(
         mapFunction,
         reduceFunction,
-        { out: "number_of_followers" }
+
     );
+
+    console.log("OK")*/
+
+    //db.number_of_followers.find()
+
+
+
+    /*const o = {};
+    // You can also define `map()` and `reduce()` as strings if your
+    // linter complains about `emit()` not being defined
+    o.map ='function () { emit(this.name, this.following.length) }';
+    o.reduce ='function (k, vals) { return vals.length }';
+    o.out = { replace:'createdCollectionNameForResults'};
+    o.verbose = true;
+    User.mapReduce(o,function(err, model, stats){
+        model.find().exec(function(err, docs){
+            console.log(docs);
+        });
+    })*/
 }
 
 function following_count(req, res){
     let user_id = req.user.sub;
-    const db = client.db("AESProjectDB");
-    const coll = db.collection("users");
-
+    console.log("1-");
     const pipeline = [
         { $match : { _id : user_id } },
         { $project : { count : { $size : "$following" } } }
     ];
-    const aggCursor = coll.aggregate(pipeline);
-    for(const doc of aggCursor) {
-        console.log(doc);
-        res.status(200).send(doc);
-    }
+    console.log("2-");
+    User.aggregate(pipeline,function(err, user) {
+        console.log("3-");
+        if (err) {
+            console.log("4-");
+            res.status(404).send({message: "No s'ha actualitzat"});
+        } else {
+            console.log("5-");
+            res.status(200).send({count: user});
+        }
+    });
 }
 
 

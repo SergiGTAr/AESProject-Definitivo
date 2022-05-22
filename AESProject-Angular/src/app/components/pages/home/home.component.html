@@ -6,10 +6,10 @@
                 <p class="username">{{identity.username}}</p>
                 <p class="friendsCounter">0</p>
             </div>
-            <hr class="separator"/>
-            <div class="profileInfo">
-                <p class="biography">Bio</p>
-                <p class="birthDate">Birth</p>
+            <hr class="separator" *ngIf="((userModel.bio !== undefined && userModel.bio !== '') || userModel.birth !== undefined)"/>
+            <div class="profileInfo" *ngIf="((userModel.bio !== undefined && userModel.bio !== '') || userModel.birth !== undefined)">
+                <p class="biography" *ngIf="(userModel.bio !== undefined && userModel.bio !== '')">{{userModel.bio}}</p>
+                <p class="birthDate" *ngIf="(userModel.birth !== undefined)">{{getBirth()}}</p>
             </div>
         </div>
     </div>

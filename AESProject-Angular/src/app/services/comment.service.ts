@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Router } from '@angular/router';
-import { UserModel } from '../models/user.model';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +19,13 @@ export class CommentService {
         const headers = new HttpHeaders().set('Authorization', token.toString());
 
         return this.httpClient.get(this.url + 'getCommentsByPost/' + post_id, {headers});
+    }
+
+    getNumberComments(post_id: string): Observable<any> {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Authorization', token.toString());
+
+        return this.httpClient.get(this.url + 'getCountCommentbyPost/' + post_id, {headers});
     }
 
     saveComment(content: string, post: string) {

@@ -88,7 +88,8 @@ function saveComment(req, res){
 }
 
 function getCountCommentbyPost(req, res){
-    const postId = req.body.id;
+
+    const postId = req.params.id;
 
     Comment.count({ "post" : postId }, function (err, comments) {
         if (err){

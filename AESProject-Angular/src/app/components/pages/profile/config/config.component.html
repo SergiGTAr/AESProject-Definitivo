@@ -2,8 +2,8 @@
     <app-header-profile></app-header-profile>
     <div class="profileConfig">
         <form class="form names" action="" [formGroup]="namesForm">
-            <input class="input name" type="text" name="name" placeholder="Name" formControlName="name">
-            <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname">
+            <input class="input name" type="text" name="name" placeholder="Name" formControlName="name" value="{{userModel.name}}">
+            <input class="input surname" type="text" name="surname" placeholder="Surname" formControlName="surname" value="{{userModel.surname}}">
 
             <div class="submitError" *ngIf="(name.invalid && (name.dirty || name.touched) || (surname.invalid && (surname.dirty || surname.touched)))">
                 <p>There are some fields to check:</p>
@@ -38,12 +38,12 @@
         </form>
         <hr class="separator"/>
         <form class="form info" action="" [formGroup]="infoForm">
-            <textarea class="textarea biography" maxlength="254" placeholder="Write your biography (optional)" formControlName="biography"></textarea>
-            <input class="input day" maxlength="2" type="text" name="day" placeholder="dd" formControlName="day">
-            <input class="input month" maxlength="2" type="text" name="month" placeholder="mm" formControlName="month">
-            <input class="input year" maxlength="4" type="text" name="year" placeholder="yyyy" formControlName="year">
+            <textarea class="textarea biography" maxlength="254" placeholder="Write your biography (optional)" formControlName="biography" value="{{userModel.bio}}"></textarea>
+            <input class="input day" maxlength="2" type="text" name="day" placeholder="dd (optional)" formControlName="day" value="{{getDay()}}">
+            <input class="input month" maxlength="2" type="text" name="month" placeholder="mm (optional)" formControlName="month" value="{{getMonth()}}">
+            <input class="input year" maxlength="4" type="text" name="year" placeholder="yyyy (optional)" formControlName="year" value="{{getYear()}}">
 
-            <div class="submitError" *ngIf="(false)">
+            <div class="submitError" *ngIf="(bio.invalid && (bio.dirty || bio.touched))">
                 <p>The date is not valid</p>
             </div>
             <button class="btn submit" type="submit" (click)="saveInfo()">Save</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserModel } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,11 +13,11 @@ export class BioComponent implements OnInit {
   status: string
   userModel: UserModel
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.identity = JSON.parse(localStorage.getItem('identity'));
-    this.userModel = new UserModel("", "", "", "", this.identity.username, "", "");
+    const username = this.activatedRoute.parent.snapshot.paramMap.get('id');
+    this.userModel = new UserModel("", "", "", "", username, "", "");
     
     this.userService.getUser(this.userModel).subscribe(
       response => {

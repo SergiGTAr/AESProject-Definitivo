@@ -78,6 +78,13 @@ export class PostComponent implements OnInit {
 
     clickLiked(): void {
       this.isLiked = !this.isLiked;
+      if (this.isLiked) {
+        this.likes++;
+      } else {
+        this.likes--;
+      }
+      
+      this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
     clickComment(): void {

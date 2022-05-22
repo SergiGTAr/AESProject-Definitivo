@@ -7,6 +7,8 @@ export class UserModel {
     email: string;
     password: string;
     gettoken: any;
+    bio: string;
+    birth: Date;
 
     constructor(id: string, name: string, surname: string, sex: string, username: string, email: string, password: string) {
         this.id = id;

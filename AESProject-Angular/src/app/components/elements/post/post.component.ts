@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { PostModel } from 'src/app/models/post.model';
 import { UserModel } from 'src/app/models/user.model';
+import { CommentService } from 'src/app/services/comment.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,16 +23,15 @@ export class PostComponent implements OnInit {
     isLiked: boolean;
     isCommenting: boolean;
     likes: number;
-    comments: number
 
-    constructor(private userService : UserService, private postService : PostService) {
+    constructor(private userService: UserService, private commentService: CommentService, private postService: PostService) {
+
     }
 
     ngOnInit(): void {
       this.identity = JSON.parse(localStorage.getItem('identity'));
       this.userModel = new UserModel (this.post.user,'','','','','','');
       this.likes = 0;
-      this.comments = 0;
 
       if (this.identity._id == this.userModel.id) {
         this.isOwner = true;
@@ -49,8 +49,21 @@ export class PostComponent implements OnInit {
             this.postModel.content = this.post.content;
             this.postModel.created_at = dateString;
             this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            this.postModel.comments = String(this.comments).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             
+            this.status = 'success';
+        },
+        error => {
+            const errorMessage = error as any;
+            console.log(errorMessage);
+            if (errorMessage != null) {
+                this.status = 'error';
+            }
+          }
+      );
+
+      this.commentService.getNumberComments(this.post._id).subscribe(
+        response => {
+            this.postModel.comments = String(response.comments).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             this.status = 'success';
         },
         error => {

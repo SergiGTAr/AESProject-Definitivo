@@ -146,9 +146,8 @@ function addLike(req, res){
     //const update = { name : userName}{ surname : userSurname };
 
     User.updateOne(
-        { "_id" : postId },
-        {$inc : { "likes" : 1}},
-        {new: true },
+        { _id : postId },
+        {$inc : { likes : 1}},
         function(err, post) {
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});
@@ -157,7 +156,6 @@ function addLike(req, res){
             }
         }
     );
-
 }
 
 

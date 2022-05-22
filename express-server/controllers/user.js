@@ -205,26 +205,23 @@ function updatePassword(req, res){
     const params = req.body;
     const userId = req.user.sub;
 
-    let userPassword = params.password;
-
     bcrypt.hash(params.password, null, null, (err, hash) => {
-        userPassword = hash;
-    });
 
-    const filter = { _id : userId };
-    const update = { password : userPassword};
+        const filter = { _id : userId };
+        const update = { password : hash};
 
-    User.updateOne(
-        filter,
-        update,
-        function(err, user) {
-            if (err) {
-                res.status(404).send({message: "No s'ha actualitzat"});
-            } else {
-                res.status(200).send(user);
+        User.updateOne(
+            filter,
+            update,
+            function(err, user) {
+                if (err) {
+                    res.status(404).send({message: "No s'ha actualitzat"});
+                } else {
+                    res.status(200).send(user);
+                }
             }
-        }
-    );
+        );
+    });
 }
 
 function updateBioBirth(req, res){
@@ -263,7 +260,6 @@ function deleteUser(req, res) {
             console.log(user);
         }
     });
-
 }
 
 function getCounters(req, res) {
@@ -322,70 +318,48 @@ function newfollow(req, res){
 function followers_count(req, res){
     let user_id = req.user.sub;
 
-    //const db = MongoClient.db("AESProjectDB");
-
-    /*var o = {};
-    o.map = function () {emit(this.following, 1)};*/
 
 
 
-
-    /*let mapFunction = function(){
-        emit(this.following, 1);
-    };
-
-    let reduceFunction = function(k,following) {
-        let count = 0;
-        for(var i in following){
-            if(following[i] == user_id) count += 1;
-        }
-        return count;
-    };
-
-    mongoose.connection.getClient().db().mapReduce(
-        mapFunction,
-        reduceFunction,
-
-    );
-
-    console.log("OK")*/
-
-    //db.number_of_followers.find()
-
-
-
-    /*const o = {};
-    // You can also define `map()` and `reduce()` as strings if your
-    // linter complains about `emit()` not being defined
-    o.map ='function () { emit(this.name, this.following.length) }';
-    o.reduce ='function (k, vals) { return vals.length }';
-    o.out = { replace:'createdCollectionNameForResults'};
-    o.verbose = true;
-    User.mapReduce(o,function(err, model, stats){
-        model.find().exec(function(err, docs){
-            console.log(docs);
-        });
-    })*/
 }
 
 function following_count(req, res){
     let user_id = req.user.sub;
-    console.log("1-");
-    const pipeline = [
+    /*const pipeline = [
         { $match : { _id : user_id } },
-        { $project : { count : { $size : "$following" } } }
-    ];
-    console.log("2-");
-    User.aggregate(pipeline,function(err, user) {
+        { $project: {
+                item: 1,
+                numberOfFollowing: { $cond: { if: { $isArray: "$following" }, then: { $size: "$following" }, else: "0"} }
+            } }
+    ];*/
+    User.find({
+        "$expr": {
+            "$and": [
+                { $match : { _id : user_id } },
+                { $project : { count : { $size : "$following" } } }
+            ]
+        }
+    }, function(err, count) {
+        if (err) {
+            res.status(404).send({message: "No s'ha actualitzat"});
+        } else {
+            console.log(count);
+            res.status(200).send({count: count});
+        }
+    });
+
+
+    /*,function(err, count) {
         console.log("3-");
         if (err) {
             console.log("4-");
             res.status(404).send({message: "No s'ha actualitzat"});
         } else {
             console.log("5-");
-            res.status(200).send({count: user});
+            console.log(count);
+            res.status(200).send({count: count});
         }
-    });
+    });*/
 }
 
 
@@ -405,7 +379,6 @@ module.exports = {
     updateNameSurname,
     updatePassword,
     updateBioBirth,
-
     newfollow,
     followers_count,
     following_count

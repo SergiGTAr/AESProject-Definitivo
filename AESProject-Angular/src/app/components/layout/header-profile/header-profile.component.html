@@ -1,7 +1,7 @@
 <div class="profileHeader">
     <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
     <div class="options">
-        <button class="btn follow" *ngIf="isOwner"><i class="fas fa-user-plus"></i>Follow</button>
+        <button class="btn follow" *ngIf="!isOwner" (click)="follow()"><i class="fas fa-user-plus"></i>Follow</button>
     </div>
 </div>
 <div class="userBar">
@@ -13,6 +13,6 @@
     <ul class="profileNav">
         <li><a routerLink="/profile/{{userModel.username}}/posts" routerLinkActive="active" [ngClass]="{'selected': profilePage == 'posts'}">Posts</a></li>
         <li><a routerLink="/profile/{{userModel.username}}/bio" routerLinkActive="active" [ngClass]="{'selected': profilePage == 'bio'}">Biography</a></li>
-        <li><a routerLink="/profile/{{userModel.username}}/config" routerLinkActive="active" [ngClass]="{'selected': profilePage == 'config'}">Configuration</a></li>
+        <li *ngIf="isOwner"><a routerLink="/profile/{{userModel.username}}/config" routerLinkActive="active" [ngClass]="{'selected': profilePage == 'config'}">Configuration</a></li>
     </ul>
 </div>

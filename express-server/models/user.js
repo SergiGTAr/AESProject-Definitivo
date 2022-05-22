@@ -14,8 +14,7 @@ const UserSchema = new mongoose.Schema({
   image: String,
   following: [String],
   bio: String,
-  birth: String
-
+  birth: Date
 });
 
 module.exports = mongoose.model("User", UserSchema);

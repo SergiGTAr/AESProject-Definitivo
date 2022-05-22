@@ -10,8 +10,7 @@ const Post = require("../models/post");
 
 const Follow = require("../models/follow");
 
-const nodemailer = require ('nodemailer');
-
+const nodemailer = require('nodemailer');
 
 
 function home(req, res) {
@@ -43,13 +42,13 @@ function sendVerificationMail(user) {
         text: 'Hola ' + user.name + ' ' + user.surname + '\n\n' + "benvingut a la nostra web."
     }
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
+    transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
         }
-    }
     );
 }
 
@@ -166,7 +165,7 @@ function getUserById(req, res) {
     })
 }
 
-function getUserByUsername(req, res){
+function getUserByUsername(req, res) {
     const username = req.params.username;
 
     User.findOne({'username': username}, (err, user) => {
@@ -207,20 +206,20 @@ function updateUser(req, res) {
     });
 }
 
-function updateNameSurname(req, res){
+function updateNameSurname(req, res) {
     const params = req.body;
     const userId = req.user.sub;
 
     const userName = params.user.name;
     const userSurname = params.user.surname;
 
-    const filter = { _id : userId };
+    const filter = {_id: userId};
     //const update = { name : userName}{ surname : userSurname };
 
     User.updateOne(
         filter,
-        { $set: { name: userName, surname: userSurname } },
-        function(err, user) {
+        {$set: {name: userName, surname: userSurname}},
+        function (err, user) {
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});
             } else {
@@ -230,46 +229,45 @@ function updateNameSurname(req, res){
     );
 }
 
-function updatePassword(req, res){
+function updatePassword(req, res) {
     const params = req.body;
     const userId = req.user.sub;
 
-    let userPassword = params.password;
+    const userPassword = params.user.password;
 
-    bcrypt.hash(params.password, null, null, (err, hash) => {
-        userPassword = hash;
-    });
+    bcrypt.hash(userPassword, null, null, (err, hash) => {
+            const filter = {_id: userId};
+            const update = {password: hash};
 
-    const filter = { _id : userId };
-    const update = { password : userPassword};
-
-    User.updateOne(
-        filter,
-        update,
-        function(err, user) {
-            if (err) {
-                res.status(404).send({message: "No s'ha actualitzat"});
-            } else {
-                res.status(200).send(user);
-            }
+            User.updateOne(
+                filter,
+                {$set: update},
+                function (err, user) {
+                    if (err) {
+                        res.status(404).send({message: "No s'ha actualitzat"});
+                    } else {
+                        res.status(200).send(user);
+                    }
+                }
+            );
         }
     );
 }
 
-function updateBioBirth(req, res){
+function updateBioBirth(req, res) {
     const params = req.body;
     const userId = req.user.sub;
 
     const userBio = params.user.bio;
     const userBirth = params.user.birth;
 
-    const filter = { _id : userId };
+    const filter = {_id: userId};
     //const update = { name : userName}{ surname : userSurname };
 
     User.updateOne(
         filter,
-        { $set: { bio: userBio, birth: userBirth } },
-        function(err, user) {
+        {$set: {bio: userBio, birth: userBirth}},
+        function (err, user) {
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});
             } else {
@@ -283,7 +281,7 @@ function deleteUser(req, res) {
     const params = req.body;
     const userId = params.id;
 
-    User.deleteOne({ "_id" : userId});
+    User.deleteOne({"_id": userId});
     User.findById(userId, function (err, user) {
         if (err) {
             console.log("El usuari s'ha eliminat correctament!");
@@ -298,7 +296,7 @@ function deleteUser(req, res) {
 function getCounters(req, res) {
     let userId = req.user.sub;
 
-    if (req.params.id){
+    if (req.params.id) {
         userId = req.params.id;
     }
 
@@ -331,14 +329,14 @@ function getCounters(req, res) {
     }
 }
 
-function newfollow(req, res){
+function newfollow(req, res) {
     let user_id = req.user.sub;
     let following_id = req.body.id;
 
     User.updateOne(
-        { _id: user_id },
-        { $addToSet: { following: [following_id] } },
-        function(err, user) {
+        {_id: user_id},
+        {$addToSet: {following: [following_id]}},
+        function (err, user) {
             if (err) {
                 res.status(404).send({message: "No s'ha actualitzat"});
             } else {
@@ -348,15 +346,13 @@ function newfollow(req, res){
     );
 }
 
-function followers_count(req, res){
+function followers_count(req, res) {
     let user_id = req.user.sub;
 
     //const db = MongoClient.db("AESProjectDB");
 
     /*var o = {};
     o.map = function () {emit(this.following, 1)};*/
-
-
 
 
     /*let mapFunction = function(){
@@ -382,7 +378,6 @@ function followers_count(req, res){
     //db.number_of_followers.find()
 
 
-
     /*const o = {};
     // You can also define `map()` and `reduce()` as strings if your
     // linter complains about `emit()` not being defined
@@ -397,15 +392,15 @@ function followers_count(req, res){
     })*/
 }
 
-function following_count(req, res){
+function following_count(req, res) {
     let user_id = req.user.sub;
     console.log("1-");
     const pipeline = [
-        { $match : { _id : user_id } },
-        { $project : { count : { $size : "$following" } } }
+        {$match: {_id: user_id}},
+        {$project: {count: {$size: "$following"}}}
     ];
     console.log("2-");
-    User.aggregate(pipeline,function(err, user) {
+    User.aggregate(pipeline, function (err, user) {
         console.log("3-");
         if (err) {
             console.log("4-");
@@ -416,8 +411,6 @@ function following_count(req, res){
         }
     });
 }
-
-
 
 
 module.exports = {

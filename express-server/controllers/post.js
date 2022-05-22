@@ -96,14 +96,14 @@ function getPost(req, res){
 function deletePost(req, res){
     const postId = req.params.id;
 
-    Post.findByIdAndRemove({'user': req.user.sub, '_id': postId}).remove(err => {
+    Post.findByIdAndRemove(postId, (err, postRemoved) => {
         if(err){
-            res.status(500).send({message: "Error al borrar la publicació"});
+            res.status(500).send({message: "Error al eliminar la publicació"});
         }else{
             if(!postRemoved){
-                res.status(404).send({message: "No s'ha borrat la publicació"});
+                res.status(404).send({message: "No s'ha eliminat la publicació"});
             }else{
-                res.status(200).send({message: "S'ha eliminat la publicació"});
+                res.status(200).send({post: postRemoved});
             }
         }
     });

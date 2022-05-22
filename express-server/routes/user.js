@@ -20,7 +20,6 @@ api.get('/counters', md_auth.ensureAuth, UserController.getCounters);
 api.post('/updatenamesurname', md_auth.ensureAuth, UserController.updateNameSurname);
 api.post('/updatepassword', md_auth.ensureAuth, UserController.updatePassword);
 api.post('/updatebiobirth', md_auth.ensureAuth, UserController.updateBioBirth);
-
 api.post('/newfollow', md_auth.ensureAuth, UserController.newfollow);
 api.get('/followerscount', md_auth.ensureAuth, UserController.followers_count);
 api.get('/followingcount', md_auth.ensureAuth, UserController.following_count);

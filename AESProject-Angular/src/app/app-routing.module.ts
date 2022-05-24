@@ -9,6 +9,7 @@ import { BioComponent } from './components/pages/profile/bio/bio.component';
 import { ConfigComponent } from './components/pages/profile/config/config.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { ChatComponent } from './components/pages/chat/chat.component';
+import { NotificationsComponent } from './components/pages/notifications/notifications.component';
 
 const routes: Routes = [
     {path: '', component: SigninComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'signIn', component: SigninComponent},
     {path: 'signUp', component: SignupComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'notifications', component: NotificationsComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'search', component: SearchComponent},
     {

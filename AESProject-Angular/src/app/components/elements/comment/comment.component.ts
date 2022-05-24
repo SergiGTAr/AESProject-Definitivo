@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentModel } from 'src/app/models/comment.model';
 import { UserModel } from 'src/app/models/user.model';
+import { CommentService } from 'src/app/services/comment.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class CommentComponent implements OnInit {
     status: string;
     isOwner: boolean;
 
-    constructor(private userService : UserService) {
+    constructor(private userService : UserService, private commentService : CommentService) {
     }
 
     ngOnInit(): void {
@@ -50,6 +51,18 @@ export class CommentComponent implements OnInit {
                 this.status = 'error';
             }
           }
+      ); 
+    }
+
+    clickDelete(): void {
+      this.commentService.deleteComment(this.comment._id).subscribe(
+        response => {
+            this.status = 'success';
+        },
+        error => {
+            this.status = 'error';
+        }
       );
+      window.location.reload();
     }
 }

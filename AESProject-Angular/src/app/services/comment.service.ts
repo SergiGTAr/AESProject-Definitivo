@@ -35,4 +35,11 @@ export class CommentService {
 
         return this.httpClient.post(this.url + 'saveComment', params, {headers});
     }
+
+    deleteComment(comment: string) {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.delete(this.url + 'deleteComment/' + comment, {headers});
+    }
 }

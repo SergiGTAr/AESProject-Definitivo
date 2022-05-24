@@ -9,7 +9,7 @@
             <p>{{commentModel?.content}}</p>
         </div>
         <div class="options">
-            <button class="btn deletePost" *ngIf="isOwner"><p>Delete</p></button>        
+            <button class="btn deletePost" (click)="clickDelete()" *ngIf="isOwner"><p>Delete</p></button>        
         </div>
     </div>
 </div>

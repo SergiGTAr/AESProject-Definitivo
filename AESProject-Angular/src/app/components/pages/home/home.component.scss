@@ -65,6 +65,8 @@ $orange: #ff6900;
 .container {
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
     height: calc(100vh - 50px);
     .userInfo {
         margin: 0 15px 0 auto;

@@ -101,5 +101,6 @@ export class PostComponent implements OnInit {
             this.status = 'error';
         }
       );
+      window.location.reload();
     }
 }

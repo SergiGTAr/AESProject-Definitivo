@@ -43,8 +43,8 @@ function getCommentsByPost(req, res){
 }
 
 function deleteComment(req, res){
-    const params = req.body;
-    const commentId = params._id;
+    const params = req.params;
+    const commentId = params.id;
 
     Comment.findOneAndDelete({_id: commentId});
     Comment.findById(commentId, function (err, comment) {

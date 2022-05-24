@@ -10,7 +10,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./config.component.scss']
 })
 export class ConfigComponent implements OnInit {
-
   namesForm = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)]),
     surname: new FormControl("", [Validators.required, Validators.pattern(/^[a-zA-Z]{1,30}$/)])
@@ -23,7 +22,7 @@ export class ConfigComponent implements OnInit {
     biography: new FormControl('', [Validators.required]),
     day: new FormControl('', [Validators.required, Validators.pattern(/^(?:0[1-9]|1[012])/)]),
     month: new FormControl('', [Validators.required, Validators.pattern(/(?:0[1-9]|1[012])/)]),
-    year: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{4}$/)])
+    year: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{,}$/)])
   });
 
   userModel: UserModel
@@ -73,7 +72,7 @@ export class ConfigComponent implements OnInit {
     this.identity.name = this.userModel.name;
     this.identity.surname = this.userModel.surname
     localStorage.setItem('identity', JSON.stringify(this.identity));
-    this.router.navigate(['/profile/' + this.identity.username + '/config']);
+    window.location.reload();
   }
 
   savePassword() {
@@ -89,7 +88,7 @@ export class ConfigComponent implements OnInit {
           }
       }
     );
-    this.router.navigate(['/profile/' + this.identity.username + '/config']);
+    window.location.reload();
   }
 
   saveInfo() {
@@ -110,7 +109,7 @@ export class ConfigComponent implements OnInit {
     this.identity.bio = this.userModel.bio;
     this.identity.birth = this.userModel.birth;
     localStorage.setItem('identity', JSON.stringify(this.identity));
-    this.router.navigate(['/profile/' + this.identity.username + '/config']);
+    window.location.reload();
   }
 
   getDay() {

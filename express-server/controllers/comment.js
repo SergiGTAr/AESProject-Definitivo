@@ -43,16 +43,17 @@ function getCommentsByPost(req, res){
 }
 
 function deleteComment(req, res){
-    const params = req.body;
-    const commentId = params._id;
+    const commentId = req.params.id;
 
-    Comment.findOneAndDelete({_id: commentId});
-    Comment.findById(commentId, function (err, comment) {
+    Comment.findByIdAndRemove(commentId, (err, commentRemoved) => {
         if (err) {
-            console.log("El usuari s'ha eliminat correctament!");
+            res.status(500).send({message: "Error al eliminar el comentari."});
         } else {
-            console.log("No s'ha pogut eliminar l'usuari!")
-            console.log(comment);
+            if (!commentRemoved) {
+                res.status(404).send({message: "No s'ha pogut eliminar el comentari."});
+            } else {
+                res.status(200).send({comment: commentRemoved});
+            }
         }
     });
 }

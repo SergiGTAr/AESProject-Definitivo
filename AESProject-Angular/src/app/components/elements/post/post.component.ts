@@ -43,13 +43,13 @@ export class PostComponent implements OnInit {
 
             const date: Date = new Date(this.post.created_at);
             const dateString: string = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} ${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-      
+
             this.postModel = new PostModel();
             this.postModel.user = this.userModel;
             this.postModel.content = this.post.content;
             this.postModel.created_at = dateString;
             this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            
+
             this.status = 'success';
         },
         error => {
@@ -78,6 +78,13 @@ export class PostComponent implements OnInit {
 
     clickLiked(): void {
       this.isLiked = !this.isLiked;
+      if (this.isLiked) {
+        this.likes++;
+      } else {
+        this.likes--;
+      }
+      
+      this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
     clickComment(): void {
@@ -91,7 +98,7 @@ export class PostComponent implements OnInit {
             this.status = 'success';
         },
         error => {
-            this.status = 'error'; 
+            this.status = 'error';
         }
       );
     }

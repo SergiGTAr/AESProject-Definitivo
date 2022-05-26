@@ -86,7 +86,7 @@ export class UserService {
     }
 
     updatePassword(userPassword: string): Observable<any> {
-        const params = {password:userPassword};
+        const params = {password: userPassword};
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 

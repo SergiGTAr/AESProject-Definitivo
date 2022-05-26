@@ -20,10 +20,10 @@ export class ConfigComponent implements OnInit {
     repeatedPassword: new FormControl('', [Validators.required])
   }, CustomValidators.mustMatch('password','repeatedPassword'));
   infoForm = new FormGroup({
-    biography: new FormControl(''),
-    day: new FormControl('', [Validators.pattern(/^(:0[1-9]|1[012])/)]),
-    month: new FormControl('', [Validators.pattern(/(?:0[1-9]|1[012])/)]),
-    year: new FormControl('', [Validators.pattern(/^[0-9]$/)])
+    biography: new FormControl('', [Validators.required]),
+    day: new FormControl('', [Validators.required, Validators.pattern(/^(?:0[1-9]|1[012])/)]),
+    month: new FormControl('', [Validators.required, Validators.pattern(/(?:0[1-9]|1[012])/)]),
+    year: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{4}$/)])
   });
 
   userModel: UserModel

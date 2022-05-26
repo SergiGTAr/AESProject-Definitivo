@@ -28,6 +28,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NewCommentComponent } from './components/elements/new-comment/new-comment.component';
 import { UserListComponent } from './components/elements/user-list/user-list.component';
+import { NotificationsComponent } from './components/pages/notifications/notifications.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { UserListComponent } from './components/elements/user-list/user-list.com
         HeaderComponent,
         HeaderProfileComponent,
         NewCommentComponent,
-        UserListComponent
+        UserListComponent,
+        NotificationsComponent
     ],
     imports: [
         BrowserModule,

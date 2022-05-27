@@ -14,6 +14,7 @@ export class HeaderProfileComponent implements OnInit {
   identity: any
   userModel: UserModel
   isOwner: boolean
+  isFollowing: boolean
 
   constructor(private userService: UserService, private activatedRoute : ActivatedRoute, private router: Router) { }
 
@@ -31,23 +32,24 @@ export class HeaderProfileComponent implements OnInit {
         }
 
         this.userModel = new UserModel("", "", "", "", username, "", "");
-    }
-
-    follow() {
-      this.userService.getUser(this.userModel).subscribe(
-        response => {
-            this.userModel.id = response.user._id;
-            this.followUser();
-            this.status = 'success';
-        },
-        error => {
-            const errorMessage = error as any;
-            console.log(errorMessage);
-            if (errorMessage != null) {
-                this.status = 'error';
-            }
-        }
-      );
+        this.userService.getUser(this.userModel).subscribe(
+          response => {
+              this.userModel.id = response.user._id;
+              if (this.identity.following.includes(this.userModel.id)) {
+                this.isFollowing = true;
+              } else {
+                this.isFollowing = false;
+              }
+              this.status = 'success';
+          },
+          error => {
+              const errorMessage = error as any;
+              console.log(errorMessage);
+              if (errorMessage != null) {
+                  this.status = 'error';
+              }
+          }
+        );
     }
 
     followUser() {
@@ -63,5 +65,6 @@ export class HeaderProfileComponent implements OnInit {
             }
         }
       );
+      window.location.reload();
     }
 }

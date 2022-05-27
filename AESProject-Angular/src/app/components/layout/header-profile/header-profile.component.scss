@@ -67,6 +67,13 @@ $darkGray: #666666;
             &:hover {
                 background: $darkBlue;
             }
+            &.following {
+                background: $white;
+                color: $blue;
+                &:hover {
+                    background: $lightGray;
+                }
+            }
         }
     }
 }

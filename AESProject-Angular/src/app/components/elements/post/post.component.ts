@@ -22,8 +22,6 @@ export class PostComponent implements OnInit {
     isOwner: boolean;
     isLiked: boolean;
     isCommenting: boolean;
-    likes: number;
-
     constructor(private userService: UserService, private commentService: CommentService, private postService: PostService) {
 
     }
@@ -31,7 +29,6 @@ export class PostComponent implements OnInit {
     ngOnInit(): void {
       this.identity = JSON.parse(localStorage.getItem('identity'));
       this.userModel = new UserModel (this.post.user,'','','','','','');
-      this.likes = 0;
 
       if (this.identity._id == this.userModel.id) {
         this.isOwner = true;
@@ -48,7 +45,12 @@ export class PostComponent implements OnInit {
             this.postModel.user = this.userModel;
             this.postModel.content = this.post.content;
             this.postModel.created_at = dateString;
-            this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            if (this.post.likes !== undefined) {
+              this.postModel.likes = String(this.post.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            } else {
+              this.postModel.likes = String(0);
+            }
+            this.getComments();
 
             this.status = 'success';
         },
@@ -60,7 +62,9 @@ export class PostComponent implements OnInit {
             }
           }
       );
+    }
 
+    getComments() {
       this.commentService.getNumberComments(this.post._id).subscribe(
         response => {
             this.postModel.comments = String(response.comments).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -79,12 +83,20 @@ export class PostComponent implements OnInit {
     clickLiked(): void {
       this.isLiked = !this.isLiked;
       if (this.isLiked) {
-        this.likes++;
+        this.postModel.likes = String(parseInt(this.postModel.likes) + 1).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       } else {
-        this.likes--;
+        this.postModel.likes = String(parseInt(this.postModel.likes) - 1).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       }
-      
-      this.postModel.likes = String(this.likes).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+      this.postService.addLike(this.post._id).subscribe(
+        response => {
+            this.status = 'success';
+        },
+        error => {
+            this.status = 'error';
+        }
+      );
+      window.location.reload();
     }
 
     clickComment(): void {

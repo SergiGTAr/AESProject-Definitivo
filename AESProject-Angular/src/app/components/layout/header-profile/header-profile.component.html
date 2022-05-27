@@ -1,7 +1,7 @@
 <div class="profileHeader">
     <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
     <div class="options">
-        <button class="btn follow" *ngIf="!isOwner" (click)="follow()"><i class="fas fa-user-plus"></i>Follow</button>
+        <button class="btn follow" *ngIf="!isOwner" (click)="followUser()" [ngClass]="{'following': isFollowing}"><i class="fas fa-user-plus"></i>Follow</button>
     </div>
 </div>
 <div class="userBar">

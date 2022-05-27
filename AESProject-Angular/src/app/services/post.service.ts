@@ -42,4 +42,12 @@ export class PostService {
 
         return this.httpClient.delete(this.url + 'post/' + post, {headers});
     }
+
+    addLike(post: string) {
+        const params = {id: post};
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
+
+        return this.httpClient.post(this.url + 'addlike', params, {headers});
+    }
 }

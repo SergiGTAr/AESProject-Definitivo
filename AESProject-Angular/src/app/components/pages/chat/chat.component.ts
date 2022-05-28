@@ -11,17 +11,18 @@ export class ChatComponent implements OnInit {
     messages: any[];
     users: any[];
     isSelected: boolean;
+    userModel: UserModel;
     
     constructor() { }
 
     ngOnInit() {
-        this.users = [{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"}];
         this.messages = [{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"}];
         this.identity = JSON.parse(localStorage.getItem('identity'));
+        this.users = this.identity.following;
     }
 
     clickUser(userModel: UserModel): void {
-        //Mostrar chat 
+        this.userModel = userModel
     }
 
 }

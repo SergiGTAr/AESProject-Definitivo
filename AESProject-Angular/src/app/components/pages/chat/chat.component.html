@@ -1,14 +1,16 @@
 <main class="container">
     <div class="list">
-        <app-user-list *ngFor="let user of users" [user]="user" [isSelected]="isSelected" (userListEmitter)="clickUser($event)"></app-user-list>
+        <app-user-list *ngFor="let user of users" [user]="user" (userListEmitter)="clickUser($event)"></app-user-list>
     </div>
     <div class="box">
         <div class="user">
-            <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="">
-            <p class="username">Adri PG</p>
+            <img class="userPhoto" src="../../../../assets/img/IMGPrueba.png" alt="" *ngIf="userModel !== undefined">
+            <p class="username" *ngIf="userModel !== undefined">{{userModel.username}}</p>
         </div>
         <div class="conversation">
-            <div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>
+            <!--<div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>-->
+            <div class="you"><p>Hola</p></div>
+            <div class="another"><p>Hola</p></div>
         </div>
         <div class="messageInput">
             <textarea class="input message" name="" id=""></textarea>

@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { UserModel } from 'src/app/models/user.model';
+import {Component, OnInit} from '@angular/core';
+import {UserModel} from 'src/app/models/user.model';
+import {MessageModel} from '../../../models/message.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ChatService} from '../../../services/chat.service';
+import {UserService} from '../../../services/user.service';
+import {identity} from 'rxjs';
+import {GLOBAL} from '../../../services/global';
 
 @Component({
     selector: 'app-chat',
@@ -7,22 +13,25 @@ import { UserModel } from 'src/app/models/user.model';
     styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-    identity: any;
-    messages: any[];
-    users: any[];
-    isSelected: boolean;
-    userModel: UserModel;
-    
-    constructor() { }
+    title: string;
+    message: MessageModel;
+    identity;
+    token;
+    url: string;
 
-    ngOnInit() {
-        this.messages = [{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"}];
-        this.identity = JSON.parse(localStorage.getItem('identity'));
-        this.users = this.identity.following;
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private messageService: ChatService,
+        private userService: UserService
+    ) {
     }
 
-    clickUser(userModel: UserModel): void {
-        this.userModel = userModel
+    ngOnInit() {
+        this.message = new MessageModel('', '', '', '', '', '');
+        this.identity = this.userService.identity;
+        this.token = this.userService.token;
+        this.url = GLOBAL.url;
     }
 
 }

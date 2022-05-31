@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit {
     }
 
     clickUser(userModel: UserModel): void {
-        this.messages = [{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"}];
+        this.messages = [{user: this.identity._id, message:"Hola!"}, {user: "user", message:"Hola! :D"}, {user: this.identity._id, message:"Que tal?"}, {user: "user", message:"Jo bé! I tu?"}];
         this.userModel = userModel
     }
 

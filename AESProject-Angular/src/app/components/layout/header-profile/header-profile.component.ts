@@ -55,7 +55,14 @@ export class HeaderProfileComponent implements OnInit {
     followUser() {
       this.userService.newFollow(this.userModel.id).subscribe(
         response => {
+              if (this.identity.following.includes(this.userModel.id)) {
+                this.identity.following.splice(this.identity.following.indexOf(this.userModel.id),1);
+              } else {
+                this.identity.following.push(this.userModel.id);
+              }
+              localStorage.setItem('identity', JSON.stringify(this.identity));
               this.status = 'success';
+              window.location.reload();
             },
         error => {
             const errorMessage = error as any;
@@ -65,6 +72,5 @@ export class HeaderProfileComponent implements OnInit {
             }
         }
       );
-      window.location.reload();
     }
 }

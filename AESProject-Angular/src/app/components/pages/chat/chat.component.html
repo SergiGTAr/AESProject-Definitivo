@@ -8,13 +8,11 @@
             <p class="username" *ngIf="userModel !== undefined">{{userModel.username}}</p>
         </div>
         <div class="conversation">
-            <!--<div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>-->
-            <div class="you"><p>Hola</p></div>
-            <div class="another"><p>Hola</p></div>
+            <div *ngFor="let message of messages" [ngClass]="identity._id == message.user ? 'you' : 'another'" ><p>Hola</p></div>
         </div>
         <div class="messageInput">
-            <textarea class="input message" name="" id=""></textarea>
-            <button class="btn send">Send</button>
+            <textarea class="input message" name="" #content></textarea>
+            <button class="btn send" (click)="onSubmit(content.value)">Send</button>
         </div>
     </div>
 </main>

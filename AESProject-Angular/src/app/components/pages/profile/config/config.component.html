@@ -43,10 +43,10 @@
             <input class="input month" maxlength="2" type="text" name="month" placeholder="mm" formControlName="month" value="{{getMonth()}}">
             <input class="input year" maxlength="4" type="text" name="year" placeholder="yyyy" formControlName="year" value="{{getYear()}}">
 
-            <div class="submitError" *ngIf="(bio.invalid || (day.invalid && (day.dirty || day.touched)) || (month.invalid && (month.dirty || month.touched)) || (year.invalid && (year.dirty || year.touched)))">
+            <div class="submitError" *ngIf="((bio.invalid && (bio.dirty || bio.touched)) || (day.invalid && (day.dirty || day.touched)) || (month.invalid && (month.dirty || month.touched)) || (year.invalid && (year.dirty || year.touched)))">
                 <p>There are some fields to check:</p>
                 <ul>
-                    <li *ngIf="bio.invalid">
+                    <li *ngIf="bio.invalid && (bio.dirty || bio.touched)">
                         <p>You have to write bio</p>
                     </li>
                     <li *ngIf="(day.invalid && (day.dirty || day.touched)) || (month.invalid && (month.dirty || month.touched)) || (year.invalid && (year.dirty || year.touched))">

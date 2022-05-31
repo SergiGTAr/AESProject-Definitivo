@@ -4,7 +4,6 @@ import {MessageModel} from '../../../models/message.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChatService} from '../../../services/chat.service';
 import {UserService} from '../../../services/user.service';
-import {identity} from 'rxjs';
 import {GLOBAL} from '../../../services/global';
 
 @Component({
@@ -15,23 +14,44 @@ import {GLOBAL} from '../../../services/global';
 export class ChatComponent implements OnInit {
     title: string;
     message: MessageModel;
-    identity;
-    token;
+    identity: any;
+    token: string;
+    users: any[];
+    messages: any;
+    status: string;
+    userModel: UserModel;
     url: string;
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private messageService: ChatService,
-        private userService: UserService
-    ) {
+    constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService, private userService: UserService) {
+
     }
 
     ngOnInit() {
-        this.message = new MessageModel('', '', '', '', '', '');
+        this.message = new MessageModel();
         this.identity = this.userService.identity;
         this.token = this.userService.token;
-        this.url = GLOBAL.url;
+        //this.url = GLOBAL.url;
+        this.users = this.identity.following;
     }
 
+    clickUser(userModel: UserModel): void {
+        this.messages = [{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"},{user:"1"},{user:"2"},{user:"3"}];
+        this.userModel = userModel
+    }
+
+    onSubmit(content: string) {
+        this.message.text = content;
+        this.chatService.addMessage(this.token, this.message).subscribe(
+            response => {
+                if (response) {
+                    this.status = 'success';
+                } else {
+                    this.status = 'error';
+                }
+            },
+            error => {
+                console.log(error);
+            }
+        );
+      }
 }

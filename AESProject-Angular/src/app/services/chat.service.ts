@@ -4,7 +4,9 @@ import {Observable} from 'rxjs';
 import {GLOBAL} from './global';
 import {MessageModel} from '../models/message.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ChatService {
     public url: string;
 

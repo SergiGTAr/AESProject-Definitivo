@@ -31,7 +31,7 @@ function sendVerificationMail(user) {
         service: 'gmail',
         auth: {
             user: 'aesprojectrrss@gmail.com',
-            pass: 'AESProject200522'
+            pass: 'aznpwejrycelvevj'
         }
     });
 

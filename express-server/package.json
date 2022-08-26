@@ -14,7 +14,7 @@
         "jwt-simple": "^0.5.6",
         "moment": "^2.29.2",
         "mongodb": "^4.6.0",
-        "mongoose": "^6.3.1",
+        "mongoose": "^6.4.6",
         "mongoose-paginate": "^5.0.3",
         "mongoose-paginate-v2": "^1.6.3",
         "mongoose-pagination": "^1.0.0",
